@@ -1,8 +1,8 @@
 {
-  "name": "opentheme",
-  "description": "Powerful Theme for Websites and Single Page Apps on GitHub Pages",
+  "name": "gapcoin-project",
+  "description": "Community-led resources for Gapcoin",
   "version": "0.0.0",
-  "homepage": "https://github.com/open-start/opentheme",
+  "homepage": "https://github.com/gapcoin-project/gapcoin-project.github.io",
   "license": "MIT",
   "private": true,
   "dependencies": {}
