@@ -1,0 +1,78 @@
+# Site settings
+
+title: Gapcoin Project
+tagline: Community-led
+email: gjhiggins@gmail.com
+copyright: Gapcoin Project
+keywords: prime gap, cryptocurrency, altcoin
+
+description: > # this means to ignore newlines until "url:". One indent required.
+  Gapcoin Project, a community-led pool of resources for Gapcoin
+
+# the base hostname & protocol for your site
+url: "https://gapcoin-project.github.io"
+
+twitter_username: gapcoin
+github_username:  gapcoin-project
+
+default_image: /img/opentheme-workflow.png
+
+# Pre-processing
+
+markdown: kramdown
+highlighter: pygments
+safe: true
+permalink: pretty # YYYY/MM/DD/page-title/index.html
+lsi: true # Lexical analysis (true) takes longer for higher quality
+# sass:
+#  style: :compressed
+
+# Exclude from Jekyll processing
+
+exclude: ["vendor", "README.md", "node_modules", "gulpfile.js", "package.json"]
+
+# Lists
+
+tag_items: 20     # Applies to categories and tags lists
+recent_items: 10  # Applies to recent posts, apps lists
+related_items: 5  # Applies to related posts and apps lists
+
+# Layout
+
+pagebar: true # Show (true) page sidebar menu or hide (false) 
+postbar: true # Show (true) post sidebar or hide (false) 
+
+# Features
+
+reading_time: true    # Show est. reading time for posts
+facebook: false        # Use facebook features
+comments: none      # Switch disqus | facebook | none - comments. facebook = true required for facebook comments
+
+# Embeds
+
+# disqus_name: gapcoin            # Your site name at Disqus
+
+youtube_controls: 0               # Turn on=1/off=0 Youtube player features when embedding videos
+
+# google_map_zoom: 16               # 1=Global zoom 18=Street Level
+# google_map_view: satellite        # hybrid | satellite | roadmap
+# google_map_height: 450            # Default map height. Width adjusts to container.
+
+# API Keys. PLEASE DO NOT USE THESE KEYS. Get your own at links in comments.
+
+# google_api_key: "" # https://code.google.com/apis/console/
+# google_analytics_ua: "" # Google Analytics site specific id
+# google_cse_id: "" # Google Custom Search Engine unique id
+
+# mapbox: ""
+
+# facebook_app: "" # https://developers.facebook.com/
+
+# mailchimp_u: "" # Mailchimp u=unique identification
+# mailchimp_id: "" # Mailchip id
+
+# addthis_pubid: "" # Get your pubid at https://www.addthis.com/dashboard
+
+# pingdom_rum: "" # https://my.pingdom.com/dashboard. Real User experience (speed) monitoring.
+
+# uservoice: ""
