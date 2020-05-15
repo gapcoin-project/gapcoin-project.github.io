@@ -20,16 +20,28 @@ default_image: /img/opentheme-workflow.png
 # Pre-processing
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 safe: true
 permalink: pretty # YYYY/MM/DD/page-title/index.html
-lsi: true # Lexical analysis (true) takes longer for higher quality
+
+# lsi: true # Lexical analysis (true) takes longer for higher quality
+
 # sass:
 #  style: :compressed
 
 # Exclude from Jekyll processing
 
-exclude: ["vendor", "README.md", "node_modules", "gulpfile.js", "package.json"]
+include: [".htaccess"]
+exclude: ["vendor", "README.md", "node_modules", "gulpfile.js", "package.json", "data", "res", "*.sublime-project", "*.sublime-workspace"]
+# Build settings
+plugins:
+  - jekyll-feed
+
+# Default locations
+plugins_dir         : _plugins
+layouts_dir         : _layouts
+data_dir            : _data
+includes_dir        : _includes
 
 # Lists
 
