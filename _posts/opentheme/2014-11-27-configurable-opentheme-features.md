@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "Configurable OpenTheme Features"
-category: opentheme
-tags: layout
+category: projectdoc
+tags: projectdoc
 ---
 
 OpenTheme is designed to be adequately configurable. 

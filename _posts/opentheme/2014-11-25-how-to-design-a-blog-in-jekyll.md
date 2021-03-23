@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "How To Design A Blog in Jekyll"
-category: ghpages
-tags: blog jekyll
+category: projectdoc
+tags: projectdoc
 ---
 
 This article discusses our design journey in creating a blog using Jekyll.

@@ -5,7 +5,7 @@ title: Gapcoin Break-the-record Day
 description: Promotional idea
 category: news
 tags: feature news
-date: 2021-03-20
+date: 2017-06-15
 ---
 
 (Edited) from the annals of the bitcointalk thread ...

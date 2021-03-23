@@ -1,5 +1,6 @@
 {% for tag in site.tags limit:site.recent_items %}
-{% if tag.first != 'projectdoc' %}
-<a class="ui tag mini label teal" href="/tag/#{{ tag | first }}" title="{{ tag | first }}">{{ tag | first }} <div class="detail">{{ tag | last | size }}</div></a>
-{% endif %}
+    {% if tag.first != 'projectdoc' %}
+    <a class="ui tag mini label teal" href="/tag/#{{ tag | first }}" title="{{ tag | first }}">{{ tag | first }} 
+        <div class="detail">{{ tag | last | size }}</div></a>
+    {% endif %}
 {% endfor %}

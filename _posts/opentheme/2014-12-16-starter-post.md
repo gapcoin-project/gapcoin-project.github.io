@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "Starter Post"              # Title used in HTML Meta, Post Header, Recent Posts list
-category: ghpages
-tags: blog jekyll                   # Tags to relate multiple topics to a post
+category: projectdoc
+tags: projectdoc                   # Tags to relate multiple topics to a post
 ---
 
 This is a starter post which you can duplicate to create your own. It demonstrates Markdown syntax, Liquid tags, and GitHub whitelisted HTML.

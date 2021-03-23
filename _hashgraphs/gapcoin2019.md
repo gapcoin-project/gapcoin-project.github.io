@@ -3,9 +3,9 @@ layout: hashgraph
 title: Hashrate for 2019
 description: Graph of network hash rate at midnight each day for 2019
 author: Graham Higgins
-category: graph
-year: 2019
+category: blockchain
 tags: graph
+year: 2019
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2019-01-01

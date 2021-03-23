@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "Data Driven Web Apps Using GitHub"      
-category: ghpages
-tags: jekyll
+category: projectdoc
+tags: projectdoc
 ---
 
 GitHub Pages can use JSON, YAML, CSV, Cloud stores like Fusion Tables, and Real-time databases like Firebase.
@@ -17,7 +17,7 @@ GitHub Pages can use JSON, YAML, CSV, Cloud stores like Fusion Tables, and Real-
 ### YAML Data For Embed Plugins
 
 Simple, structured documents can be expressed in YAML or JSON. 
-Creating such documents within _data folder enables access to YAML defined structure
+Creating such documents within `_data` folder enables access to YAML defined structure
 as an object within Liquid markup.
 
 OpenTheme uses one simple YAML data file to describe Embed plugins with 12 distinct structured attributes.

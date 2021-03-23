@@ -3,9 +3,9 @@ layout: diffgraph
 title: Difficulty for 2021
 description: Graph of difficulty at midnight each day for Jan - Mar 2021
 author: Graham Higgins
-category: graph
-year: 2021
+category: blockchain
 tags: graph
+year: 2021
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2021-01-01
