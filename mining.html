@@ -26,6 +26,24 @@ description: Resources related to mining Gapcoin
     </div>
 
     <div class="row">
+      <div class="column">
+        <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+        <h3 class="ui teal header">Mining without the Chinese Remainder Theorem</h3>
+
+        <h4>Pool mining with getwork</h4>
+        <pre style="font-size:75%">gapminer -o http://your-pool.club -p 4200 -u user.worker -x password -t 4</pre>
+
+        <h4>Pool mining with stratum (recommended)</h4>
+        <pre style="font-size:75%">gapminer -o your-pool.club -p 3385 -u user.worker -x password -t 4 --stratum</pre>
+
+        <h4>Solo mining</h4>
+        <pre style="font-size:75%">gapminer -o 127.0.0.1 -p 31397 -u &lt;rpc user> -x &lt;rpc password> -t 4</pre>
+        <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+      </div>
+    </div>
+
+
+    <div class="row">
 
       <div class="eight wide column">
         {% include recent-posts.html %}
