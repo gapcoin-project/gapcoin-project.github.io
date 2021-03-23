@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: landing
 author: BicoinFX
 title: Chinese Remainder Theorem Mining
 category: mining
@@ -7,17 +7,24 @@ date: 2021-03-15
 tags: crt
 ---
 
-BitcoinFX on <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a>
+<div class="ui inverted vertical segment dark-wood">
+  <div class="ui very relaxed stackable page grid">
 
-<h3 class="ui teal header">Mining with the Chinese Remainder Theorem</h3>
+    <h2 class="ui teal header">BitcoinFX on <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a></h2>
 
-<p>The ctr algorithm is divided into 2 parts. The first part is a simple greedy algorithm which tries to find offsets for each involved prime so that the desired number range has the least prime candidates as possible.</p>
+    <div class="row">
 
-<p>The second part is an evolutionary algorithm which tries to improve the results from the greedy algorithm. Therefore the greedy algorithm will be executed several times with slightly different parameters to produce ctrs which differ in quality which than can be used by the evolutionary algorithm.</p>
+      <div class="sixteen wide column">
 
-<p>The output is a text file which can be used by gapminer as an input for ctr sieving.</p>
+        <h3 class="ui teal header">Mining with the Chinese Remainder Theorem - creating CTR files</h3>
 
-<blockquote><pre>
+        <p>The ctr algorithm is divided into 2 parts. The first part is a simple greedy algorithm which tries to find offsets for each involved prime so that the desired number range has the least prime candidates as possible.</p>
+
+        <p>The second part is an evolutionary algorithm which tries to improve the results from the greedy algorithm. Therefore the greedy algorithm will be executed several times with slightly different parameters to produce ctrs which differ in quality which than can be used by the evolutionary algorithm.</p>
+
+        <p>The output is a text file which can be used by gapminer as an input for ctr sieving.</p>
+
+        <blockquote><pre style="font-size:90%">
 Parameter description:
 
 --calc-ctr          Indicates that we want to calculate a ctr file.
@@ -60,392 +67,312 @@ Parameter description:
                     it is the better the ctr file.
 </pre></blockquote>
 
-<h3 class="ui teal header">Example settings which were used to calculate the current ctr files:</h3>
-
-<code style="font-size:70%"><pre>
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 8 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 10 --ctr-primes 14 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 8 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 13 --ctr-primes 19 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 10 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 13 --ctr-primes 24 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 10 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 12 --ctr-primes 29 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 11 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 9 --ctr-primes 34 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 11 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 12 --ctr-primes 38 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 11 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 14 --ctr-primes 42 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 11 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 46 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 16 --ctr-primes 50 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 9 --ctr-primes 55 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 16 --ctr-primes 58 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 16 --ctr-primes 62 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 66 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 12 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 13 --ctr-primes 70 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 11 --ctr-primes 74 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 9 --ctr-primes 78 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 81 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 12 --ctr-primes 85 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 17 --ctr-primes 88 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 13 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 14 --ctr-primes 92 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 10 --ctr-primes 96 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 99 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 10 --ctr-primes 103 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 106 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 10 --ctr-primes 110 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 14 --ctr-primes 113 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 14 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 9 --ctr-primes 117 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 15 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 13 --ctr-primes 120 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 15 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 17 --ctr-primes 122 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 15 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 11 --ctr-primes 127 -t 4 --ctr-file my-ctr-file.txt
-gapminer-cpu.exe --calc-ctr --ctr-evolution --ctr-fixed 15 --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0 --ctr-bits 15 --ctr-primes 130 -t 4 --ctr-file my-ctr-file.txt
-</pre>
+        <h4 class="ui teal header">Example settings which were used to calculate the current ctr files:</h4>
+
+        <p>If you want to generate a file for, e.g. shift 384 with <tt>ctr-primes = 58</tt></p>
+
+        <code><pre style="font-size:90%">
+      ctr-bits = <math>shift - log2(p1*p2*..*pn)</math></pre></code>
+
+        <p>Or, expressed using <a href="https://en.wikipedia.org/wiki/Primorial" target="_blank">primorial notation</a>:</p>
+
+        <code><pre style="font-size:90%">
+      ctr-bits = <math>384 - log2(58#)</math>
+
+      ctr-bits = <math>384 - 368 = 16</math></pre></code>
+
+        <p>Miner call and invariant setting:</p>
+
+        <code><pre style="font-size:75%">gapminer -t 4 --calc-ctr --ctr-evolution --ctr-strength 150000 --ctr-ivs 1000 --ctr-range 0 --ctr-merit 22</pre></code>
+
+        <div class="ui accordion">
+          <div class="title" style="color:teal">
+              <i class="dropdown icon"></i>Plus systematically-varied settings ...
+          </div>
+          <div class="content">
+            <code><pre style="font-size:75%">
+    --ctr-fixed 8  --ctr-bits 10 --ctr-primes 14  --ctr-file my-ctr-file.txt
+    --ctr-fixed 8  --ctr-bits 13 --ctr-primes 19  --ctr-file my-ctr-file.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes 24  --ctr-file my-ctr-file.txt
+    --ctr-fixed 10 --ctr-bits 12 --ctr-primes 29  --ctr-file my-ctr-file.txt
+    --ctr-fixed 11 --ctr-bits 9  --ctr-primes 34  --ctr-file my-ctr-file.txt
+    --ctr-fixed 11 --ctr-bits 12 --ctr-primes 38  --ctr-file my-ctr-file.txt
+    --ctr-fixed 11 --ctr-bits 14 --ctr-primes 42  --ctr-file my-ctr-file.txt
+    --ctr-fixed 11 --ctr-bits 15 --ctr-primes 46  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 50  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 9  --ctr-primes 55  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 58  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 62  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 15 --ctr-primes 66  --ctr-file my-ctr-file.txt
+    --ctr-fixed 12 --ctr-bits 13 --ctr-primes 70  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes 74  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 9  --ctr-primes 78  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 15 --ctr-primes 81  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 12 --ctr-primes 85  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 17 --ctr-primes 88  --ctr-file my-ctr-file.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes 92  --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 96  --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 99  --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 103 --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 106 --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 110 --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 113 --ctr-file my-ctr-file.txt
+    --ctr-fixed 14 --ctr-bits 9  --ctr-primes 117 --ctr-file my-ctr-file.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 120 --ctr-file my-ctr-file.txt
+    --ctr-fixed 15 --ctr-bits 17 --ctr-primes 122 --ctr-file my-ctr-file.txt
+    --ctr-fixed 15 --ctr-bits 11 --ctr-primes 127 --ctr-file my-ctr-file.txt
+    --ctr-fixed 15 --ctr-bits 15 --ctr-primes 130 --ctr-file my-ctr-file.txt</pre></code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="sixteen wide column">
+
+      <div class="ui accordion">
+        <div class="title">
+          <i class="dropdown icon"></i><span style="font-size:140%;font-weight:bold;color:teal">Mining with the Chinese Remainder Theorem (solo mining examples)</span>
+        </div>
+        <div class="content" style="margin-left:2em">
+          <p><pre style="font-size:75%">gapminer-cpu localhost -p 31397 -u &lt;rpc-user> -x &lt;rpc-password>  --threads 4 --fermat-threads 1 </pre></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 64</span> <tt> --shift 64 --crt crt/crt-22m-64s.txt --sieve-primes 50000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 96</span> <tt> --shift 96 --crt crt/crt-22m-96s.txt --sieve-primes 50000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 128</span> <tt> --shift 128 --crt crt/crt-22m-128s.txt --sieve-primes 50000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 160</span> <tt> --shift 160 --crt crt/crt-22m-160s.txt --sieve-primes 100000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 192</span> <tt> --shift 192 --crt crt/crt-22m-192s.txt --sieve-primes 100000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 224</span> <tt> --shift 224 --crt crt/crt-22m-224s.txt --sieve-primes 100000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 256</span> <tt> --shift 256 --crt crt/crt-22m-256s.txt --sieve-primes 100000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 288</span> <tt> --shift 288 --crt crt/crt-22m-288s.txt --sieve-primes 300000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 320</span> <tt> --shift 320 --crt crt/crt-22m-320s.txt --sieve-primes 300000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 352</span> <tt> --shift 352 --crt crt/crt-22m-352s.txt --sieve-primes 300000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 384</span> <tt> --shift 384 --crt crt/crt-22m-384s.txt --sieve-primes 500000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 416</span> <tt> --shift 416 --crt crt/crt-22m-416s.txt --sieve-primes 500000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 448</span> <tt> --shift 448 --crt crt/crt-22m-448s.txt --sieve-primes 500000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 480</span> <tt> --shift 480 --crt crt/crt-22m-480s.txt --sieve-primes 500000</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 512</span> <tt> --shift 512 --crt crt/crt-22m-512s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 544</span> <tt> --shift 544 --crt crt/crt-22m-544s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 576</span> <tt> --shift 576 --crt crt/crt-22m-576s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 608</span> <tt> --shift 608 --crt crt/crt-22m-608s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 640</span> <tt> --shift 640 --crt crt/crt-22m-640s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 672</span> <tt> --shift 672 --crt crt/crt-22m-672s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 704</span> <tt> --shift 704 --crt crt/crt-22m-704s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 736</span> <tt> --shift 736 --crt crt/crt-22m-736s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 768</span> <tt> --shift 768 --crt crt/crt-22m-768s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 800</span> <tt> --shift 800 --crt crt/crt-22m-800s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 832</span> <tt> --shift 832 --crt crt/crt-22m-832s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 864</span> <tt> --shift 864 --crt crt/crt-22m-864s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 896</span> <tt> --shift 896 --crt crt/crt-22m-896s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 928</span> <tt> --shift 928 --crt crt/crt-22m-928s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 992</span> <tt> --shift 992 --crt crt/crt-22m-992s.txt</tt></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 1024</span> <tt> --shift 1024 --crt crt/crt-22m-1024s.txt</tt></p>
+        </div>
+      </div>
+      </div>
+    </div>
 
-<p>choose your preferred mining method:</p>
+    <div class="row">
+      <div class="sixteen wide column">
 
-<h3 class="ui teal header">Mining with the Chinese Remainder Theorem (solo mining examles)</h3>
+      <h3 class="ui teal header">Pool mining on suprnova with CRT and values as above</h3>
+      <p>Posted to Discord by Wizz:
+        <img width="1024" src="/img/page/wizz-crt-pool-mining.png" />
+      </p>
 
-<pre>gapminer-cpu localhost -p 31397 -u &lt;rpc-user> -x &lt;rpc-password>  --threads 4 --fermat-threads 1 </pre>
+      <p>With default setting of <code>--sieve-primes</code> value for 4cores/8threads CPU. Standard solo mining invocation:</p>
+        <code><pre style="font-size:75%">
+gapminer -o http://127.0.0.1 -p 31397 -u user -x pwd</pre></code>
+      </div>
+    </div>
 
-<h4>Shift 64</h4>
-<pre> --shift 64 --crt crt/crt-22m-64s.txt --sieve-primes 50000</pre>
+    <div class="row">
+      <div class="sixteen wide column">
+      <div class="ui accordion">
+        <div class="title">
+            <i class="dropdown icon"></i><span style="font-size:130%;font-weight:bold;color:teal">Wizz settings as tested on suprnova (only for <tt>-t 12/16</tt>)</span>
+        </div>
+        <div class="content">
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 64</span> <tt>--shift 64 --crt crt/crt-22m-64s.txt --threads 12 --fermat-threads 11 --sieve-primes 1300</tt><br/>
+            <strong><em>max 38500 gaps/s 3M tests/s 0.025%</em></strong></p>
 
-<h4>Shift 96</h4>
-<pre> --shift 96 --crt crt/crt-22m-96s.txt --sieve-primes 50000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 96</span> <tt>--shift 96 --crt crt/crt-22m-96s.txt --threads 12 --fermat-threads 11 --sieve-primes 2500</tt><br/>
+            <strong><em>max 27000 gaps/s 3.2M tests/s 0.035%</em></strong></p>
 
-<h4>Shift 128</h4>
-<pre> --shift 128 --crt crt/crt-22m-128s.txt --sieve-primes 50000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 96</span> <tt>--shift 96 --crt crt/crt-22m-96s.txt --threads 7 --fermat-threads 1 --sieve-primes 150000</tt><br/>
+            <strong><em>max 3100 gaps/s 100K tests/s 0.005% - short gaplist with ft2</em></strong></p>
 
-<h4>Shift 160</h4>
-<pre> --shift 160 --crt crt/crt-22m-160s.txt --sieve-primes 100000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 128</span> <tt>--shift 128 --crt crt/crt-22m-128s.txt --threads 12 --fermat-threads 11 --sieve-primes 3500</tt><br/>
+            <strong><em>max 22500 gaps/s 4.2M tests/s 0.05%</em></strong></p>
 
-<h4>Shift 192</h4>
-<pre> --shift 192 --crt crt/crt-22m-192s.txt --sieve-primes 100000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 128</span> <tt>--shift 128 --crt crt/crt-22m-128s.txt --threads 7 --fermat-threads 2 --sieve-primes 140000</tt><br/>
+            <strong><em>max 3100 gaps/s 160K tests/s 0.012% - short gaplist with ft2</em></strong></p>
 
-<h4>Shift 224</h4>
-<pre> --shift 224 --crt crt/crt-22m-224s.txt --sieve-primes 100000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 160</span> <tt>--shift 160 --crt crt/crt-22m-160s.txt --threads 12 --fermat-threads 11 --sieve-primes 5000</tt><br/>
+            <strong><em>max 16500 gaps/s 4M tests/s 0.09%</em></strong></p>
 
-<h4>Shift 256</h4>
-<pre> --shift 256 --crt crt/crt-22m-256s.txt --sieve-primes 100000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 160</span> <tt>--shift 160 --crt crt/crt-22m-160s.txt --threads 7 --fermat-threads 2 --sieve-primes 140000</tt><br/>
+            <strong><em>max 2700 gaps/s 190K tests/s 0.020%</em></strong></p>
 
-<h4>Shift 288</h4>
-<pre> --shift 288 --crt crt/crt-22m-288s.txt --sieve-primes 300000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 192</span> <tt>--shift 192 --crt crt/crt-22m-192s.txt --threads 12 --fermat-threads 11 --sieve-primes 6000</tt><br/>
+            <strong><em>max 14500 gaps/s 4M tests/s 0.09%</em></strong></p>
 
-<h4>Shift 320</h4>
-<pre> --shift 320 --crt crt/crt-22m-320s.txt --sieve-primes 300000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 192</span> <tt>--shift 192 --crt crt/crt-22m-192s.txt --threads 7 --fermat-threads 3 --sieve-primes 130000</tt><br/>
+            <strong><em>max 2700 gaps/s 210K tests/s 0.022% - short gaplist with ft3</em></strong></p>
 
-<h4>Shift 352</h4>
-<pre> --shift 352 --crt crt/crt-22m-352s.txt --sieve-primes 300000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 224</span> <tt>--shift 224 --crt crt/crt-22m-224s.txt --threads 12 --fermat-threads 11 --sieve-primes 8000</tt><br/>
+            <strong><em>max 10300 gaps/s 3M tests/s 0.1%</em></strong></p>
 
-<h4>Shift 384</h4>
-<pre> --shift 384 --crt crt/crt-22m-384s.txt --sieve-primes 500000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 224</span> <tt>--shift 224 --crt crt/crt-22m-224s.txt --threads 7 --fermat-threads 3 --sieve-primes 130000</tt><br/>
+            <strong><em>max 2400 gaps/s 250K tests/s 0.022% </em></strong></p>
 
-<h4>Shift 416</h4>
-<pre> --shift 416 --crt crt/crt-22m-416s.txt --sieve-primes 500000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 256</span> <tt>--shift 256 --crt crt/crt-22m-256s.txt --threads 12 --fermat-threads 11 --sieve-primes 10000</tt><br/>
+            <strong><em>max 9100 gaps/s 3.3M tests/s 0.11%</em></strong></p>
 
-<h4>Shift 448</h4>
-<pre> --shift 448 --crt crt/crt-22m-448s.txt --sieve-primes 500000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 256</span> <tt>--shift 256 --crt crt/crt-22m-256s.txt --threads 7 --fermat-threads 3 --sieve-primes 50000</tt><br/>
+            <strong><em>max 2050 gaps/s 260K tests/s 0.030%</em></strong></p>
 
-<h4>Shift 480</h4>
-<pre> --shift 480 --crt crt/crt-22m-480s.txt --sieve-primes 500000</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 288</span> <tt>--shift 288 --crt crt/crt-22m-288s.txt --threads 12 --fermat-threads 11 --sieve-primes 12500</tt><br/>
+            <strong><em>max 6800 gaps/s 2.6M tests/s 0.13%</em></strong></p>
 
-<h4>Shift 512</h4>
-<pre> --shift 512 --crt crt/crt-22m-512s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 288</span> <tt>--shift 288 --crt crt/crt-22m-288s.txt --threads 7 --fermat-threads 4 --sieve-primes 130000</tt><br/>
+            <strong><em>max 2000 gaps/s 235K tests/s 0.030% - short gaplist with ft4</em></strong></p>
 
-<h4>Shift 544</h4>
-<pre> --shift 544 --crt crt/crt-22m-544s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 320</span> <tt>--shift 320 --crt crt/crt-22m-320s.txt --threads 12 --fermat-threads 11 --sieve-primes 15000</tt><br/>
+            <strong><em>max 6200 gaps/s 2.3M tests/s 0.15%</em></strong></p>
 
-<h4>Shift 576</h4>
-<pre> --shift 576 --crt crt/crt-22m-576s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 320</span> <tt>--shift 320 --crt crt/crt-22m-320s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</tt><br/>
+            <strong><em>max 1800 gaps/s 250K tests/s 0.045% </em></strong></p>
 
-<h4>Shift 608</h4>
-<pre> --shift 608 --crt crt/crt-22m-608s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 352</span> <tt>--shift 352 --crt crt/crt-22m-352s.txt --threads 12 --fermat-threads 11 --sieve-primes 18000</tt><br/>
+            <strong><em>max 4600 gaps/s 2M tests/s 0.15%</em></strong></p>
 
-<h4>Shift 640</h4>
-<pre> --shift 640 --crt crt/crt-22m-640s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 352</span> <tt>--shift 352 --crt crt/crt-22m-352s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</tt><br/>
+            <strong><em>max 1400 gaps/s 180K tests/s 0.055% </em></strong></p>
 
-<h4>Shift 672</h4>
-<pre> --shift 672 --crt crt/crt-22m-672s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 384</span> <tt>--shift 384 --crt crt/crt-22m-384s.txt --threads 12 --fermat-threads 11 --sieve-primes 20000</tt><br/>
+            <strong><em>max 4200 gaps/s 1.6M tests/s 0.14%</em></strong></p>
 
-<h4>Shift 704</h4>
-<pre> --shift 704 --crt crt/crt-22m-704s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 384</span> <tt>--shift 384 --crt crt/crt-22m-384s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</tt><br/>
+            <strong><em>max 1200 gaps/s 190K tests/s 0.055%</em></strong></p>
 
-<h4>Shift 736</h4>
-<pre> --shift 736 --crt crt/crt-22m-736s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 416</span> <tt>--shift 416 --crt crt/crt-22m-416s.txt --threads 12 --fermat-threads 11 --sieve-primes 22500</tt><br/>
+            <strong><em>max 3300 gaps/s 1.3M tests/s 0.15%</em></strong></p>
 
-<h4>Shift 768</h4>
-<pre> --shift 768 --crt crt/crt-22m-768s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 416</span> <tt>--shift 416 --crt crt/crt-22m-416s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</tt><br/>
+            <strong><em>max 1200 gaps/s 170K tests/s 0.055%</em></strong></p>
 
-<h4>Shift 800</h4>
-<pre> --shift 800 --crt crt/crt-22m-800s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 448</span> <tt>--shift 448 --crt crt/crt-22m-448s.txt --threads 12 --fermat-threads 11 --sieve-primes 26000</tt><br/>
+            <strong><em>max 3000 gaps/s 1.5M tests/s 0.16%</em></strong></p>
 
-<h4>Shift 832</h4>
-<pre> --shift 832 --crt crt/crt-22m-832s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 448</span> <tt>--shift 448 --crt crt/crt-22m-448s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</tt><br/>
+            <strong><em>max 1100 gaps/s 170K tests/s 0.070%</em></strong></p>
 
-<h4>Shift 864</h4>
-<pre> --shift 864 --crt crt/crt-22m-864s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 480</span> <tt>--shift 480 --crt crt/crt-22m-480s.txt --threads 12 --fermat-threads 11 --sieve-primes 30000</tt><br/>
+            <strong><em>max 2550 gaps/s 1.3M tests/s 0.17%</em></strong></p>
 
-<h4>Shift 896</h4>
-<pre> --shift 896 --crt crt/crt-22m-896s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 480</span> <tt>--shift 480 --crt crt/crt-22m-480s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</tt><br/>
+            <strong><em>max 880 gaps/s 130K tests/s 0.070%</em></strong></p>
 
-<h4>Shift 928</h4>
-<pre> --shift 928 --crt crt/crt-22m-928s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 512</span> <tt>--shift 512 --crt crt/crt-22m-512s.txt --threads 12 --fermat-threads 11 --sieve-primes 32000</tt><br/>
+            <strong><em>max 2300 gaps/s 1.1M tests/s 0.17%</em></strong></p>
 
-<h4>Shift 992</h4>
-<pre> --shift 992 --crt crt/crt-22m-992s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 512</span> <tt>--shift 512 --crt crt/crt-22m-512s.txt --threads 7 --fermat-threads 5 --sieve-primes 110000</tt><br/>
+            <strong><em>max 790 gaps/s 130K tests/s 0.080%</em></strong></p>
 
-<h4>Shift 1024</h4>
-<pre> --shift 1024 --crt crt/crt-22m-1024s.txt</pre>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 544</span> <tt>--shift 544 --crt crt/crt-22m-544s.txt --threads 12 --fermat-threads 11 --sieve-primes 34000</tt><br/>
+            <strong><em>max 1830 gaps/s 1M tests/s 0.15%</em></strong></p>
 
-<h3 class="ui teal header">Wizz settings (only -t 12 /16)</h3>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 544</span> <tt>--shift 544 --crt crt/crt-22m-544s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</tt><br/>
+            <strong><em>max 770 gaps/s 110K tests/s 0.050%</em></strong></p>
 
-<p>default --sieve-primes value, for 4cores/8threads cpu
-<pre>gapminer-cpu.exe -o http://127.0.0.1 -p 31397 -u user -x pwd</pre>
-</p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 576</span> <tt>--shift 576 --crt crt/crt-22m-576s.txt --threads 12 --fermat-threads 11 --sieve-primes 35000</tt><br/>
+            <strong><em>max 1700 gaps/s 750K tests/s 0.16%</em></strong></p>
 
-<h4>Shift 64</h4>
-<p><pre>--shift 64 --crt crt/crt-22m-64s.txt --threads 12 --fermat-threads 11 --sieve-primes 1300</pre>
-  <strong><em>max 38500 gaps/s 3M tests/s 0.025%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 576</span> <tt>--shift 576 --crt crt/crt-22m-576s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</tt><br/>
+            <strong><em>max 710 gaps/s 120K tests/s 0.055%</em></strong></p>
 
-<h4>Shift 96</h4>
-<p><pre>--shift 96 --crt crt/crt-22m-96s.txt --threads 12 --fermat-threads 11 --sieve-primes 2500</pre>
-  <strong><em>max 27000 gaps/s 3.2M tests/s 0.035%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 608</span> <tt>--shift 608 --crt crt/crt-22m-608s.txt --threads 12 --fermat-threads 11 --sieve-primes 37500</tt><br/>
+            <strong><em>max 1420 gaps/s 600K tests/s 0.21%</em></strong></p>
 
-<h4>Shift 96</h4>
-<p><pre>--shift 96 --crt crt/crt-22m-96s.txt --threads 7 --fermat-threads 1 --sieve-primes 150000</pre>
-  <strong><em>max 3100 gaps/s 100K tests/s 0.005% - short gaplist with ft2</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 608</span> <tt>--shift 608 --crt crt/crt-22m-608s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</tt><br/>
+            <strong><em>max 570 gaps/s 90K tests/s 0.060%</em></strong></p>
 
-<h4>Shift 128</h4>
-<p><pre>--shift 128 --crt crt/crt-22m-128s.txt --threads 12 --fermat-threads 11 --sieve-primes 3500</pre>
-  <strong><em>max 22500 gaps/s 4.2M tests/s 0.05%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 640</span> <tt>--shift 640 --crt crt/crt-22m-640s.txt --threads 12 --fermat-threads 11 --sieve-primes 42500</tt><br/>
+            <strong><em>max 1250 gaps/s 550K tests/s 0.18%</em></strong></p>
 
-<h4>Shift 128</h4>
-<p><pre>--shift 128 --crt crt/crt-22m-128s.txt --threads 7 --fermat-threads 2 --sieve-primes 140000</pre>
-  <strong><em>max 3100 gaps/s 160K tests/s 0.012% - short gaplist with ft2</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 640</span> <tt>--shift 640 --crt crt/crt-22m-640s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</tt><br/>
+            <strong><em>max 530 gaps/s 85K tests/s 0.060%</em></strong></p>
 
-<h4>Shift 160</h4>
-<p><pre>--shift 160 --crt crt/crt-22m-160s.txt --threads 12 --fermat-threads 11 --sieve-primes 5000</pre>
-  <strong><em>max 16500 gaps/s 4M tests/s 0.09%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 672</span> <tt>--shift 672 --crt crt/crt-22m-672s.txt --threads 12 --fermat-threads 11 --sieve-primes 47000</tt><br/>
+            <strong><em>max 1150 gaps/s 550K tests/s 0.19%</em></strong></p>
 
-<h4>Shift 160</h4>
-<p><pre>--shift 160 --crt crt/crt-22m-160s.txt --threads 7 --fermat-threads 2 --sieve-primes 140000</pre>
-  <strong><em>max 2700 gaps/s 190K tests/s 0.020%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 672</span> <tt>--shift 672 --crt crt/crt-22m-672s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</tt><br/>
+            <strong><em>max 430 gaps/s 65K tests/s 0.060%</em></strong></p>
 
-<h4>Shift 192</h4>
-<p><pre>--shift 192 --crt crt/crt-22m-192s.txt --threads 12 --fermat-threads 11 --sieve-primes 6000</pre>
-  <strong><em>max 14500 gaps/s 4M tests/s 0.09%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 704</span> <tt>--shift 704 --crt crt/crt-22m-704s.txt --threads 12 --fermat-threads 11 --sieve-primes 50000</tt><br/>
+            <strong><em>max 1000 gaps/s 450K tests/s 0.2%</em></strong></p>
 
-<h4>Shift 192</h4>
-<p><pre>--shift 192 --crt crt/crt-22m-192s.txt --threads 7 --fermat-threads 3 --sieve-primes 130000</pre>
-  <strong><em>max 2700 gaps/s 210K tests/s 0.022% - short gaplist with ft3</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 704</span> <tt>--shift 704 --crt crt/crt-22m-704s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 400 gaps/s 62K tests/s 0.065%</em></strong></p>
 
-<h4>Shift 224</h4>
-<p><pre>--shift 224 --crt crt/crt-22m-224s.txt --threads 12 --fermat-threads 11 --sieve-primes 8000</pre>
-  <strong><em>max 10300 gaps/s 3M tests/s 0.1%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 736</span> <tt>--shift 736 --crt crt/crt-22m-736s.txt --threads 12 --fermat-threads 11 --sieve-primes 55000</tt><br/>
+            <strong><em>max 860 gaps/s 450K tests/s 0.18%</em></strong></p>
 
-<h4>Shift 224</h4>
-<p><pre>--shift 224 --crt crt/crt-22m-224s.txt --threads 7 --fermat-threads 3 --sieve-primes 130000</pre>
-  <strong><em>max 2400 gaps/s 250K tests/s 0.022% </em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 736</span> <tt>--shift 736 --crt crt/crt-22m-736s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 330 gaps/s 55K tests/s 0.065%</em></strong></p>
 
-<h4>Shift 256</h4>
-<p><pre>--shift 256 --crt crt/crt-22m-256s.txt --threads 12 --fermat-threads 11 --sieve-primes 10000</pre>
-  <strong><em>max 9100 gaps/s 3.3M tests/s 0.11%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 768</span> <tt>--shift 768 --crt crt/crt-22m-768s.txt --threads 12 --fermat-threads 11 --sieve-primes 55000</tt><br/>
+            <strong><em>max 800 gaps/s 400K tests/s 0.2%</em></strong></p>
 
-<h4>Shift 256</h4>
-<p><pre>--shift 256 --crt crt/crt-22m-256s.txt --threads 7 --fermat-threads 3 --sieve-primes 50000</pre>
-  <strong><em>max 2050 gaps/s 260K tests/s 0.030%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 768</span> <tt>--shift 768 --crt crt/crt-22m-768s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 310 gaps/s 52K tests/s 0.075%</em></strong></p>
 
-<h4>Shift 288</h4>
-<p><pre>--shift 288 --crt crt/crt-22m-288s.txt --threads 12 --fermat-threads 11 --sieve-primes 12500</pre>
-  <strong><em>max 6800 gaps/s 2.6M tests/s 0.13%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 800</span> <tt>--shift 800 --crt crt/crt-22m-800s.txt --threads 12 --fermat-threads 11 --sieve-primes 60000</tt><br/>
+            <strong><em>max 700 gaps/s 300K tests/s 0.19%</em></strong></p>
 
-<h4>Shift 288</h4>
-<p><pre>--shift 288 --crt crt/crt-22m-288s.txt --threads 7 --fermat-threads 4 --sieve-primes 130000</pre>
-  <strong><em>max 2000 gaps/s 235K tests/s 0.030% - short gaplist with ft4</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 800</span> <tt>--shift 800 --crt crt/crt-22m-800s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 270 gaps/s 42K tests/s 0.065%</em></strong></p>
 
-<h4>Shift 320</h4>
-<p><pre>--shift 320 --crt crt/crt-22m-320s.txt --threads 12 --fermat-threads 11 --sieve-primes 15000</pre>
-  <strong><em>max 6200 gaps/s 2.3M tests/s 0.15%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 832</span> <tt>--shift 832 --crt crt/crt-22m-832s.txt --threads 12 --fermat-threads 11 --sieve-primes 65000</tt><br/>
+            <strong><em>max 630 gaps/s 300K tests/s 0.14%</em></strong></p>
 
-<h4>Shift 320</h4>
-<p><pre>--shift 320 --crt crt/crt-22m-320s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</pre>
-  <strong><em>max 1800 gaps/s 250K tests/s 0.045% </em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 832</span> <tt>--shift 832 --crt crt/crt-22m-832s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 240 gaps/s 35K tests/s 0.065%</em></strong></p>
 
-<h4>Shift 352</h4>
-<p><pre>--shift 352 --crt crt/crt-22m-352s.txt --threads 12 --fermat-threads 11 --sieve-primes 18000</pre>
-  <strong><em>max 4600 gaps/s 2M tests/s 0.15%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 864</span> <tt>--shift 864 --crt crt/crt-22m-864s.txt --threads 12 --fermat-threads 11 --sieve-primes 70000</tt><br/>
+            <strong><em>max 560 gaps/s 300K tests/s 0.19%</em></strong></p>
 
-<h4>Shift 352</h4>
-<p><pre>--shift 352 --crt crt/crt-22m-352s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</pre>
-  <strong><em>max 1400 gaps/s 180K tests/s 0.055% </em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 864</span> <tt>--shift 864 --crt crt/crt-22m-864s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 215 gaps/s 30K tests/s 0.075%</em></strong></p>
 
-<h4>Shift 384</h4>
-<p><pre>--shift 384 --crt crt/crt-22m-384s.txt --threads 12 --fermat-threads 11 --sieve-primes 20000</pre>
-  <strong><em>max 4200 gaps/s 1.6M tests/s 0.14%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 896</span> <tt>--shift 896 --crt crt/crt-22m-896s.txt --threads 12 --fermat-threads 11 --sieve-primes 75000</tt><br/>
+            <strong><em>max 530 gaps/s 250K tests/s 0.17%</em></strong></p>
 
-<h4>Shift 384</h4>
-<p><pre>--shift 384 --crt crt/crt-22m-384s.txt --threads 7 --fermat-threads 4 --sieve-primes 120000</pre>
-  <strong><em>max 1200 gaps/s 190K tests/s 0.055%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 896</span> <tt>--shift 896 --crt crt/crt-22m-896s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</tt><br/>
+            <strong><em>max 200 gaps/s 30K tests/s 0.085%</em></strong></p>
 
-<h4>Shift 416</h4>
-<p><pre>--shift 416 --crt crt/crt-22m-416s.txt --threads 12 --fermat-threads 11 --sieve-primes 22500</pre>
-  <strong><em>max 3300 gaps/s 1.3M tests/s 0.15%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 928</span> <tt>--shift 928 --crt crt/crt-22m-928s.txt --threads 12 --fermat-threads 11 --sieve-primes 80000 </tt><br/>
+            <strong><em>max 450 gaps/s 200K tests/s 0.15%</em></strong></p>
 
-<h4>Shift 416</h4>
-<p><pre>--shift 416 --crt crt/crt-22m-416s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</pre>
-  <strong><em>max 1200 gaps/s 170K tests/s 0.055%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 928</span> <tt>--shift 928 --crt crt/crt-22m-928s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000 </tt><br/>
+            <strong><em>max 180 gaps/s 25K tests/s 0.070%</em></strong></p>
 
-<h4>Shift 448</h4>
-<p><pre>--shift 448 --crt crt/crt-22m-448s.txt --threads 12 --fermat-threads 11 --sieve-primes 26000</pre>
-  <strong><em>max 3000 gaps/s 1.5M tests/s 0.16%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 992</span> <tt>--shift 992 --crt crt/crt-22m-992s.txt --threads 12 --fermat-threads 11 --sieve-primes 85000 </tt><br/>
+            <strong><em>max 370 gaps/s 150K tests/s 0.16%</em></strong></p>
 
-<h4>Shift 448</h4>
-<p><pre>--shift 448 --crt crt/crt-22m-448s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</pre>
-  <strong><em>max 1100 gaps/s 170K tests/s 0.070%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 992</span> <tt>--shift 992 --crt crt/crt-22m-992s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000 </tt><br/>
+            <strong><em>max 140 gaps/s 20K tests/s 0.065%</em></strong></p>
 
-<h4>Shift 480</h4>
-<p><pre>--shift 480 --crt crt/crt-22m-480s.txt --threads 12 --fermat-threads 11 --sieve-primes 30000</pre>
-  <strong><em>max 2550 gaps/s 1.3M tests/s 0.17%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 1024</span> <tt>--shift 1024 --crt crt/crt-22m-1024s.txt --threads 12 --fermat-threads 11 --sieve-primes 90000</tt><br/>
+            <strong><em>max 340 gaps/s 135K tests/s 0.14%</em></strong></p>
 
-<h4>Shift 480</h4>
-<p><pre>--shift 480 --crt crt/crt-22m-480s.txt --threads 7 --fermat-threads 5 --sieve-primes 120000</pre>
-  <strong><em>max 880 gaps/s 130K tests/s 0.070%</em></strong></p>
+          <p style="font-size:80%;margin-left:2em"><span style="font-weight:bold;color:teal">Shift 1024</span> <tt>--shift 1024 --crt crt/crt-22m-1024s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000</tt><br/>
+            <strong><em>max 125 gaps/s 20K tests/s 0.050%</em></strong></p>
 
-<h4>Shift 512</h4>
-<p><pre>--shift 512 --crt crt/crt-22m-512s.txt --threads 12 --fermat-threads 11 --sieve-primes 32000</pre>
-  <strong><em>max 2300 gaps/s 1.1M tests/s 0.17%</em></strong></p>
+        </div>
+        </div>
+      </div>
+    </div>
 
-<h4>Shift 512</h4>
-<p><pre>--shift 512 --crt crt/crt-22m-512s.txt --threads 7 --fermat-threads 5 --sieve-primes 110000</pre>
-  <strong><em>max 790 gaps/s 130K tests/s 0.080%</em></strong></p>
-
-<h4>Shift 544</h4>
-<p><pre>--shift 544 --crt crt/crt-22m-544s.txt --threads 12 --fermat-threads 11 --sieve-primes 34000</pre>
-  <strong><em>max 1830 gaps/s 1M tests/s 0.15%</em></strong></p>
-
-<h4>Shift 544</h4>
-<p><pre>--shift 544 --crt crt/crt-22m-544s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</pre>
-  <strong><em>max 770 gaps/s 110K tests/s 0.050%</em></strong></p>
-
-<h4>Shift 576</h4>
-<p><pre>--shift 576 --crt crt/crt-22m-576s.txt --threads 12 --fermat-threads 11 --sieve-primes 35000</pre>
-  <strong><em>max 1700 gaps/s 750K tests/s 0.16%</em></strong></p>
-
-<h4>Shift 576</h4>
-<p><pre>--shift 576 --crt crt/crt-22m-576s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</pre>
-  <strong><em>max 710 gaps/s 120K tests/s 0.055%</em></strong></p>
-
-<h4>Shift 608</h4>
-<p><pre>--shift 608 --crt crt/crt-22m-608s.txt --threads 12 --fermat-threads 11 --sieve-primes 37500</pre>
-  <strong><em>max 1420 gaps/s 600K tests/s 0.21%</em></strong></p>
-
-<h3 class="ui teal header">Pool mining on suprnova with CRT and values as above</h3>
-<p>Posted to Discord by Wizz:
-  <img width="1024" src="/img/page/wizz-crt-pool-mining.png" />
-</p>
-
-<h4>Shift 608</h4>
-<p><pre>--shift 608 --crt crt/crt-22m-608s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</pre>
-  <strong><em>max 570 gaps/s 90K tests/s 0.060%</em></strong></p>
-
-<h4>Shift 640</h4>
-<p><pre>--shift 640 --crt crt/crt-22m-640s.txt --threads 12 --fermat-threads 11 --sieve-primes 42500</pre>
-  <strong><em>max 1250 gaps/s 550K tests/s 0.18%</em></strong></p>
-
-<h4>Shift 640</h4>
-<p><pre>--shift 640 --crt crt/crt-22m-640s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</pre>
-  <strong><em>max 530 gaps/s 85K tests/s 0.060%</em></strong></p>
-
-<h4>Shift 672</h4>
-<p><pre>--shift 672 --crt crt/crt-22m-672s.txt --threads 12 --fermat-threads 11 --sieve-primes 47000</pre>
-  <strong><em>max 1150 gaps/s 550K tests/s 0.19%</em></strong></p>
-
-<h4>Shift 672</h4>
-<p><pre>--shift 672 --crt crt/crt-22m-672s.txt --threads 7 --fermat-threads 6 --sieve-primes 110000</pre>
-  <strong><em>max 430 gaps/s 65K tests/s 0.060%</em></strong></p>
-
-<h4>Shift 704</h4>
-<p><pre>--shift 704 --crt crt/crt-22m-704s.txt --threads 12 --fermat-threads 11 --sieve-primes 50000</pre>
-  <strong><em>max 1000 gaps/s 450K tests/s 0.2%</em></strong></p>
-
-<h4>Shift 704</h4>
-<p><pre>--shift 704 --crt crt/crt-22m-704s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 400 gaps/s 62K tests/s 0.065%</em></strong></p>
-
-<h4>Shift 736</h4>
-<p><pre>--shift 736 --crt crt/crt-22m-736s.txt --threads 12 --fermat-threads 11 --sieve-primes 55000</pre>
-  <strong><em>max 860 gaps/s 450K tests/s 0.18%</em></strong></p>
-
-<h4>Shift 736</h4>
-<p><pre>--shift 736 --crt crt/crt-22m-736s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 330 gaps/s 55K tests/s 0.065%</em></strong></p>
-
-<h4>Shift 768</h4>
-<p><pre>--shift 768 --crt crt/crt-22m-768s.txt --threads 12 --fermat-threads 11 --sieve-primes 55000</pre>
-  <strong><em>max 800 gaps/s 400K tests/s 0.2%</em></strong></p>
-
-<h4>Shift 768</h4>
-<p><pre>--shift 768 --crt crt/crt-22m-768s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 310 gaps/s 52K tests/s 0.075%</em></strong></p>
-
-<h4>Shift 800</h4>
-<p><pre>--shift 800 --crt crt/crt-22m-800s.txt --threads 12 --fermat-threads 11 --sieve-primes 60000</pre>
-  <strong><em>max 700 gaps/s 300K tests/s 0.19%</em></strong></p>
-
-<h4>Shift 800</h4>
-<p><pre>--shift 800 --crt crt/crt-22m-800s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 270 gaps/s 42K tests/s 0.065%</em></strong></p>
-
-<h4>Shift 832</h4>
-<p><pre>--shift 832 --crt crt/crt-22m-832s.txt --threads 12 --fermat-threads 11 --sieve-primes 65000</pre>
-  <strong><em>max 630 gaps/s 300K tests/s 0.14%</em></strong></p>
-
-<h4>Shift 832</h4>
-<p><pre>--shift 832 --crt crt/crt-22m-832s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 240 gaps/s 35K tests/s 0.065%</em></strong></p>
-
-<h4>Shift 864</h4>
-<p><pre>--shift 864 --crt crt/crt-22m-864s.txt --threads 12 --fermat-threads 11 --sieve-primes 70000</pre>
-  <strong><em>max 560 gaps/s 300K tests/s 0.19%</em></strong></p>
-
-<h4>Shift 864</h4>
-<p><pre>--shift 864 --crt crt/crt-22m-864s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 215 gaps/s 30K tests/s 0.075%</em></strong></p>
-
-<h4>Shift 896</h4>
-<p><pre>--shift 896 --crt crt/crt-22m-896s.txt --threads 12 --fermat-threads 11 --sieve-primes 75000</pre>
-  <strong><em>max 530 gaps/s 250K tests/s 0.17%</em></strong></p>
-
-<h4>Shift 896</h4>
-<p><pre>--shift 896 --crt crt/crt-22m-896s.txt --threads 7 --fermat-threads 6 --sieve-primes 100000</pre>
-  <strong><em>max 200 gaps/s 30K tests/s 0.085%</em></strong></p>
-
-<h4>Shift 928</h4>
-<p><pre>--shift 928 --crt crt/crt-22m-928s.txt --threads 12 --fermat-threads 11 --sieve-primes 80000 </pre>
-  <strong><em>max 450 gaps/s 200K tests/s 0.15%</em></strong></p>
-
-<h4>Shift 928</h4>
-<p><pre>--shift 928 --crt crt/crt-22m-928s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000 </pre>
-  <strong><em>max 180 gaps/s 25K tests/s 0.070%</em></strong></p>
-
-<h4>Shift 992</h4>
-<p><pre>--shift 992 --crt crt/crt-22m-992s.txt --threads 12 --fermat-threads 11 --sieve-primes 85000 </pre>
-  <strong><em>max 370 gaps/s 150K tests/s 0.16%</em></strong></p>
-
-<h4>Shift 992</h4>
-<p><pre>--shift 992 --crt crt/crt-22m-992s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000 </pre>
-  <strong><em>max 140 gaps/s 20K tests/s 0.065%</em></strong></p>
-
-<h4>Shift 1024</h4>
-<p><pre>--shift 1024 --crt crt/crt-22m-1024s.txt --threads 12 --fermat-threads 11 --sieve-primes 90000</pre>
-  <strong><em>max 340 gaps/s 135K tests/s 0.14%</em></strong></p>
-
-<h4>Shift 1024</h4>
-<p><pre>--shift 1024 --crt crt/crt-22m-1024s.txt --threads 7 --fermat-threads 6 --sieve-primes 90000</pre>
-  <strong><em>max 125 gaps/s 20K tests/s 0.050%</em></strong></p>
-
-<h3 class="ui teal header">Mining without the Chinese Remainder Theorem</h3>
-
-<h4>stratum (recommended)</h4>
-<pre>gapminer-cpu.exe -o your-pool.club -p 3385 -u user.worker -x password -t 4 --stratum</pre>
-
-<h4>getwork</h4>
-<pre>gapminer-cpu.exe -o http://your-pool.club -p 4200 -u user.worker -x password -t 4</pre>
-
-<h4>solo mining</h4>
-<pre>gapminer-cpu.exe -o 127.0.0.1 -p 31397 -u &lt;rpc user> -x &lt;rpc password> -t 4</pre>
+  </div>
+</div>
