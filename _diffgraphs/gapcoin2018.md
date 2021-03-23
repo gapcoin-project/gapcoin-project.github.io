@@ -3,9 +3,9 @@ layout: diffgraph
 title: Difficulty for 2018
 description: Graph of difficulty at midnight each day for 2018
 author: Graham Higgins
-category: graph
-year: 2018
+category: blockchain
 tags: graph
+year: 2018
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2018-01-01

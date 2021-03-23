@@ -3,9 +3,9 @@ layout: hashgraph
 title: Hashrate for 2014
 description: Graph of network hash rate at midnight each day for Oct - Dec 2014
 author: Graham Higgins
-category: graph
-year: 2014
+category: blockchain
 tags: graph
+year: 2014
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2014-9-17

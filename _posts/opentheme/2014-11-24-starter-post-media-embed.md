@@ -2,16 +2,16 @@
 layout: post
 author: Manav Sehgal
 title:  "Starter Post - Media Embeds"      
-category: opentheme
-tags: media
+category: projectdoc
+tags: projectdoc
 image: /img/embed/youtube-splash.png
 ---
 
 You can embed YouTube video in a post using custom embed tag designed in Liquid markup.
 
-Here is an example of a custom embed available as a configurable _include with OpenTheme.
+Here is an example of a custom embed available as a configurable `_include` with OpenTheme.
 The size is parametrized as per theme. So if you turn on post bar then size is small, otherwise large. 
-Features like player controls are configurable at site level, within _config.yml.
+Features like player controls are configurable at site level, within `_config.yml`.
 
 {% include embed-youtube.html video="eRsGyueVLvQ" %}
 

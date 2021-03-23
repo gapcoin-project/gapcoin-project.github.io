@@ -3,9 +3,9 @@ layout: diffgraph
 title: Difficulty for 2020
 description: Graph of difficulty at midnight each day for 2020
 author: Graham Higgins
-category: graph
-year: 2020
+category: blockchain
 tags: graph
+year: 2020
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2020-01-01

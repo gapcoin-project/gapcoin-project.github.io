@@ -7,7 +7,7 @@ copyright: Gapcoin Project
 keywords: prime gap, cryptocurrency, altcoin
 
 description: > # this means to ignore newlines until "url:". One indent required.
-  Community resources for Gapcoin, a prime number based peer-to-peer cryptocurrency
+  Community-maintained resources for Gapcoin, a prime number based peer-to-peer cryptocurrency
 
 # the base hostname & protocol for your site
 url: "https://gapcoin-project.github.io"

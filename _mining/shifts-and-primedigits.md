@@ -2,7 +2,7 @@
 layout: post
 author: Graham Higgins
 title: "How shift setting determines the number of digits in the primes to be searched"
-description: From the bitcointalk ANN, back in 2914 ...
+description: From the bitcointalk ANN, back in 2014 ...
 date: 2021-03-16
 category: mining
 tags:
@@ -12,12 +12,10 @@ tags:
 
 
 
-Q. Why does specifying a shift of 25 result in the miner using an 85-digit prime?
+**Q. Why does specifying a shift of 25 result in the miner using an 85-digit prime?**
 
-A. J0nn9 asserts:
-
-“`256 + shift` is the bit size of the prime you are searching for. The shift size
-has to be greater than 13.”
+**A. (From J0nn9) “`256 + shift` is the bit size of the prime you are searching for. The shift size
+has to be greater than 13.”**
 
 In using the phrase “the bit size of the prime”, he is referencing *bits* and *bytes* of
 information.

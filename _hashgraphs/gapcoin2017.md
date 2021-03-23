@@ -3,9 +3,9 @@ layout: hashgraph
 title: Hashrate for 2017
 description: Graph of network hash rate at midnight each day for 2017
 author: Graham Higgins
-category: graph
-year: 2017
+category: blockchain
 tags: graph
+year: 2017
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2017-01-01

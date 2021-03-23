@@ -3,9 +3,9 @@ layout: diffgraph
 title: Difficulty for 2015
 description: Graph of difficulty at midnight each day for 2015
 author: Graham Higgins
-category: graph
-year: 2015
+category: blockchain
 tags: graph
+year: 2015
 xscale: scaleTime
 yscale: scaleLinear
 startdate: 2015-01-01

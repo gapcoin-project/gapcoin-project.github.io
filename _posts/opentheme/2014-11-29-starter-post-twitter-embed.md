@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title: Starter Post - Twitter Embed
-category: opentheme
-tags: embeds
+category: projectdoc
+tags: projectdoc
 image: /img/embed/twitter-bird.jpg
 ---
 
