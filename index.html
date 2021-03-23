@@ -9,24 +9,24 @@ title: Home
       <div class="ui three column center aligned stackable divided grid">
         <div class="column">
           <div class="ui icon header">
-            <i class="purple github icon"></i>
-            Free GitHub Hosting
+            <i class="teal microchip icon"></i>
+            Useful Proof-of-Work
           </div>
-          <p>Free world-class hosting for your website on world's largest open source repository.</p>
+          <p>Instead of just hashing, Gapcoin’s Proof of Work function actually does useful work by searching for large <a href="https://en.wikipedia.org/wiki/Prime_gap" target="_blank">prime gaps</a>¹.</p>
         </div>
         <div class="column">
           <div class="ui icon header">
-            <i class="purple code icon"></i>
-            Semantic UI Goodness
+            <i class="teal thumbs up icon"></i>
+            Fair launch &amp; distribution
           </div>
-          <p>Create rich, modern user experience with tags as easy as describing design in English.</p>
+          <p>Launched <a href="https://bitcointalk.org/index.php?topic=822498.0" target="_blanK">without premine</a> &amp; designed not to enrich early adopters, coin supply increases logarithmically with difficulty.</p>
         </div>
         <div class="column">
           <div class="ui icon header">
-            <i class="purple thumbs up icon"></i>
-            Jekyll Pre-processing 
+            <i class="teal code icon"></i>
+            Modern codebase
           </div>
-          <p>No server or database to maintain. No plugin hassels. Just focus on your content.</p>
+          <p>The current Gapcoin codebase is based on <a href="https://en.bitcoin.it/wiki/Segwit" target="_blank">segwit</a>- and <a href="https://en.bitcoin.it/wiki/Timelock" target="_blank">CLTV</a>-capable Bitcoin 0.16.3 augmented with <a href="https://arxiv.org/pdf/1701.04439.pdf" target="_blank">DANDELION</a>.</p>
         </div>
       </div>
     </div>
@@ -37,126 +37,45 @@ title: Home
   <div class="ui stackable page grid">
     <div class="row">
       <div class="eight wide column">
-        <h3 class="ui inverted header">OpenTheme Helps Re-Imagine Web Design</h3> 
-        <h4 class="ui inverted header">
-        Design a website that <a href="/metrics/">self monitors</a> as it changes!
+        <h3 class="ui header">Additional resources:</h3> 
+
+        <h4  class="slim-header-light spaced">
+          <a href="/about/"><i class="blue info circle icon"></i> About the project</a>
         </h4>
-        <h4 class="slim-header-light">
-        Create <a href="/apps/">mobile hybrid apps</a> in just 3 lines of code!
+        <h4 class="slim-header-light spaced">
+          <a href="/whats-a-prime-gap/"><i class="blue star outline icon"></i> Explanation of what is a prime gap</a>
         </h4>
-        <h4 class="ui inverted header">
-        Author real-time content using <a href="/embeds/">plugin embeds</a>.
+        <h4  class="slim-header-light spaced">
+          <a href="/j0nn9-technotes/"><i class="blue book icon"></i> Developer j0nn9’s technical notes</a>
         </h4>
-        <h4 class="slim-header-light">
-        Manage content <a href="{% post_url /blog/2014-11-26-open-cloud-based-workflow-for-designing-your-website %}">100% on Cloud, in Browser</a>.
+        <h4  class="slim-header-light spaced">
+          <a href="/gapcoin-maths/"><i class="blue book icon"></i> Gapcoin maths</a>
         </h4>
-        <h4 class="ui inverted header">
-        Publish <a href="{% post_url /blog/2014-12-2-data-driven-web-apps-using-github %}">data driven docs</a>, without a database.
-        </h4>
+
+        <blockquote>
+        <div  style="font-size: 80%">
+          <p>¹ A prime gap is the difference between successive prime numbers; it constitutes a first occurrence when no preceding gap has an equal value. A first occurrence prime gap is maximal if the gap strictly exceeds all preceding gaps.</p>
+          <p> The merit <math>M</math> of a prime gap of measure <math>g</math> following the prime <math>p<sub>1</sub></math> is defined as <math>M=g/ln(p<sub>1</sub>)</math>. It is the ratio of the measure of the gap to the “average” measure of gaps near that point; as a consequence of the Prime Number Theorem, the average difference between consecutive primes near <math>x</math> is approximately <math>ln(x)</math>.</p>
+          <p><i style="font-size: 80%">(While most puns make me feel oddly numb, mathematical puns make me feel even number)</i> <a href="https://www.mersenneforum.org/showpost.php?p=521693&postcount=753">*</a></p>
+        </div>
+        </blockquote>
       </div>
       <div class="eight wide column">
+        <h2 class="ui teal header">Featured posts:</h2> 
         {% include feature-post.html %}        
       </div>
+
     </div>
   </div>
 </div>
 
-
-<div class="ui feature vertical segment">
-  <div class="ui centered page grid">
-    <div class="fourteen wide column">
-      <div class="ui three column center aligned stackable divided grid">
-        <div class="column">
-          <div class="ui icon header">
-            <i class="purple mobile icon"></i>
-            Hybrid Apps
-          </div>
-          <p>Responsive theme supporting multiple devices with one code base. Design once, publish anywhere.</p>
-        </div>
-        <div class="column">
-          <div class="ui icon header">
-            <i class="purple bug icon"></i>
-            Live Tests
-          </div>
-          <p>Travis CI integrated. BrowserSync ready. Lint JS, CSS on build. HTML proofing planned.</p>
-        </div>
-        <div class="column">
-          <div class="ui icon header">
-            <i class="purple rocket icon"></i>
-            Speed Optimized
-          </div>
-          <p>PageSpeed Insights built-in. Images optimized in build. CSS, JS minified. Selective JS includes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="ui inverted vertical segment">
-  <div class="ui centered page grid">
-    <div class="fourteen wide column">
-      <div class="ui five column center aligned stackable inverted divided grid">
-        <div class="column">
-          <a class="ui small blue inverted statistic" href="/apps/">
-            <div class="value">
-              <i class="cube icon"></i> {{ site.categories.app | size  }}
-            </div>
-            <p class="label">
-              Single Page Apps
-            </p>
-          </a>
-        </div>
-        <div class="column">
-          <a class="ui small purple inverted statistic pagebar" href="#">
-            <div class="value">
-              <i class="content icon"></i> {{ site.pages | size  }}
-            </div>
-            <div class="label">
-              Templates
-            </div>
-          </a>
-        </div>
-        <div class="column">
-          <a class="ui small blue inverted statistic" href="/embeds/">
-            <div class=" value">
-              <i class="wizard icon"></i> {{ site.data.embeds | size }}
-            </div>
-            <div class="label">
-              Reusable Embeds
-            </div>
-          </a>
-        </div>
-        <div class="column">
-          <a class="ui small orange inverted statistic" href="{% post_url /blog/2014-12-15-content-strategy-for-startup-websites %}">
-            <div class="text value">
-              One Minute
-            </div>
-            <div class="label">
-              Content Workflow
-            </div>
-          </a>
-        </div>
-        <div class="column">
-          <a class="ui small blue inverted statistic" href="/category/#theme">
-            <div class="value">
-              <i class="student icon"></i> {{ site.categories.theme | size  }}
-            </div>
-            <div class="label">
-              Theme Tutorials
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="ui vertical segment">
   <div class="ui centered page stackable divided grid">
     <div class="row">
       <div class="column">
         <h1 class="center aligned ui header">
-          Browse OpenTheme Content
+          Browse Gapcoin project content
         </h1>
       </div>
     </div>

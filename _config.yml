@@ -1,13 +1,13 @@
 # Site settings
 
 title: Gapcoin Project
-tagline: Community-led
-email: gjhiggins@gmail.com
+tagline: The Gapcoin project
+email: gjh-gapcoin@bel-epa.com
 copyright: Gapcoin Project
 keywords: prime gap, cryptocurrency, altcoin
 
 description: > # this means to ignore newlines until "url:". One indent required.
-  Gapcoin Project, a community-led pool of resources for Gapcoin
+  Community resources for Gapcoin, a prime number based peer-to-peer cryptocurrency
 
 # the base hostname & protocol for your site
 url: "https://gapcoin-project.github.io"
@@ -16,6 +16,24 @@ twitter_username: gapcoin
 github_username:  gapcoin-project
 
 default_image: /img/opentheme-workflow.png
+
+collections:
+  gapgraphs:
+    output: true
+    permalink: /:collection/:path/
+  diffgraphs:
+    output: true
+    permalink: /:collection/:path/
+  hashgraphs:
+    output: true
+    permalink: /:collection/:path/
+  mining:
+    output: true
+    permalink: /:collection/:path/
+    order:
+        - shifts-and-primedigits.md
+        - chinese-remainder-mining.html
+        - mining-pools.md
 
 # Pre-processing
 
@@ -29,10 +47,6 @@ permalink: pretty # YYYY/MM/DD/page-title/index.html
 # sass:
 #  style: :compressed
 
-# Exclude from Jekyll processing
-
-include: [".htaccess"]
-exclude: ["vendor", "README.md", "node_modules", "gulpfile.js", "package.json", "data", "res", "*.sublime-project", "*.sublime-workspace"]
 # Build settings
 plugins:
   - jekyll-feed
@@ -64,11 +78,7 @@ comments: none      # Switch disqus | facebook | none - comments. facebook = tru
 
 # disqus_name: gapcoin            # Your site name at Disqus
 
-youtube_controls: 0               # Turn on=1/off=0 Youtube player features when embedding videos
-
-# google_map_zoom: 16               # 1=Global zoom 18=Street Level
-# google_map_view: satellite        # hybrid | satellite | roadmap
-# google_map_height: 450            # Default map height. Width adjusts to container.
+youtube_controls: 1               # Turn on=1/off=0 Youtube player features when embedding videos
 
 # API Keys. PLEASE DO NOT USE THESE KEYS. Get your own at links in comments.
 
@@ -76,15 +86,12 @@ youtube_controls: 0               # Turn on=1/off=0 Youtube player features when
 # google_analytics_ua: "" # Google Analytics site specific id
 # google_cse_id: "" # Google Custom Search Engine unique id
 
-# mapbox: ""
-
 # facebook_app: "" # https://developers.facebook.com/
-
-# mailchimp_u: "" # Mailchimp u=unique identification
-# mailchimp_id: "" # Mailchip id
-
-# addthis_pubid: "" # Get your pubid at https://www.addthis.com/dashboard
 
 # pingdom_rum: "" # https://my.pingdom.com/dashboard. Real User experience (speed) monitoring.
 
-# uservoice: ""
+# Exclude from Jekyll processing
+
+include: [".htaccess"]
+exclude: ["data", "vendor", "README.md", "node_modules", "gulpfile.js", "package.json", "data", "res", "*.sublime-project", "*.sublime-workspace"]
+

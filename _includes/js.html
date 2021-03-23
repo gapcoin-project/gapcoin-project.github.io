@@ -2,7 +2,7 @@
 <!-- Cannot make async calls for jQuery or Semantic. Breaks Cards, Page Bar, others. -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 <script>
 $(document)
   .ready(function() {
@@ -48,6 +48,9 @@ $(document)
 
     $('.menu-details')
       .popup();
+
+    $('.ui.accordion')
+      .accordion();
 
 });  
 </script>

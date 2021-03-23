@@ -12,7 +12,11 @@
             {{ page.title }}
           </h1>
           </a>
+          {% if page.description %}
+            <h2>{{ page.description }}</h2>
+          {% else %}
           <h2>{{ page.excerpt | strip_html }}</h2>
+          {% endif %}
           <p>
             <i class="icon calendar"></i> {{ page.date | date: "%b %-d, %Y" }}
             {% if page.author %} • <i class="edit icon"></i> {{ page.author }}{% endif %}
@@ -32,7 +36,7 @@
             {% if page.tags %}
               • <i class="icon tags"></i> 
               {% for tag in page.tags %}
-                <a class="ui tag label mini purple" href="/tag/#{{ tag }}">{{ tag }}</a>
+                <a class="ui tag label mini blue" href="/tag/#{{ tag }}">{{ tag }}</a>
               {% endfor %}
             {% endif %}
           </p>

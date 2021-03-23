@@ -1,0 +1,303 @@
+---
+layout: shiftfreqs
+title: Shift usage histogram (number of digits in the primes searched)
+description: Shift usage from 2014 to date
+author: Graham Higgins
+category: graph
+tags: graph
+xscale: scaleLinear
+yscale: scaleLinear
+---
+
+<style type="text/css">
+  span.sum {font-style: italic; color: #888}
+  span.big {color: red;}
+  span.med {color: green;}
+  span.sml {color: yellow;}
+  span.shift {font-weight: bold;}
+</style>
+
+<div class="ui vertical segment">
+  <div class="ui centered page grid">
+    <div class="row">
+      <div class="sixteen wide column">
+        <h2 class="ui teal header">Number of blocks mined at shift setting</h2>
+
+        <table id="shifts" width="100%" cellpadding="6" cellspacing="8">
+          <tr>
+              <td><span class="shift" data-tooltip="82 digits in prime">16</span> <span class="sum">6</span></td>
+              <td><span class="shift" data-tooltip="83 digits in prime">17</span> <span class="sum sml">11</span></td>
+              <td><span class="shift" data-tooltip="83 digits in prime">18</span> <span class="sum sml">27</span></td>
+              <td><span class="shift" data-tooltip="83 digits in prime">19</span> <span class="sum sml">38</span></td>
+              <td><span class="shift" data-tooltip="84 digits in prime">20</span> <span class="sum big">10477</span></td>
+              <td><span class="shift" data-tooltip="84 digits in prime">21</span> <span class="sum sml">34</span></td>
+              <td><span class="shift" data-tooltip="84 digits in prime">22</span> <span class="sum sml">28</span></td>
+              <td><span class="shift" data-tooltip="84 digits in prime">23</span> <span class="sum med">141</span></td>
+              <td><span class="shift" data-tooltip="85 digits in prime">24</span> <span class="sum med">1804</span></td>
+              <td><span class="shift" data-tooltip="85 digits in prime">25</span> <span class="sum big">591381</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="85 digits in prime">26</span> <span class="sum med">820</span></td>
+              <td><span class="shift" data-tooltip="86 digits in prime">27</span> <span class="sum med">119</span></td>
+              <td><span class="shift" data-tooltip="86 digits in prime">28</span> <span class="sum med">945</span></td>
+              <td><span class="shift" data-tooltip="86 digits in prime">29</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="87 digits in prime">30</span> <span class="sum med">1211</span></td>
+              <td><span class="shift" data-tooltip="87 digits in prime">31</span> <span class="sum med">2633</span></td>
+              <td><span class="shift" data-tooltip="87 digits in prime">32</span> <span class="sum big">401091</span></td>
+              <td><span class="shift" data-tooltip="88 digits in prime">34</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="88 digits in prime">35</span> <span class="sum med">1943</span></td>
+              <td><span class="shift" data-tooltip="88 digits in prime">36</span> <span class="sum med">335</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="89 digits in prime">37</span> <span class="sum med">901</span></td>
+              <td><span class="shift" data-tooltip="89 digits in prime">38</span> <span class="sum sml">25</span></td>
+              <td><span class="shift" data-tooltip="89 digits in prime">39</span> <span class="sum sml">14</span></td>
+              <td><span class="shift" data-tooltip="90 digits in prime">40</span> <span class="sum med">1138</span></td>
+              <td><span class="shift" data-tooltip="90 digits in prime">41</span> <span class="sum sml">12</span></td>
+              <td><span class="shift" data-tooltip="90 digits in prime">42</span> <span class="sum med">634</span></td>
+              <td><span class="shift" data-tooltip="91 digits in prime">43</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="91 digits in prime">44</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="91 digits in prime">45</span> <span class="sum big">10701</span></td>
+              <td><span class="shift" data-tooltip="91 digits in prime">46</span> <span class="sum sml">30</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="92 digits in prime">47</span> <span class="sum sml">38</span></td>
+              <td><span class="shift" data-tooltip="92 digits in prime">48</span> <span class="sum sml">30</span></td>
+              <td><span class="shift" data-tooltip="92 digits in prime">49</span> <span class="sum sml">26</span></td>
+              <td><span class="shift" data-tooltip="93 digits in prime">50</span> <span class="sum sml">56</span></td>
+              <td><span class="shift" data-tooltip="93 digits in prime">51</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="93 digits in prime">52</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="94 digits in prime">54</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="94 digits in prime">55</span> <span class="sum med">5784</span></td>
+              <td><span class="shift" data-tooltip="95 digits in prime">57</span> <span class="sum med">834</span></td>
+              <td><span class="shift" data-tooltip="95 digits in prime">58</span> <span class="sum sml">12</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="96 digits in prime">60</span> <span class="sum sml">16</span></td>
+              <td><span class="shift" data-tooltip="96 digits in prime">61</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="97 digits in prime">63</span> <span class="sum sml">10</span></td>
+              <td><span class="shift" data-tooltip="97 digits in prime">64</span> <span class="sum big">235276</span></td>
+              <td><span class="shift" data-tooltip="97 digits in prime">66</span> <span class="sum">6</span></td>
+              <td><span class="shift" data-tooltip="98 digits in prime">67</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="98 digits in prime">68</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="98 digits in prime">69</span> <span class="sum med">3299</span></td>
+              <td><span class="shift" data-tooltip="99 digits in prime">72</span> <span class="sum big">13925</span></td>
+              <td><span class="shift" data-tooltip="100 digits in prime">74</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="100 digits in prime">75</span> <span class="sum med">2519</span></td>
+              <td><span class="shift" data-tooltip="100 digits in prime">76</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="101 digits in prime">77</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="101 digits in prime">78</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="101 digits in prime">79</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="102 digits in prime">81</span> <span class="sum med">1740</span></td>
+              <td><span class="shift" data-tooltip="103 digits in prime">84</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="103 digits in prime">86</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="104 digits in prime">88</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="105 digits in prime">90</span> <span class="sum med">4672</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="106 digits in prime">93</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="106 digits in prime">94</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="106 digits in prime">95</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="106 digits in prime">96</span> <span class="sum sml">35</span></td>
+              <td><span class="shift" data-tooltip="108 digits in prime">100</span> <span class="sum med">9942</span></td>
+              <td><span class="shift" data-tooltip="109 digits in prime">105</span> <span class="sum sml">26</span></td>
+              <td><span class="shift" data-tooltip="110 digits in prime">108</span> <span class="sum sml">48</span></td>
+              <td><span class="shift" data-tooltip="110 digits in prime">109</span> <span class="sum med">232</span></td>
+              <td><span class="shift" data-tooltip="111 digits in prime">110</span> <span class="sum med">370</span></td>
+              <td><span class="shift" data-tooltip="111 digits in prime">112</span> <span class="sum med">225</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="112 digits in prime">115</span> <span class="sum med">333</span></td>
+              <td><span class="shift" data-tooltip="113 digits in prime">117</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="114 digits in prime">120</span> <span class="sum big">12589</span></td>
+              <td><span class="shift" data-tooltip="114 digits in prime">121</span> <span class="sum med">132</span></td>
+              <td><span class="shift" data-tooltip="114 digits in prime">122</span> <span class="sum sml">19</span></td>
+              <td><span class="shift" data-tooltip="115 digits in prime">123</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="115 digits in prime">125</span> <span class="sum med">2474</span></td>
+              <td><span class="shift" data-tooltip="115 digits in prime">126</span> <span class="sum med">152</span></td>
+              <td><span class="shift" data-tooltip="116 digits in prime">127</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="116 digits in prime">128</span> <span class="sum sml">90</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="116 digits in prime">129</span> <span class="sum med">130</span></td>
+              <td><span class="shift" data-tooltip="117 digits in prime">130</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="117 digits in prime">132</span> <span class="sum med">1723</span></td>
+              <td><span class="shift" data-tooltip="118 digits in prime">133</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="119 digits in prime">136</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="119 digits in prime">137</span> <span class="sum med">871</span></td>
+              <td><span class="shift" data-tooltip="121 digits in prime">144</span> <span class="sum med">224</span></td>
+              <td><span class="shift" data-tooltip="123 digits in prime">150</span> <span class="sum med">140</span></td>
+              <td><span class="shift" data-tooltip="125 digits in prime">156</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="126 digits in prime">160</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="126 digits in prime">162</span> <span class="sum med">2736</span></td>
+              <td><span class="shift" data-tooltip="132 digits in prime">180</span> <span class="sum med">5298</span></td>
+              <td><span class="shift" data-tooltip="134 digits in prime">187</span> <span class="sum sml">43</span></td>
+              <td><span class="shift" data-tooltip="134 digits in prime">188</span> <span class="sum sml">57</span></td>
+              <td><span class="shift" data-tooltip="134 digits in prime">189</span> <span class="sum sml">45</span></td>
+              <td><span class="shift" data-tooltip="135 digits in prime">190</span> <span class="sum sml">43</span></td>
+              <td><span class="shift" data-tooltip="135 digits in prime">191</span> <span class="sum sml">39</span></td>
+              <td><span class="shift" data-tooltip="135 digits in prime">192</span> <span class="sum sml">27</span></td>
+              <td><span class="shift" data-tooltip="138 digits in prime">200</span> <span class="sum sml">51</span></td>
+              <td><span class="shift" data-tooltip="145 digits in prime">225</span> <span class="sum sml">11</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="153 digits in prime">250</span> <span class="sum med">762</span></td>
+              <td><span class="shift" data-tooltip="154 digits in prime">255</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="155 digits in prime">256</span> <span class="sum med">117</span></td>
+              <td><span class="shift" data-tooltip="164 digits in prime">286</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="164 digits in prime">288</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="168 digits in prime">300</span> <span class="sum med">289</span></td>
+              <td><span class="shift" data-tooltip="168 digits in prime">301</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="170 digits in prime">308</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="174 digits in prime">320</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="176 digits in prime">328</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="177 digits in prime">330</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="182 digits in prime">348</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="183 digits in prime">350</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="183 digits in prime">351</span> <span class="sum">4</span></td>
+              <td><span class="shift" data-tooltip="184 digits in prime">352</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="185 digits in prime">356</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="186 digits in prime">360</span> <span class="sum med">405</span></td>
+              <td><span class="shift" data-tooltip="191 digits in prime">377</span> <span class="sum med">794</span></td>
+              <td><span class="shift" data-tooltip="192 digits in prime">380</span> <span class="sum">4</span></td>
+              <td><span class="shift" data-tooltip="192 digits in prime">381</span> <span class="sum sml">10</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="193 digits in prime">382</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="193 digits in prime">383</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="193 digits in prime">384</span> <span class="sum med">101</span></td>
+              <td><span class="shift" data-tooltip="195 digits in prime">391</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="196 digits in prime">392</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="199 digits in prime">404</span> <span class="sum sml">29</span></td>
+              <td><span class="shift" data-tooltip="201 digits in prime">409</span> <span class="sum">6</span></td>
+              <td><span class="shift" data-tooltip="202 digits in prime">412</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="202 digits in prime">414</span> <span class="sum sml">16</span></td>
+              <td><span class="shift" data-tooltip="202 digits in prime">415</span> <span class="sum">2</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="203 digits in prime">416</span> <span class="sum sml">15</span></td>
+              <td><span class="shift" data-tooltip="209 digits in prime">437</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="210 digits in prime">440</span> <span class="sum sml">15</span></td>
+              <td><span class="shift" data-tooltip="210 digits in prime">441</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="211 digits in prime">442</span> <span class="sum sml">10</span></td>
+              <td><span class="shift" data-tooltip="211 digits in prime">443</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="211 digits in prime">444</span> <span class="sum sml">87</span></td>
+              <td><span class="shift" data-tooltip="212 digits in prime">445</span> <span class="sum sml">40</span></td>
+              <td><span class="shift" data-tooltip="212 digits in prime">446</span> <span class="sum sml">81</span></td>
+              <td><span class="shift" data-tooltip="212 digits in prime">447</span> <span class="sum med">976</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="212 digits in prime">448</span> <span class="sum sml">69</span></td>
+              <td><span class="shift" data-tooltip="213 digits in prime">449</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="213 digits in prime">450</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="213 digits in prime">451</span> <span class="sum sml">41</span></td>
+              <td><span class="shift" data-tooltip="218 digits in prime">468</span> <span class="sum sml">20</span></td>
+              <td><span class="shift" data-tooltip="220 digits in prime">472</span> <span class="sum">7</span></td>
+              <td><span class="shift" data-tooltip="220 digits in prime">473</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="220 digits in prime">474</span> <span class="sum">6</span></td>
+              <td><span class="shift" data-tooltip="221 digits in prime">476</span> <span class="sum sml">10</span></td>
+              <td><span class="shift" data-tooltip="221 digits in prime">477</span> <span class="sum">2</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="221 digits in prime">478</span> <span class="sum sml">55</span></td>
+              <td><span class="shift" data-tooltip="222 digits in prime">479</span> <span class="sum med">1193</span></td>
+              <td><span class="shift" data-tooltip="222 digits in prime">480</span> <span class="sum sml">68</span></td>
+              <td><span class="shift" data-tooltip="222 digits in prime">481</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="223 digits in prime">482</span> <span class="sum sml">22</span></td>
+              <td><span class="shift" data-tooltip="223 digits in prime">483</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="229 digits in prime">502</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="229 digits in prime">504</span> <span class="sum">4</span></td>
+              <td><span class="shift" data-tooltip="230 digits in prime">506</span> <span class="sum sml">31</span></td>
+              <td><span class="shift" data-tooltip="230 digits in prime">508</span> <span class="sum med">1008</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="231 digits in prime">509</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="231 digits in prime">510</span> <span class="sum med">548</span></td>
+              <td><span class="shift" data-tooltip="231 digits in prime">511</span> <span class="sum med">493</span></td>
+              <td><span class="shift" data-tooltip="232 digits in prime">512</span> <span class="sum big">21193</span></td>
+              <td><span class="shift" data-tooltip="240 digits in prime">540</span> <span class="sum med">119</span></td>
+              <td><span class="shift" data-tooltip="240 digits in prime">541</span> <span class="sum">9</span></td>
+              <td><span class="shift" data-tooltip="241 digits in prime">542</span> <span class="sum med">683</span></td>
+              <td><span class="shift" data-tooltip="241 digits in prime">543</span> <span class="sum med">334</span></td>
+              <td><span class="shift" data-tooltip="241 digits in prime">544</span> <span class="sum med">140</span></td>
+              <td><span class="shift" data-tooltip="242 digits in prime">546</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="242 digits in prime">547</span> <span class="sum">7</span></td>
+              <td><span class="shift" data-tooltip="250 digits in prime">574</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="251 digits in prime">576</span> <span class="sum">7</span></td>
+              <td><span class="shift" data-tooltip="259 digits in prime">602</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="260 digits in prime">607</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="261 digits in prime">608</span> <span class="sum sml">56</span></td>
+              <td><span class="shift" data-tooltip="267 digits in prime">630</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="268 digits in prime">634</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="270 digits in prime">640</span> <span class="sum">8</span></td>
+              <td><span class="shift" data-tooltip="288 digits in prime">698</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="288 digits in prime">699</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="288 digits in prime">700</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="289 digits in prime">702</span> <span class="sum sml">12</span></td>
+              <td><span class="shift" data-tooltip="294 digits in prime">720</span> <span class="sum">8</span></td>
+              <td><span class="shift" data-tooltip="298 digits in prime">732</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="299 digits in prime">736</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="306 digits in prime">760</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="307 digits in prime">762</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="308 digits in prime">764</span> <span class="sum sml">11</span></td>
+              <td><span class="shift" data-tooltip="308 digits in prime">765</span> <span class="sum">1</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="308 digits in prime">767</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="309 digits in prime">768</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="315 digits in prime">790</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="317 digits in prime">794</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="317 digits in prime">797</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="318 digits in prime">798</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="318 digits in prime">799</span> <span class="sum sml">10</span></td>
+              <td><span class="shift" data-tooltip="318 digits in prime">800</span> <span class="sum sml">13</span></td>
+              <td><span class="shift" data-tooltip="327 digits in prime">828</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="327 digits in prime">829</span> <span class="sum">2</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="327 digits in prime">830</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="328 digits in prime">831</span> <span class="sum sml">12</span></td>
+              <td><span class="shift" data-tooltip="328 digits in prime">832</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="336 digits in prime">860</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="345 digits in prime">888</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="347 digits in prime">896</span> <span class="sum big">30779</span></td>
+              <td><span class="shift" data-tooltip="355 digits in prime">920</span> <span class="sum sml">32</span></td>
+              <td><span class="shift" data-tooltip="374 digits in prime">986</span> <span class="sum sml">27</span></td>
+              <td><span class="shift" data-tooltip="375 digits in prime">987</span> <span class="sum">6</span></td>
+              <td><span class="shift" data-tooltip="375 digits in prime">988</span> <span class="sum">3</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="376 digits in prime">991</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="376 digits in prime">992</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="382 digits in prime">1010</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="382 digits in prime">1011</span> <span class="sum">2</span></td>
+              <td><span class="shift" data-tooltip="382 digits in prime">1012</span> <span class="sum">3</span></td>
+              <td><span class="shift" data-tooltip="383 digits in prime">1014</span> <span class="sum">5</span></td>
+              <td><span class="shift" data-tooltip="384 digits in prime">1017</span> <span class="sum">1</span></td>
+              <td><span class="shift" data-tooltip="384 digits in prime">1019</span> <span class="sum sml">10</span></td>
+              <td><span class="shift" data-tooltip="385 digits in prime">1020</span> <span class="sum sml">32</span></td>
+              <td><span class="shift" data-tooltip="385 digits in prime">1021</span> <span class="sum sml">30</span></td>
+            </tr>
+            <tr>
+              <td><span class="shift" data-tooltip="385 digits in prime">1022</span> <span class="sum sml">17</span></td>
+              <td><span class="shift" data-tooltip="386 digits in prime">1023</span> <span class="sum sml">21</span></td>
+              <td><span class="shift" data-tooltip="386 digits in prime">1024</span> <span class="sum med">167</span></td>
+            </tr>
+                    </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include shiftograms.html %}
+

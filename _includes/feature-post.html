@@ -2,9 +2,9 @@
     {% if post.tags %}
       {% for tag in post.tags %}
         {% if tag == 'feature' %}
-          <div>
+          <div style="margin-bottom: 1em">
             <a href="{{ post.url }}">
-              <h3 class="ui inverted header">{{post.title}}</h3>
+              <h3 class="ui blue header" style="padding: 0.2em 0" >{{post.title}}</h3>
             </a>
             {% if post.image %}
               <div class="thumb-img">
@@ -13,7 +13,7 @@
                 </a>
               </div>
             {% endif %}
-            <a class="ui basic inverted animated button" href="{{ post.url }}">
+            <a class="ui tiny green basic animated button" href="{{ post.url }}">
               <div class="visible content">Read More</div>
               <div class="hidden content"><i class="right arrow icon"></i></div>
             </a>

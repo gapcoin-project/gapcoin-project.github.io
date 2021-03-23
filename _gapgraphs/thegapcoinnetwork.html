@@ -1,0 +1,42 @@
+---
+layout: recordgraph
+title: Record gaps and merits discovered by the Gapcoin network
+description: Gap length and shift (number of prime digits)
+author: Graham Higgins
+category: graph
+tags: graph
+caption: Overall graph of gap length plotted against shift (number of prime digits)
+discoverer: Gapcoin
+xscale: scaleLinear
+yscale: scaleLinear
+---
+
+<div class="ui vertical segment">
+  <div class="ui centered page grid">
+
+    <div class="row">
+      <div class="sixteen wide column">
+        <div class="ui header" style="padding: 0.6em"><i class="blue star outline icon"></i>Records and gaps</div>
+          <p>Record and gaps</p>
+        <div class="ui inverted divider"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <div class="ui header" style="padding: 0.6em"><i class="blue star outline icon"></i>{{ page.caption }}</div>
+        <img src="/img/gapgraphs/overall-gaps-vs-shift.png" />
+      </div>
+    </div> <!-- /row -->
+
+    <div class="row">
+      <div class="column">
+        <div class="ui header" style="padding: 0.6em"><i class="blue star outline icon"></i>Gapcoin-held prime gap records and when discovered</div>
+        <div id="records" class="records" style="min-height: 40em;"></div>
+      </div>
+    </div> <!-- /row -->
+
+
+  </div>
+</div>
+

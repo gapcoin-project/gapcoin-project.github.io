@@ -4,7 +4,7 @@ title: Categories
 description: Recent posts listed by category.
 ---
 
-<div class="ui inverted purple vertical segment">
+<div class="ui inverted teal vertical segment">
   <div class="ui very relaxed stackable page grid">
     <div class="row">
       <div class="column">
@@ -16,7 +16,7 @@ description: Recent posts listed by category.
 
 {% for category in site.categories %}
   {% capture inverted %}{{ forloop.index | modulo:2 }}{% endcapture %}
-  <div class="ui {% if inverted == '0' %}inverted purple {% endif %}vertical segment">
+  <div class="ui {% if inverted == '0' %}inverted teal {% endif %}vertical segment">
     <div class="ui very relaxed stackable page grid">
       <div class="row">
         <div class="column">
