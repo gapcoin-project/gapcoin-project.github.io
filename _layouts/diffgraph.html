@@ -1,0 +1,181 @@
+  {% include head.html %}
+  <meta name="csvdata" content="{{page.csvdata}}"/>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://d3js.org/d3-color.v1.js"></script>
+  <script src="https://d3js.org/d3-interpolate.v1.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.js"></script>
+<style>
+.axis path,
+.axis line { fill: none; stroke: #888; shape-rendering: crispEdges; }
+.axis text { font-family: sans-serif; font-size: 11px; color:#888}
+.loading {font-family: sans-serif; font-size: 15px;}
+.invisible {display: none;}
+</style>
+</head>
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="csvholder" class="invisible" data-csvcontent="{{page.csvdata}}" data-startdate="{{page.startdate}}" data-enddate="{{page.enddate}}"></div>
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+      {% include landing-header.html %}
+      {{ content }}
+      {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+
+    {% include js.html %}
+    <script>
+
+    function chartify(arr, startdate, enddate) {
+        // 0=height,1=difficulty,2=shift,3=gapsize,4=merit,5=primedigits,6=date
+        // var sorted_gaps = arr.sort(function(a, b) {return a[3] > b[3]});
+        var row;
+        var xdata = new Array;
+        var ydata = new Array;
+        // var zdata = new Array;
+        for (row of arr.entries()) {
+          xdata.push(row[1][0]);
+          ydata.push(row[1][1]);
+          // zdata.push(Math.round(row[1][4]));
+        }
+        var margin = {top: 20, right: 15, bottom: 60, left: 80}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+
+      {% if page.xscale %}
+
+        {% if page.xscale == 'scalePow' %}
+        console.log("Setting x scale as Pow");
+        var x = d3.scalePow()
+                  .exponent(1.4)  // the range of the values to plot
+                  .range([ 0, width ]);        // the pixel range of the x-axis
+        {% elsif page.xscale == 'scaleLog' %}
+        console.log("Setting x scale as Log");
+        var x = d3.scaleLog()
+                  .domain([1, d3.max(xdata)])  // the range of the values to plot
+                  .range([ 1, width ]);        // the pixel range of the x-axis
+        {% elsif page.xscale == 'scaleTime' %}
+        console.log("Setting x scale as Time");
+        var x = d3.scaleTime()
+                  .domain([startdate, enddate]/*[1, d3.max(xdata)]*/)  // the range of the values to plot
+                  .range([ 1, width ]);        // the pixel range of the x-axis
+        {% else %}
+        console.log("Setting x scale as Linear");
+        var x = d3.scaleLinear()
+                  .domain([1, d3.max(xdata)])  // the range of the values to plot
+                  .range([ 1, width ]);        // the pixel range of the x-axis
+        {% endif %}
+      {% endif %}
+
+      {% if page.yscale and page.yscale == 'scalePow' %}
+        console.log("Setting y scale as Pow");
+        var y = d3.scalePow()
+                  .exponent(1.4)
+                  .range([ height, 0 ]);
+      {% elsif page.yscale == 'scaleLog' %}
+        console.log("Setting y scale as Log");
+        var y = d3.scaleLog()
+                  .domain([1, d3.max(ydata)])  // the range of the values to plot
+                  .range([ height, 0 ]);
+      {% else %}
+        console.log("Setting y scale as Linear");
+        var y = d3.scaleLinear()
+                  .domain([d3.min(ydata), d3.max(ydata)])  // the range of the values to plot
+                  .range([ height, 1 ]);        // the pixel range of the x-axis
+      {% endif %}
+
+        // the chart object, includes all margins
+        var chart = d3.select('#content')
+          .append('svg:svg')
+          .attr('width', width + margin.right + margin.left)
+          .attr('height', height + margin.top + margin.bottom)
+          .attr('class', 'chart')
+
+        // the main object where the chart and axis will be drawn
+        var main = chart.append('g')
+          .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+          .attr('width', width)
+          .attr('height', height)
+          .attr('class', 'main')   
+
+        // draw the x axis
+        var xAxis = d3.axisBottom()
+          .scale(x);
+          //.orient('bottom');
+
+        main.append('g')
+          .attr('transform', 'translate(0,' + height + ')')
+          .attr('class', 'main axis date')
+          .call(xAxis);
+
+        // draw the y axis
+        var yAxis = d3.axisLeft()
+          .scale(y)
+          axisLabel: 'Label here';
+          // .orient('left');
+
+        main.append('g')
+          .attr('transform', 'translate(0,0)')
+          .attr('class', 'main axis date')
+          .call(yAxis);
+
+        // draw the graph object
+        var g = main.append("svg:g"); 
+
+        g.selectAll("scatter-dots")
+          .data(ydata)  // using the values in the ydata array
+          .enter().append("svg:circle")  // create a new circle for each value
+              .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
+              .attr("cx", function (d,i) { return x(xdata[i]); } ) // translate x value
+              .attr("r", 2) // radius of circle
+              .style("fill", "red");
+
+        main.append("text")
+          .attr("fill", "#888")
+          .attr("text-anchor", "end")
+          .attr("x", width)
+          .attr("y", height + margin.top + 20)
+          .text("Month");
+
+        main.append("text")
+          .attr("fill", "#888")
+          .attr("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
+          .attr("y", -margin.left+25)
+          .attr("x", -margin.top)
+          .text("Difficulty");
+    };
+
+    function parseentry(val, index) {
+      // date,difficulty
+      // 2014-10-21,20.39
+      var retval;
+      if (index == 0)
+          return Date.parse(val);
+      else
+        return parseFloat(val, 10)
+    };
+
+
+    $('.page.dimmer:first')
+      .dimmer('toggle');
+
+    $(document).ready(function() {
+      $('.ui.dimmer').dimmer('show');
+
+      var csvholder = document.getElementById('csvholder');
+      var csvdata = csvholder.getAttribute('data-csvcontent');
+      var startdate = new Date(csvholder.getAttribute('data-startdate')); 
+      var enddate = new Date(csvholder.getAttribute('data-enddate')); 
+      dataarray = $.csv.toArrays(csvdata);
+      var entries = dataarray.map(function(entry) {return entry.map(parseentry)});
+      chartify(entries, startdate, enddate);
+      $('.ui.dimmer').dimmer('hide');
+      });
+    </script>
+  </body>
+</html>

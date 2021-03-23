@@ -1,0 +1,73 @@
+    {% include head.html %}
+  </head>
+
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+        {% include landing-header.html %}
+        {{ content }}
+        {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+    
+    {% include js.html %}
+    <script>
+
+    var gapsarray;
+    var d =  document.getElementById("merits");
+
+    function parsegapentry(val, index) {
+      if (index == 0)
+          return parseInt(val, 10);
+      else if (index == 1)
+        if (val == '1')
+          return true;
+        else
+          return false;
+      else if (index > 3 && index < 5)
+        return val
+      else if (index == 6)
+        return parseInt(val, 10)
+      else if (index == 7)
+        return parseFloat(val, 10)
+      else if (index == 8)
+        return parseInt(val, 10)
+      else
+        return val;
+    };
+
+    $('.page.dimmer:first')
+      .dimmer('toggle');
+
+    $(document).ready(function() {
+      $('.ui.dimmer').dimmer('show');
+      // $.when(
+      //     $.get("https://raw.githubusercontent.com/primegap-list-project/primegap-list-project.github.io/master/_data/allgaps.csv")
+      // ).then(function(gapscsv) {
+
+      //   gapsarray = $.csv.toArrays(gapscsv);
+      //   var gapsentries = gapsarray.map(function(entry) {
+      //       return entry.map(parsegapentry)
+      //     });
+      //   var gaps = gapsentries.sort(function(a, b){return b[0] - a[0]});
+      //   var html = ""
+      //   for (row of gaps.entries()) {
+      //     if (row[1][5].search(/Gapcoin/gi) > -1) {
+      //       html += row[1][0].toString().padStart(6, ' ') + '\t' + row[1][7].toFixed(4).toString() + '\t' + row[1][5] + '\t' + row[1][8] + '\t' + row[1][6] + '\n';
+      //     }
+      //   }
+      //   d.innerHTML = html;
+      // return;
+      // });
+      $('.ui.dimmer').dimmer('hide');
+    });
+    </script>
+  </body>
+</html>

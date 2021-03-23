@@ -1,0 +1,37 @@
+<div class="ui vertical segment">
+  <div class="ui centered page grid">
+
+    <div class="ui centered inline inverted dimmer">
+      <div class="ui text loader">Your browser is now constructing the plots, it will take a few moments ...</div>
+    </div>
+
+
+    {% if page.title == 'Record gaps and merits discovered by the Gapcoin network' %}
+    <div class="row">
+      <div class="sixteen wide column">
+        <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>More stuff</div>
+          <p>Lorem ipsum.</p>
+        <div class="ui inverted divider"></div>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <div class="row">
+      <div class="column">
+        {% if page.year %}
+        <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>{{ page.caption }} {{ page.year }}</div>
+        <img src="/img/gapgraphs/{{ page.year }}.png" />
+        <!-- Enable for refresh
+        <div id="content" class="content" style="min-height: 40em;"></div>
+        -->
+        {% else %}
+        <div class="ui header" style="padding: 0.6em"><i class="blue star outline icon"></i>{{ page.caption }}</div>
+        <img src="/img/gapgraphs/1000.png" />
+        {% endif %}
+      </div>
+    </div> <!-- /row -->
+
+  </div>
+  }
+</div>

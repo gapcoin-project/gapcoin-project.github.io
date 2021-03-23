@@ -1,0 +1,36 @@
+  {% include head.html %}
+  </head>
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+        {%if page.title == 'Home' %}
+          {% include home-header.html %}
+        {% else %}
+          {% include landing-header.html %}
+        {% endif %}
+      <div class="ui vertical segment">
+        <div class="ui very relaxed stackable page grid">
+          <div class="column">
+            <div class="row">
+
+        {{ content }}
+
+            </div> <!-- /row -->
+          </div>
+        </div>
+      </div>
+        {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+
+    {% include js.html %}
+  </body>
+
+</html>

@@ -1,0 +1,51 @@
+---
+layout: landing
+title: Mining
+description: Resources related to mining Gapcoin 
+---
+
+<div class="ui  vertical segment">
+  <div class="ui very relaxed stackable page grid">
+
+    <div class="row">
+      <div class="column">
+        <div class="ui animated selection list">
+        <!-- Use to have here as well as in the gapgraph section -->
+        <a class="item" href="/gapgraphs/shiftfrequency/">
+          <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>Shift settings, length of primes searched and blocks mined</div>
+        </a>
+
+        {% for item in site.mining %}
+          <a class="item" href="{{ item.url }}">
+            <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>{{ item.title }}</div>
+          </a>
+        {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="eight wide column">
+        {% include recent-posts.html %}
+      </div>
+
+      <div class="eight wide column">
+          
+          {% include feature-post.html %}        
+
+        <div class="ui inverted divider"></div>
+
+        <h3 class="ui inverted header">Tags</h3>
+          {% include site-tags.html %}
+          
+        <div class="ui inverted divider"></div>
+        
+        <h3 class="ui inverted header">Categories</h3>
+          {% include site-categories.html %}
+          
+      </div>
+    </div>
+  </div>
+</div>

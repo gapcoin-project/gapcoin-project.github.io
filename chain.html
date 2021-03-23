@@ -1,0 +1,69 @@
+---
+layout: landing
+title: Gapcoin chain stats
+description: Plots of chain statistics.
+---
+  <div class="ui  vertical segment">
+    <div class="ui very relaxed stackable page grid">
+
+      <div class="row">
+        <div class="sixteen wide column">
+
+          <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>The Gapcoin blockchain</div>
+          <p>Charts and tables presenting statistical information about the Gapcoin blockchain</p>
+
+          <div class="ui inverted divider"></div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="eight wide column">
+          <div class="ui animated selection list">
+          {% for page in site.diffgraphs reversed %}
+            <a class="item" href="{{ page.url }}">
+              <div class="ui small header" style="padding: 0.6em"><i class="blue chart line icon"></i>{{ page.title }}</div>
+            </a>
+          {% endfor %}
+          </div>
+        </div>
+
+        <div class="eight wide column">
+          <div class="ui animated selection list">
+          {% for page in site.hashgraphs reversed %}
+            <a class="item" href="{{ page.url }}">
+              <div class="ui small header" style="padding: 0.6em"><i class="blue chart line icon"></i>{{ page.title }}</div>
+            </a>
+          {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="eight wide column">
+
+          {% include recent-posts.html %}
+
+        </div>
+
+        <div class="eight wide column">
+            
+            {% include feature-post.html %}        
+
+          <div class="ui inverted divider"></div>
+
+          <h3 class="ui inverted header">Tags</h3>
+            {% include site-tags.html %}
+            
+          <div class="ui inverted divider"></div>
+          
+          <h3 class="ui inverted header">Categories</h3>
+            {% include site-categories.html %}
+            
+        </div>
+      </div>
+
+    </div>
+  </div>

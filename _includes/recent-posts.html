@@ -1,8 +1,16 @@
 <div class="ui inverted animated selection list">
   {% for post in site.posts limit:site.recent_items %}
     {% capture first_tag %}{{ post.tags | first }}{% endcapture %}
-    {% if first_tag != 'feature' and post.category != 'app' %}
-      {% if post.category %}<a class="ui ribbon small label"  href="/category/#{{ post.category }}">{{ post.category }}</a>{% endif %}
+    {% if first_tag != 'feature' and post.category != 'project' %}
+      {% if post.category %}
+        {% if post.category == 'video' %}
+          <a class="ui blue ribbon small label"  href="/category/#{{ post.category }}">{{ post.category }}</a>
+        {% elsif post.category == 'record' %}
+          <a class="ui green ribbon small label"  href="/category/#{{ post.category }}">{{ post.category }}</a>
+        {% else %}
+          <a class="ui teal ribbon small label"  href="/category/#{{ post.category }}">{{ post.category }}</a>
+        {% endif %}
+      {% endif %}
       <a class="item" href="{{ post.url }}">
         <div class="recent-posts-title">{{ post.title }}</div>
         {% if post.image %}

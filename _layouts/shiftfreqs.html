@@ -1,0 +1,157 @@
+  {% include head.html %}
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://d3js.org/d3-axis.v2.js"></script>
+<style>
+.axis path,
+.axis line { fill: none; stroke: #888; shape-rendering: crispEdges; }
+.axis text { font-family: sans-serif; font-size: 11px; color:#888}
+.loading {font-family: sans-serif; font-size: 15px;}
+</style>
+</head>
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+      {% include landing-header.html %}
+      {{ content }}
+      {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+
+    {% include js.html %}
+    <script>
+    var csvdata = "shift,sum\n16,6\n17,11\n18,27\n19,38\n20,10477\n21,34\n22,28\n23,141\n24,1804\n25,591381\n" + 
+        "26,820\n27,119\n28,945\n29,1\n30,1211\n31,2633\n32,401091\n34,1\n35,1943\n36,335\n37,901\n38,25\n" +
+        "39,14\n40,1138\n41,12\n42,634\n43,1\n44,1\n45,10701\n46,30\n47,38\n48,30\n49,26\n50,56\n51,1\n" +
+        "52,1\n54,3\n55,5784\n57,834\n58,12\n60,16\n61,2\n63,10\n64,235276\n66,6\n67,1\n68,1\n69,3299\n" +
+        "72,13925\n74,1\n75,2519\n76,2\n77,1\n78,1\n79,1\n81,1740\n84,2\n86,3\n88,1\n90,4672\n93,1\n94,1\n" +
+        "95,1\n96,35\n100,9942\n105,26\n108,48\n109,232\n110,370\n112,225\n115,333\n117,1\n120,12589\n" +
+        "121,132\n122,19\n123,5\n125,2474\n126,152\n127,5\n128,90\n129,130\n130,1\n132,1723\n133,1\n136,1\n" +
+        "137,871\n144,224\n150,140\n156,1\n160,1\n162,2736\n180,5298\n187,43\n188,57\n189,45\n190,43\n" +
+        "191,39\n192,27\n200,51\n225,11\n250,762\n255,1\n256,117\n286,1\n288,1\n300,289\n301,1\n308,2\n" +
+        "320,1\n328,1\n330,1\n348,1\n350,5\n351,4\n352,1\n356,3\n360,405\n377,794\n380,4\n381,10\n382,1\n" +
+        "383,1\n384,101\n391,1\n392,3\n404,29\n409,6\n412,2\n414,16\n415,2\n416,15\n437,2\n440,15\n441,3\n" +
+        "442,10\n443,1\n444,87\n445,40\n446,81\n447,976\n448,69\n449,2\n450,1\n451,41\n468,20\n472,7\n" +
+        "473,1\n474,6\n476,10\n477,2\n478,55\n479,1193\n480,68\n481,2\n482,22\n483,2\n502,3\n504,4\n506,31\n" +
+        "508,1008\n509,2\n510,548\n511,493\n512,21193\n540,119\n541,9\n542,683\n543,334\n544,140\n546,1\n" +
+        "547,7\n574,3\n576,7\n602,1\n607,1\n608,56\n630,2\n634,3\n640,8\n698,1\n699,3\n700,2\n702,12\n" +
+        "720,8\n732,1\n736,1\n760,2\n762,5\n764,11\n765,1\n767,2\n768,1\n790,5\n794,2\n797,1\n798,1\n" +
+        "799,10\n800,13\n828,2\n829,2\n830,1\n831,12\n832,3\n860,2\n888,2\n896,30779\n920,32\n986,27\n" +
+        "987,6\n988,3\n991,3\n992,5\n1010,1\n1011,2\n1012,3\n1014,5\n1017,1\n1019,10\n1020,32\n1021,30\n" +
+        "1022,17\n1023,21\n1024,167\n";
+
+    function render_histogram(scale) {
+
+      data = $.csv.toArrays(csvdata);
+      var row;
+      var xdata = new Array;
+      var ydata = new Array;
+      for (row of data) {
+        xdata.push(parseInt(row[0], 10));
+        ydata.push(parseInt(row[1], 10));
+      }
+
+      var margin = {top: 10, right: 15, bottom: 40, left: 80};
+      var width = 1024 - margin.left - margin.right;
+      var height = 600 - margin.top - margin.bottom;
+
+      // the chart object, includes all margins
+      var chart = d3.select('#content' + scale)
+        .append('svg:svg')
+        .attr('width', width + margin.right + margin.left)
+        .attr('height', height + margin.top + margin.bottom)
+        .attr('class', 'chart')
+
+      chart.append("text")
+        .attr("transform", "translate(100,0)")
+        .attr("x", 50)
+        .attr("y", 50)
+        .attr("fill", "teal")
+        .attr("font-size", "24px")
+        .text("Shift histogram " + scale + " scale at block height 1,394,093.")
+
+      var x = d3.scaleLinear()
+                .domain([1, d3.max(xdata)])  // the range of the values to plot
+                .range([ 1, width ]);        // the pixel range of the x-axis
+      var y;
+
+      if (scale == "normal") {
+        y = d3.scaleLinear()
+              .domain([1, d3.max(ydata)])  // the range of the values to plot
+              .range([ height, 1 ]);        // the pixel range of the x-axis
+      }
+      else {
+        y = d3.scaleLog()
+              .domain([1, d3.max(ydata)])  // the range of the values to plot
+              .range([ height, 0 ]);
+      }
+
+      // the main object where the chart and axis will be drawn
+      var main = chart.append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('class', 'main')   
+
+      main.append("text")
+        .attr("fill", "teal")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height + margin.top + 20)
+        .text("Shift");
+
+      main.append("text")
+        .attr("fill", "teal")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left+20)
+        .attr("x", -margin.top)
+        .text("Sum");
+
+      var xAxis = d3.axisBottom().scale(x);
+
+      main.append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        .attr('class', 'main axis date')
+        .call(xAxis);
+
+      // draw the y axis
+      var yAxis = d3.axisLeft().scale(y).ticks(10);
+
+      main.append('g')
+        .attr('transform', 'translate(0,0)')
+        .attr('class', 'main axis sum')
+        .call(yAxis);
+
+      // draw the graph object
+      var g = main.append("svg:g"); 
+
+      g.selectAll(".bar")
+        .data(ydata)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d, i) {return x(xdata[i]);})
+        .attr("y", function(d) {return y(d);})
+        .attr("fill", "teal")
+        .attr("width", "1"/*x.bandwidth()*/)
+        .attr("height", function(d) {return height - y(d);});
+    };
+
+    $('.page.dimmer:first')
+      .dimmer('toggle');
+
+    $(document).ready(function() {
+      $('.ui.dimmer').dimmer('show');
+      render_histogram("normal");
+      render_histogram("log");
+      $('.ui.dimmer').dimmer('hide');
+    });
+    </script>
+  </body>
+</html>

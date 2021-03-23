@@ -1,0 +1,156 @@
+---
+layout: landing
+title: FAQ
+description: Answers to frequently-asked questions <font size="1.0em">(borrowed from the Mersenne forum’s Prime Gap Search Group web site’s FAQ)</font>
+excerpt: "A selection of questions asked and answered on the Mersenne forum"
+---
+<div class="ui vertical segment">
+  <div class="ui very relaxed stackable page grid">
+    <div class="column">
+      <div class="row">
+
+        <!--
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Does getting high merits get harder when you get to larger gaps?
+          </div>
+
+        <div class="content">
+        </div>
+        -->
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            I’ve only just got here, what's all this about?
+          </div>
+          <div class="content">
+            <p>It’s about <b><i>the computation of the first occurrence of gaps between consecutive prime numbers</i></b> and is part of a wider effort researching aspects of <a href="https://en.wikipedia.org/wiki/Goldbach%27s_conjecture">Goldbach’s conjecture</a>, one of the oldest and best-known unsolved problems in <a href="https://en.wikipedia.org/wiki/Number_theory">number theory</a> - and all of mathematics.</p>
+            <p>Goldbach’s conjecture in modern form is “every even number larger than four is the sum of two odd prime numbers”. The conjecture has been <a href="https://www.semanticscholar.org/paper/Empirical-verification-of-the-even-Goldbach-and-of-Silva-Herzog/0bcebfe7cd9889039a36c73cf0a21609cb8867e2">shown to hold</a> for all integers less than <math>4 &middot; 10<sup>18</sup></math> but remains unproven despite considerable effort.</p>
+            <p>The computation of the first occurrence of prime gaps of a given (even) size between consecutive primes has some theoretical interest. Richard Guy (<a href="https://en.wikipedia.org/wiki/Erd%C5%91s_number">Erdős number</a> 1) assigns this as problem A8 (“A8 Gaps between primes. Twin primes”) in chapter 1 (“Prime Numbers”) of his book <a href="https://www.springer.com/gp/book/9781475717389">“Unsolved Problems in Number Theory”</a>. Guy’s description of A8 is usefully available to <a href="https://books.google.co.uk/books?id=1AP2CEGxTkgC&lpg=PA3&pg=PA31#v=onepage&q&f=false">read online at Google books</a> (scroll down to p31).</p>
+          </div>
+        </div>
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            So what’s the <i>actual</i> problem?
+          </div>
+          <div class="content">
+            <p>To describe the problem <i>precisely</i> we need to establish some terms, so ... if we let p<sub>k</sub> be the k<sup>th</sup> prime number, i.e. <math>p<sub>1</sub>=2</math>, <math>p<sub>2</sub>=3</math>, <math>p<sub>3</sub>=5</math>, ..., and let <math>g<sub>k</sub>=p<sub>(k+1)</sub>-p<sub>k</sub></math> be the gap between the consecutive primes <math>p<sub>k</sub> and p<sub>(k+1)</sub></math>. The interest is in how <math>g<sub>k</sub></math> (the size of the gap) grows as the size of the prime numbers grows.</p>
+            <p>In 1936, in a paper submitted to <i>Acta Arithmetica</i> titled <i>“On the order of magnitude of the difference between consecutive prime numbers”</i>, Swedish mathematician <a href="https://en.wikipedia.org/wiki/Harald_Cram%C3%A9r">Harald Cramér</a> offered a conjecture --- based on probabilistic ideas --- that the large values of <math>g<sub>k</sub></math> grow like <math>(log p<sub>k</sub>)^2</math>.</p>
+            <p>The actual <i>problem</i> is that our empirical data does not allow us to discriminate between the growth rate conjectured by Cramér and other conjectured possible growth rates, say <math>(log pi(p<sub>k</sub>))^2</math> for example (where <math>pi(x)</math> is the usual prime counting function and <math>pi(p<sub>k</sub>)=k</math>.)</p>
+            <p>Another example is identified by Tomás Oliveira e Silva in <a href="http://sweet.ua.pt/tos/gaps.html">Gaps between consecutive primes</a> where he observes that his empirical data suggests yet another growth rate, namely that of the square of the <a href="https://en.wikipedia.org/wiki/Lambert_W_function">Lambert W function</a> --- or “omega function” (<i>not</i> the title of a Robert Ludlum thriller, I learn).</p>
+            <p>The trouble is that these growth rates differ by <i>very</i> slowly growing factors (such as <math>log log p<sub>k</sub>)</math> and much more data is needed to verify empirically which one is closer to the true growth rate.</p>
+            <p>The actual <i>actual</i> problem is that right now, we don’t know of any general method more sophisticated than an exhaustive search for the determination of first occurrences and maximal prime gaps.</p>
+            <p>In essence, we’re limited to sieving successive blocks of positive integers for primes, recording the successive differences, and thus determining directly the first occurrences and maximal gaps. And, as the size of the prime numbers increases, so does the amount of computational effort required to do the sieving, etc.</p>
+          </div>
+        </div>
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Why the focus on gaps of “record” size?
+          </div>
+
+          <div class="content">
+            <p>Large (or small) gaps can be more interesting if they are of sufficient <i>merit</i>. A gap’s merit indicates how much larger the gap is than the average gap between primes near that point (the average being <math>ln(x)</math> as a consequence of the Prime Number Theorem). The greater the merit, the more unusual the gap. The more unusual the gap, the more interesting it is, as an outlier, from a number theory perspective.</p>
+
+            <p>The following graph (taken from Tomás Oliveira e Silva’s <a href="http://sweet.ua.pt/tos/gaps.html">Gaps between consecutive primes</a>) charts the available values of <math>P(g)</math> that they were able to compute (between 2001 and 2012) and illustrates the principle of <i>merit</i>. The black line represents the lower bound for <math>P(g)</math> suggested by Cramér's conjecture, the white dots are gaps between probable primes.</p>
+            <p style="margin:0.5em 2em; background-color:#888; text-align:center;"><img src="/img/page/i0.gif"/></p>
+            <p>The noticeable outlier - the gap of 1132 - is of significance to the related conjectures put forth by Cramér (1936) and Shanks (1964), concerning the ratio <math>g/ln<sup>2</sup>(p<sub>1</sub>)</math>. Shanks reasoned that its limit, taken over all first occurrences, should be 1; Cramér argued that the limit superior, taken over all prime gaps, should be 1. Granville (1994), however, provides evidence that the limit superior is <math>>= 2<sup>exp(-gamma)</sup> = 1.1229</math>. For the 1132 gap, the ratio is 0.9206, the largest value observed for any <math>p<sub>1</sub> > 7</math> thus far.</p>
+          </div>
+        </div>
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            What’s the current state of play?
+          </div>
+
+          <div class="content">
+            <p>Over the last few decades, exhaustive search has continued to push the envelope, courtesy of faster computers <i>and</i> concerted effort.</p>
+            <p>All prime gaps in <math>0 < x < 2<sup>64</sup></math> have now been analyzed, where <math>2<sup>64</sup> = 18446744073709551616</math>, the smallest positive integer requiring more than 64 bits in its binary representation i.e. not representable in C as a <tt>uint64_t</tt>.  The final push from 18446744000000000000 to <math>2<sup>64</sup></math> was carried out by the combined efforts of members of the Prime Gap Searches (PGS) project at the Mersenne Forum: Jerry LaGrou, Dana Jacobsen, Robert Smith, and Robert Gerbicz.</p>
+          </div>
+        </div>
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Does getting high merits get harder when you get to larger gaps?
+          </div>
+
+          <div class="content">
+            <p>Primality tests take longer, so the whole search process takes longer. For example, searches with 11k digit numbers are very slow.</p>
+
+            <p>Empirically in the 100-8000 digit range, the BPSW test is about <math>O(log<sup>2.5</sup>(n))</math>, i.e. 2x larger size is 5-6x longer time.</p>
+
+            <p>The larger size also means a longer range for a large merit, which means more tests. Presumably <math>log(n)</math> growth. There is a complicating factor of the partial sieve that has a dynamic <math>log<sup>2</sup>(n)</math> depth.</p>
+
+            <p>Usually the tradeoff is that small sizes run faster but are better covered, hence need high merits to get a record. Large sizes (200k+) are slow but are so sparse that almost anything found is a record.</p>
+
+            <p>The sweet spot this year (2015 at the time of writing) seems to be in the 70-90k range for efficiency of generating records. There are lots of gaps with merit under 10.</p>
+
+            <p>A little experiment looking at the time and number of merits &gt;= 5.0 found using <math>k&lowast;p#/30-b</math> where k=1..10000 without multiples of 2,3,5.</p>
+
+            <pre>p=20:  1.7s  102 found = 60/s (28-30 digits)
+p=40:  4.1s  236 found = 58/s (69-71 digits)
+p=80:  19.6s 515 found = 26/s (166-169 digits)
+p=160: 235s  985 found =  4/s (392-395 digits)</pre>
+
+            <p>Interestingly with this form, the number we find with merit &gt;= 5 goes up as p gets larger but the time taken goes up quite a bit faster. This explains the shape of the graph of current records: high at the beginning and dropping off as gap size increases.</p>
+
+            <p>It’s certainly possible that a different method of selecting the search points would be more efficient and it’s also possible to improve the speed of this or other methods vs. doing prev/next prime with my GMP code.</p>
+
+            <p>For example with numbers larger than ~3000 digits using gwnum would be faster than GMP. Gapcoin uses a different method but it’s not obvious how to get exact efficiency comparisons.</p>
+            <p><i>Answered by Dana Jacobsen, edited.</i></p>
+          </div>
+        </div>
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Where to look for gaps?
+          </div>
+
+          <div class="content">
+            <p>There is little point in looking for gaps <1,352 as an exhaustive search of primes up to 4 &middot; 10<sup>18</sup> has been carried out and all gaps smaller than this have been found.</p>
+
+            <p>As of the summer of 2014, the <a href="">Nicely site</a> had early instance prime gaps with merit &gt; 10 listed for all possible gaps &lt; 60,000 and an early effort by the Mersenne Forum has been to extend the early instance list up to 100,000.</p>
+
+            <p>At the far end of the scale, the Mersenne Forum is helping to support the largest gap search, looking at a candidate gap (4,680,156) provide by Mersenne Forum member <tt>mart_r</tt>. This has a merit &gt; 20.</p>
+          </div>
+        </div>
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Whats the best primality test which guarantees 100% accurate result but can be done in a polynomial time?
+          </div>
+          <div class="content">
+            <p>The following two are only 100% accurate within the range given.</p>
+            <ul>
+              <li>For 64-bit inputs, <i>BPSW</i>. There are also other known methods, and the optimal solution is a mix. The result is unconditionally correct for all 64-bit inputs, and is extremely fast. It’s also commonly used on larger inputs as a compositeness test (sometimes called a probabilistic primality test), as it is fast and has no known counterexamples, with some good underlying reasons as to why we expect them to be rare.</li>
+              <li>For up to about 82-bit inputs, <i>deterministic Miller-Rabin</i>. This is a fairly recent result.</li>
+            </ul>
+            <p>All the following methods (ECPP, APR-CL, and AKS) are unconditionally correct for all sizes if they give an output, and all finish in polynomial time for the input sizes that are at all practical on today’s computers (e.g. finishing withing 100 years on a large cluster).</p>
+            <ul>
+              <li>For heuristic polynomial time, <i>ECPP</i> using Atkin-Morain methods. It is <math>O(log<sup>5</sup> n)</math> or <math>O(log<sup>4</sup> n)</math> depending on implementation. It is not <i>guaranteed</i> to finish in this time, but there well-written heuristic analyses that show this complexity, and many millions of runs of practical software showing it matches those results. <a href="http://www.ellipsa.eu/public/primo/primo.html">Primo</a> uses ECPP. Almost all recent general-form proof records in the last 20 years have been done with ECPP. The output includes a certificate of primality which can be verified in guaranteed polynomial time (with a small exponent).</li>
+              <li><i>APR-CL</i> is another good method that is polynomial time in practice although not asymptotically so (the exponent has a factor of <math>log(log(log(n)))</math> in it, which is less than a small constant for any size <math>n</math> we would be applying it to). <a href="http://pari.math.u-bordeaux.fr/">Pari/GP</a> uses this. It does not output a certificate.</li>
+              <li><i>AKS</i> is deterministic and polynomial-time for all general form inputs or all sizes. and unconditionally correct like the others. It is also horrendously slow in practice. It is not used in practice because we have much better methods.</li>
+            </ul>
+
+            <p>If you’re writing a paper or dealing with theoretical complexity, just say “AKS shows this problem is in P” and move on. That is the “best” result considering it’s short and people will nod and move on to the rest of your paper.</p>
+
+            <p>For small inputs such as 64-bit (numbers smaller than 18,446,744,073,709,551,616), we’ve known for a few years that BPSW is unconditionally correct. It is extremely fast and easy. Slightly easier to program are best-known deterministic Miller-Rabin base sets. For 32-bit the optimal solution seems to be trial division for tiny inputs and a hashed single-base Miller-Rabin test for the rest.</p>
+
+            <p>For use in practice, APR-CL or ECPP. They don’t check every box that AKS does (non-randomized and asymptotically polynomial), but they finish in polynomial time for numbers the size we care about, with a lower exponent and much less overhead than AKS.</p>
+
+            <p>If you want a certificate, then ECPP. This lets others quickly verify that the result actually is prime rather than just taking it on trust that you ran the test. APR-CL and AKS do not have certificates.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ui segment" style="margin-bottom: 2em">
+        <blockquote><p style="font-size:80%"><i>Some questions and answers have been compiled from posts by members of the <a href="https://www.mersenneforum.org">Mersenne Forum</a>, a forum established in support of the <a href="https://www.mersenne.org/">Great Internet Mersenne Prime Search</a> (GIMPS) but mostly they are my brutalisation of the concise and accurate writing of Drs <a href="https://web.archive.org/web/*/http://www.trnicely.net/index.html">Thomas R. Nicely</a> and <a href="https://web.archive.org/web/*/http://sweet.ua.pt/tos/">Tomás Oliveira e Silva</a>, whose forgiveness I beg.</i></p></blockquote>
+      </div>
+    </div>
+  </div>
+</div>

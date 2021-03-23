@@ -1,18 +1,8 @@
   {% include head.html %}
   <style>
-  .post .postbar {
-    margin: 0em;
-    padding: 1rem;
-  }
-  
-  .post .postbar .column {
-    margin-bottom: 1em;
-  }
-  
-  .post .image {
-    margin-bottom: 1em;
-  }
-
+  .post .postbar { margin: 0em; padding: 1rem;}
+  .post .postbar .column {margin-bottom: 1em;}
+  .post .image {margin-bottom: 1em;}
   </style>
 
   </head>
@@ -26,20 +16,13 @@
       {% include fb-setup.html %}
     {% endif %}
     
-    {% if site.pagebar %}
-    {% include page-bar.html %}
-    <div class="pusher">
-    {% endif %}
         {% include post-header.html %}
         <div class="ui vertical segment">
           <div class="ui very relaxed stackable page grid">
-            {% if site.postbar %}
-            <div class="ten wide column">
-            {% else %}
             <div class="sixteen wide column">
-            {% endif %}
-                {% if page.image %}
-                <img class="ui rounded image" src="{{ page.image }}" alt="{{ page.title }}">
+                {% capture first_tag %}{{ page.tags | first }}{% endcapture %}
+                {% if page.image and first_tag != 'feature' %}
+                <img class="ui rounded image" src="{{ page.image }}" alt="{{ page.title }}"/>
                 {% endif %}
                 {{ content }}
                 {% include posts-paginator.html %}
@@ -53,17 +36,9 @@
                 {% endif %}
 
             </div>
-            {% if site.postbar %}
-            <div class="six wide column">
-                {% include post-bar.html %}
-            </div>
-            {% endif %}
           </div>
         </div>
         {% include footer.html %}
-    {% if site.pagebar %}
-    </div> <!-- pusher -->
-    {% endif %}
 
     {% include js.html %}
 
@@ -82,7 +57,6 @@
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_pubid }}" async="async"></script>
     {% endif %}
     
-    {% include embed-google-analytics.html %}
 
  </body>
 
