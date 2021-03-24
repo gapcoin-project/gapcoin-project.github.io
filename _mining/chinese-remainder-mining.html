@@ -1,6 +1,6 @@
 ---
 layout: landing
-author: BicoinFX
+author: Graham Higgins
 title: Chinese Remainder Theorem Mining
 category: mining
 date: 2021-03-15
@@ -10,129 +10,54 @@ tags: crt
 <div class="ui inverted vertical segment dark-wood">
   <div class="ui very relaxed stackable page grid">
 
-    <h2 class="ui teal header">BitcoinFX on <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a></h2>
+    <h2 class="ui teal header">Using GapMiner with Chinese Remainder Theorem crt files</h2>
 
     <div class="row">
-
       <div class="sixteen wide column">
 
-        <h3 class="ui teal header">Mining with the Chinese Remainder Theorem - creating CTR files</h3>
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
 
-        <p>The ctr algorithm is divided into 2 parts. The first part is a simple greedy algorithm which tries to find offsets for each involved prime so that the desired number range has the least prime candidates as possible.</p>
+      <h4 class="ui teal header">Some practical advice from  <a href="https://bitcointalk.org/index.php?action=profile;u=470347" target="_blank">pdazzl</a></h4>
 
-        <p>The second part is an evolutionary algorithm which tries to improve the results from the greedy algorithm. Therefore the greedy algorithm will be executed several times with slightly different parameters to produce ctrs which differ in quality which than can be used by the evolutionary algorithm.</p>
+      <p>For anyone interested in hunting for larger overall length gaps, here are some settings that have worked for me (your mileage may vary).  As time goes on I’m starting to think in some ways larger shifts can be tuned for larger performance (notice I set the fermat thread to total thread ratio very high on these).</p>
 
-        <p>The output is a text file which can be used by gapminer as an input for ctr sieving.</p>
+      <pre>./gapminer-cpu -o 127.0.0.1 -p 31397 -u ***** -x ***** ...</pre>
 
-        <blockquote><pre style="font-size:90%">
-Parameter description:
+      <h5>Shift 702 on an i7 (8 cores)</h5>
+      <pre>-t 7 --shift 702 --crt crt/crt-22m-704s.txt --fermat-threads 5 --sieve-primes 450000</pre>
 
---calc-ctr          Indicates that we want to calculate a ctr file.
+      <h5>Shift 920 on a 4 xeon server (16 cores)</h5>
+      <pre>-t 18 --shift 920 --crt crt/crt-22m-928s.txt --fermat-threads 15 --sieve-primes 300000</pre>
+        </p>
 
---ctr-strength      This is used to vary the computing time spent
-                    within the greedy algorithm. Higher strength
-                    can yield better results.
+      <br />
 
---ctr-primes        The number of primes to use in the ctr file. The more
-                    primes the better the ctr result but the shift
-                    also increases. Minimum shift can be calculated as 
-                    the binary logarithm of the product of all primes:
-                    log2(p1 * p2 * ... *pn).
+      <p>Doing some more performance testing, here’s another one that appears to yield good results if someone wants to try it out.</p>
 
---ctr-evolution     Whether to use the evolutionary algorithm or not.
+      <pre>-t 8 --shift 508 --crt crt/crt-22m-512s.txt --fermat-threads 7 --sieve-primes 10000</pre>
 
---ctr-fixed         This number indicates the number of starting primes
-                    which would get touched by the evolutionary algorithm
-                    the offsets for the primes 2,3,5,7,11... are mostly
-                    perfect computed by the greedy algorithm and changing
-                    them only declines the result.
+      <p>It’s a very low number of primes to sieve with but results in generating a LOT of candidate gaps in the gaplist.  The gaplist grows by 50000 every 10 seconds.  But the block percentage goes up very quickly.  The reason I think it does is because of j0nn9’s algo picking the best candidate gaps from a bigger applicant pool in the heap and thus yielding block solving gaps more quickly.</p>
 
---ctr-ivs           The number of individuals used in the evolutionary algorithm.
-                    More increases computing time but mostly also the 
-                    result quality.
+      <p>You’ll want to monitor your memory usage for a couple rounds at first, the high watermark for the above arguments on my machine is about 2.6Gb of RAM so you’ll want to make sure you’re not too close to maxing out your memory.</p>
 
---ctr-range         Percent deviation from the number of primes.
-                    Useful if you don't want to look for a specific number 
-                    of primes.
+      <h3 class="ui teal header">Pool mining on suprnova with CRT and values as above</h3>
+      <p>Posted to Discord by Wizz:
+        <img width="1024" src="/img/page/wizz-crt-pool-mining.png" />
+      </p>
 
---ctr-bits -256     The shift value you later use for sieving has to be greater
-                    than log2(p1*p2*..*pn). With this flag you can fine-tune a specific
-                    shift by setting this to shift - log2(p1*p2*..*pn).
-
---ctr-merit         The target merit (while testing the ctr it seemed that 
-                    sieving for target-merit - 1 yields the best results)
-
---ctr-file          The target ctr output file. You can open this with a 
-                    text editor. Look for the n_candidates value, the smaller
-                    it is the better the ctr file.
-</pre></blockquote>
-
-        <h4 class="ui teal header">Example settings which were used to calculate the current ctr files:</h4>
-
-        <p>If you want to generate a file for, e.g. shift 384 with <tt>ctr-primes = 58</tt></p>
-
-        <code><pre style="font-size:90%">
-      ctr-bits = <math>shift - log2(p1*p2*..*pn)</math></pre></code>
-
-        <p>Or, expressed using <a href="https://en.wikipedia.org/wiki/Primorial" target="_blank">primorial notation</a>:</p>
-
-        <code><pre style="font-size:90%">
-      ctr-bits = <math>384 - log2(58#)</math>
-
-      ctr-bits = <math>384 - 368 = 16</math></pre></code>
-
-        <p>Miner call and invariant setting:</p>
-
-        <code><pre style="font-size:75%">gapminer -t 4 --calc-ctr --ctr-evolution --ctr-strength 150000 --ctr-ivs 1000 --ctr-range 0 --ctr-merit 22</pre></code>
-
-        <div class="ui accordion">
-          <div class="title" style="color:teal">
-              <i class="dropdown icon"></i>Plus systematically-varied settings ...
-          </div>
-          <div class="content">
-            <code><pre style="font-size:75%">
-    --ctr-fixed 8  --ctr-bits 10 --ctr-primes 14  --ctr-file my-ctr-file.txt
-    --ctr-fixed 8  --ctr-bits 13 --ctr-primes 19  --ctr-file my-ctr-file.txt
-    --ctr-fixed 10 --ctr-bits 13 --ctr-primes 24  --ctr-file my-ctr-file.txt
-    --ctr-fixed 10 --ctr-bits 12 --ctr-primes 29  --ctr-file my-ctr-file.txt
-    --ctr-fixed 11 --ctr-bits 9  --ctr-primes 34  --ctr-file my-ctr-file.txt
-    --ctr-fixed 11 --ctr-bits 12 --ctr-primes 38  --ctr-file my-ctr-file.txt
-    --ctr-fixed 11 --ctr-bits 14 --ctr-primes 42  --ctr-file my-ctr-file.txt
-    --ctr-fixed 11 --ctr-bits 15 --ctr-primes 46  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 50  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 9  --ctr-primes 55  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 58  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 62  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 15 --ctr-primes 66  --ctr-file my-ctr-file.txt
-    --ctr-fixed 12 --ctr-bits 13 --ctr-primes 70  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 11 --ctr-primes 74  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 9  --ctr-primes 78  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 15 --ctr-primes 81  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 12 --ctr-primes 85  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 17 --ctr-primes 88  --ctr-file my-ctr-file.txt
-    --ctr-fixed 13 --ctr-bits 14 --ctr-primes 92  --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 96  --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 99  --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 103 --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 106 --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 110 --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 113 --ctr-file my-ctr-file.txt
-    --ctr-fixed 14 --ctr-bits 9  --ctr-primes 117 --ctr-file my-ctr-file.txt
-    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 120 --ctr-file my-ctr-file.txt
-    --ctr-fixed 15 --ctr-bits 17 --ctr-primes 122 --ctr-file my-ctr-file.txt
-    --ctr-fixed 15 --ctr-bits 11 --ctr-primes 127 --ctr-file my-ctr-file.txt
-    --ctr-fixed 15 --ctr-bits 15 --ctr-primes 130 --ctr-file my-ctr-file.txt</pre></code>
-          </div>
-        </div>
+      <p>With default setting of <code>--sieve-primes</code> value for 4cores/8threads CPU. Standard solo mining invocation:</p>
+        <code><pre style="font-size:75%">
+gapminer -o http://127.0.0.1 -p 31397 -u user -x pwd</pre></code>
       </div>
     </div>
+
 
     <div class="row">
       <div class="sixteen wide column">
 
       <div class="ui accordion">
-        <div class="title">
-          <i class="dropdown icon"></i><span style="font-size:140%;font-weight:bold;color:teal">Mining with the Chinese Remainder Theorem (solo mining examples)</span>
+        <div class="ui teal title">
+          <i class="dropdown icon"></i><span style="font-size:140%;font-weight:bold;color:teal">Solo mining examples of mining with the Chinese Remainder Theorem</span>
         </div>
         <div class="content" style="margin-left:2em">
           <p><pre style="font-size:75%">gapminer-cpu localhost -p 31397 -u &lt;rpc-user> -x &lt;rpc-password>  --threads 4 --fermat-threads 1 </pre></p>
@@ -173,22 +98,8 @@ Parameter description:
 
     <div class="row">
       <div class="sixteen wide column">
-
-      <h3 class="ui teal header">Pool mining on suprnova with CRT and values as above</h3>
-      <p>Posted to Discord by Wizz:
-        <img width="1024" src="/img/page/wizz-crt-pool-mining.png" />
-      </p>
-
-      <p>With default setting of <code>--sieve-primes</code> value for 4cores/8threads CPU. Standard solo mining invocation:</p>
-        <code><pre style="font-size:75%">
-gapminer -o http://127.0.0.1 -p 31397 -u user -x pwd</pre></code>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="sixteen wide column">
       <div class="ui accordion">
-        <div class="title">
+        <div class="ui teal title">
             <i class="dropdown icon"></i><span style="font-size:130%;font-weight:bold;color:teal">Wizz settings as tested on suprnova (only for <tt>-t 12/16</tt>)</span>
         </div>
         <div class="content">

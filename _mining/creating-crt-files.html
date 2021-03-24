@@ -1,0 +1,180 @@
+---
+layout: landing
+author: BicoinFX
+title: Creating Chinese Remainder Theorem (crt) files
+category: mining
+date: 2021-03-15
+tags: crt
+---
+
+<div class="ui inverted vertical segment dark-wood">
+  <div class="ui very relaxed stackable page grid">
+
+    <h2 class="ui teal header">BitcoinFX on <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a></h2>
+
+    <div class="row">
+
+      <div class="sixteen wide column">
+
+        <h3 class="ui teal header">Creating Chinese Remainder Theorem (crt) files</h3>
+
+        <p>The ctr algorithm is divided into 2 parts. The first part is a simple greedy algorithm which tries to find offsets for each involved prime so that the desired number range has the least prime candidates as possible.</p>
+
+        <p>The second part is an evolutionary algorithm which tries to improve the results from the greedy algorithm. Therefore the greedy algorithm will be executed several times with slightly different parameters to produce ctrs which differ in quality which than can be used by the evolutionary algorithm.</p>
+
+        <p>The output is a text file which can be used by gapminer as an input for ctr sieving.</p>
+
+        <blockquote><pre style="font-size:90%">
+Parameter description:
+
+--calc-ctr          Indicates that we want to calculate a ctr file.
+
+--ctr-strength      This is used to vary the computing time spent
+                    within the greedy algorithm. Higher strength
+                    can yield better results.
+
+--ctr-primes        The number of primes to use in the ctr file. The more
+                    primes the better the ctr result but the shift
+                    also increases. Minimum shift can be calculated as 
+                    the binary logarithm of the product of all primes:
+                    log2(p1 * p2 * ... *pn).
+
+--ctr-evolution     Whether to use the evolutionary algorithm or not.
+
+--ctr-fixed         This number indicates the number of starting primes
+                    which would get touched by the evolutionary algorithm
+                    the offsets for the primes 2,3,5,7,11... are mostly
+                    perfect computed by the greedy algorithm and changing
+                    them only declines the result.
+
+--ctr-ivs           The number of individuals used in the evolutionary algorithm.
+                    More increases computing time but mostly also the 
+                    result quality.
+
+--ctr-range         Percent deviation from the number of primes.
+                    Useful if you don't want to look for a specific number 
+                    of primes.
+
+--ctr-bits -256     The shift value you later use for sieving has to be greater
+                    than log2(p1*p2*..*pn). With this flag you can fine-tune a specific
+                    shift by setting this to shift - log2(p1*p2*..*pn).
+
+--ctr-merit         The target merit (while testing the ctr it seemed that 
+                    sieving for target-merit - 1 yields the best results)
+
+--ctr-file          The target ctr output file. You can open this with a 
+                    text editor. Look for the n_candidates value, the smaller
+                    it is the better the ctr file.
+</pre></blockquote>
+
+
+        <p>If you want to generate a file for, e.g. shift 384 with <tt>ctr-primes = 58</tt></p>
+
+        <code><pre style="font-size:90%">
+      ctr-bits = <math>shift - log2(p1*p2*..*pn)</math></pre></code>
+
+        <p>Or, expressed using <a href="https://en.wikipedia.org/wiki/Primorial" target="_blank">primorial notation</a>:</p>
+
+        <code><pre style="font-size:90%">
+      ctr-bits = <math>384 - log2(58#)</math>
+
+      ctr-bits = <math>384 - 368 = 16</math></pre></code>
+
+        <h3 class="ui teal header">Example settings which were used to calculate the current crt files:</h3>
+
+        <p>Miner call and invariant setting:</p>
+
+        <code><pre style="font-size:90%">gapminer -t 4 --calc-ctr --ctr-evolution --ctr-strength 150000 --ctr-ivs 1000 --ctr-range 0 --ctr-merit 22</pre></code>
+
+        <code><pre style="font-size:90%">
+    --ctr-fixed 8  --ctr-bits 10 --ctr-primes 14  --ctr-file crt-22m-0064s.txt
+    --ctr-fixed 8  --ctr-bits 13 --ctr-primes 19  --ctr-file crt-22m-0096s.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes 24  --ctr-file crt-22m-0128s.txt
+    --ctr-fixed 10 --ctr-bits 12 --ctr-primes 29  --ctr-file crt-22m-0160s.txt
+    --ctr-fixed 11 --ctr-bits 9  --ctr-primes 34  --ctr-file crt-22m-0192s.txt
+    --ctr-fixed 11 --ctr-bits 12 --ctr-primes 38  --ctr-file crt-22m-0224s.txt
+    --ctr-fixed 11 --ctr-bits 14 --ctr-primes 42  --ctr-file crt-22m-0256s.txt
+    --ctr-fixed 11 --ctr-bits 15 --ctr-primes 46  --ctr-file crt-22m-0288s.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 50  --ctr-file crt-22m-0320s.txt
+    --ctr-fixed 12 --ctr-bits 9  --ctr-primes 55  --ctr-file crt-22m-0352s.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 58  --ctr-file crt-22m-0384s.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes 62  --ctr-file crt-22m-0416s.txt
+    --ctr-fixed 12 --ctr-bits 15 --ctr-primes 66  --ctr-file crt-22m-0448s.txt
+    --ctr-fixed 12 --ctr-bits 13 --ctr-primes 70  --ctr-file crt-22m-0480s.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes 74  --ctr-file crt-22m-0512s.txt
+    --ctr-fixed 13 --ctr-bits 9  --ctr-primes 78  --ctr-file crt-22m-0544s.txt
+    --ctr-fixed 13 --ctr-bits 15 --ctr-primes 81  --ctr-file crt-22m-0576s.txt
+    --ctr-fixed 13 --ctr-bits 12 --ctr-primes 85  --ctr-file crt-22m-0608s.txt
+    --ctr-fixed 13 --ctr-bits 17 --ctr-primes 88  --ctr-file crt-22m-0640s.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes 92  --ctr-file crt-22m-0672s.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 96  --ctr-file crt-22m-0704s.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 99  --ctr-file crt-22m-0736s.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 103 --ctr-file crt-22m-0768s.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 106 --ctr-file crt-22m-0800s.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 110 --ctr-file crt-22m-0832s.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 113 --ctr-file crt-22m-0864s.txt
+    --ctr-fixed 14 --ctr-bits 9  --ctr-primes 117 --ctr-file crt-22m-0896s.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 120 --ctr-file crt-22m-0928s.txt
+    --ctr-fixed 15 --ctr-bits 17 --ctr-primes 122 --ctr-file my-ctr-file.txt
+    --ctr-fixed 15 --ctr-bits 11 --ctr-primes 127 --ctr-file crt-22m-0992s.txt
+    --ctr-fixed 15 --ctr-bits 15 --ctr-primes 130 --ctr-file crt-22m-1024s.txt</pre></code>
+
+      <p><em>Note:</em> Although <tt>--ctr-primes 122</tt> is included in the above listing, there is no corresponding crt text file in the original <a href="https://github.com/gapcoin/GapMiner/tree/master/crt" target="_blank">GapMiner source code repository</a></p>
+
+
+      <h3 class="ui teal header">Specific Chinese Remainder Theorem crt files contributed by Gapcoin users</h3>
+
+      <p><em><strong>Note</strong></em> - values for the <tt>offset</tt> field have been broken into shorter pieces for presentational purposes, either edit them back into a single unbroken line or <em>use the download link to retrieve an unedited version</em>.</p> 
+
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+
+      <h4 class="ui teal header">Contributed by <a href="https://bitcointalk.org/index.php?action=profile;u=470347" target="_blank">pdazzl</a></h4>
+
+      <p><a href="/static-data/crt-22m-0416s-pdazzl.txt" target="_blank"><i class="dolly icon"></i> <tt>crt-22m-0416s.txt</tt></a>
+        <pre>|== ChineseSet ==|
+n_primes:     62
+size:         10242
+n_candidates: 765
+offset:       1146441612406461563657892639195504712824084356280432767521872923
+              137076875201036461817017569202830059679582232394065759000</pre>
+      </p>
+
+      <p><a href="/static-data/crt-22m-0512s-pdazzl.txt" target="_blank"><i class="dolly icon"></i> <tt>crt-22m-0512s.txt</tt></a>
+        <pre>|== ChineseSet ==|
+n_primes:     74
+size:         11319
+n_candidates: 766
+offset:       13367585452126639104917704816714921555816311173860045616400049444
+7292353448190019244690512990951578355363092990034085565298376116749903009975197
+7773980</pre>
+      </p>
+
+      <p><a href="/static-data/crt-22m-1024s-pdazzl.txt" target="_blank"><i class="dolly icon"></i> <tt>crt-22m-1024s.txt</tt></a>
+        <pre>|== ChineseSet ==|
+n_primes:     130
+size:         18863
+n_candidates: 1039
+offset:       4626081985258152152387146716381104236401743138963348264823465389447497680671113 1850105279036924603869257530367004081634142637510553687550996988149393864286408 0741632575037157518785072850028569785866506191383414969297175673797072420119844 8403639569393650350154418384633294148378069691014056008325991106608</pre>
+      </p>
+
+
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+
+      <h4 class="ui teal header">Contributed by <a href="https://bitcointalk.org/index.php?action=profile;u=1070076" target="_blank">Wizz</a></h4>
+
+      <p><a href="/static-data/crt-22m-0128s-wizz.txt" target="_blank"><i class="dolly icon"></i> <tt>crt-22m-0218s.txt</tt></a>
+        <pre>|== ChineseSet ==|
+n_primes:     24
+size:         5843
+n_candidates: 641
+offset:       13274590586359931544271663757946020</pre>
+      </p>
+
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+      <p></p>
+
+    </div>
+  </div>
+</div>
+
+
