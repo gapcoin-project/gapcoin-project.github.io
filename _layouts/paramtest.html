@@ -1,0 +1,289 @@
+  {% include head.html %}
+  <meta name="csvdata" content="{{page.csvdata}}"/>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://d3js.org/d3-color.v1.js"></script>
+  <script src="https://d3js.org/d3-interpolate.v1.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.js"></script>
+<style>
+
+
+.loading {font-family: sans-serif; font-size: 15px;}
+.invisible {display: none;}
+
+/* LINE CHART */
+.axis path, .axis line { fill: none; stroke: #888; shape-rendering: crispEdges; }
+path.line-0 { fill: none; stroke: #2E54DE; }
+path.line-1 { fill: none; stroke: #3CF671; stroke-dasharray: 1; }
+path.line-2 { fill: none; stroke: #ed3700; stroke-dasharray: 2; }
+path.line-3 { fill: none; stroke: #3CF671; stroke-dasharray: 3; }
+path.line-4 { fill: none; stroke: #ed3700; stroke-dasharray: 4; }
+.serie_label { fill: #888888; /* font-family: Georgia; */ font-size: 80%; }
+.axis text { font-family: sans-serif; font-size: 6px; color: #888; }
+span.val {color: red}
+
+</style>
+</head>
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="tests" class="invisible" data-content="{{page.tests}}"></div>
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+      {% include landing-header.html %}
+      {{ content }}
+      {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+
+    {% include js.html %}
+    <script>
+
+    // const width = 900;
+    // const height = 250;
+    // const margin = 5;
+    const padding = 10;
+
+    var margin = {top: 30, right: 15, bottom: 60, left: 80},
+        width = 960 - margin.left - margin.right,
+        height = 250 - margin.top - margin.bottom;
+
+    const adj = 30;
+    const debug = false;
+
+    function chartify(test) {
+
+
+      //------------------------1. PREPARATION-------------------------//
+      //-----------------------------SVG-------------------------------//
+
+      // we are appending SVG first
+      const svg = d3.select("div#"+test).append("svg")
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "-"
+                + adj + " -"
+                + adj + " "
+                + (width + adj *3) + " "
+                + (height + adj*3))
+          .style("padding", padding)
+          .style("margin", margin)
+          .classed("svg-content", true);
+
+      var g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+      // const yaxis = d3.axisLeft().scale(yScale); 
+      // const xaxis = d3.axisBottom().scale(xScale);
+
+      //-----------------------------DATA------------------------------//
+
+      var source = "/static-data/paramtests/"+test+".csv";
+      // console.log("Source", source);
+      const dataset = d3.csv(source);
+      dataset.then(function(data) {
+        const slices = data.columns.slice(1).map(function(id) {
+          return {
+            id: id,
+            values: data.map(function(d) {
+              if (debug) {
+                console.log("d:", d, " id:", id, " d[0]:", d[0], " d.secs:", d.secs);
+              }
+              return { 
+                tval: +d.secs,
+                dval: +d[id] };
+            })
+          };
+        });
+
+      if (debug) {
+        console.log("Column headers", data.columns);
+        console.log("Column headers without date", data.columns.slice(1));
+        // returns the sliced dataset
+        console.log("Slices",slices);  
+        // returns the first slice
+        console.log("First slice",slices[0]);
+        // returns the array in the first slice
+        console.log("A array",slices[0].values);   
+        // returns the date of the first row in the first slice
+        console.log("Date element",slices[0].values[0].tval);  
+        // returns the array's length
+        console.log("Array length",(slices[0].values).length);
+      } 
+
+        //----------------------------SCALES-----------------------------//
+
+        const xScale = d3.scaleLinear().range([0,width]);
+        const yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+        // xScale.domain(d3.extent(data, function(d){ return d.tval }));
+
+        xScale.domain([(0), d3.max(slices, function(c) {
+          return d3.max(c.values, function(d) {
+            return d.tval + 0.5; })
+          ;})
+        ]);
+
+        yScale.domain([(0), d3.max(slices, function(c) {
+          return d3.max(c.values, function(d) {
+            return d.dval; })
+          ;})
+        ]);
+
+        //-----------------------------AXES------------------------------//
+        const yaxis = d3.axisLeft()
+            //.ticks((slices[0].values).length)
+            .scale(yScale);
+
+        const xaxis = d3.axisBottom()
+            .ticks(5)
+            // .tickFormat(d3.timeFormat('%b %d'))
+            .scale(xScale);
+
+        //----------------------------LINES------------------------------//
+
+        const line = d3.line()
+          .x(function(d) { return xScale(d.tval); })
+          .y(function(d) { return yScale(d.dval); });
+
+        let id = 0;
+        const ids = function () {
+            return "line-"+id++;
+        }
+
+        //-------------------------2. DRAWING----------------------------//
+
+        var results = "";
+        var mean;
+        for (i in slices) {
+          var arr = slices[i];
+          console.log("calculating mean for ", arr.id, " values: ", arr.values);
+          results += "    " + arr.id;
+          narr = new Array;
+          for (j in arr.values) {
+            narr.push(arr.values[j].dval);
+          }
+          mean = Math.round(d3.mean(narr));
+          console.log("mean: ", mean);
+          results += mean + ",   ";
+
+          g.append('text')
+            .attr('x', 110 + (105 * i+1))
+            .attr('y', 0 - (margin.top + 10))
+            .attr('text-anchor', 'start')  
+            .style('font-size', '12pt') 
+            .style('font-style', 'italic')
+            .style('fill', '#888')
+            .text(arr.id + ":  ");
+
+          g.append('text')
+            .attr('x', 145 + (108 * i+1))
+            .attr('y', 0 - (margin.top + 10))
+            .attr('text-anchor', 'start')  
+            .style('font-size', '12pt') 
+            .style('font-weight', 'bold')
+            .style('fill', '#00f')
+            .text(mean + "  ");
+        }
+
+        g.append('text')
+          .attr('x', -90)             
+          .attr('y', 0 - (margin.top + 10))
+          .attr('text-anchor', 'start')  
+          .style('font-size', '13pt') 
+          .style('font-weight', 'bold')
+          .style('fill', '#888')
+          .text(test);
+
+        if (debug) {
+          console.log("slices: ", slices);
+        }
+        //-----------------------------AXES------------------------------//
+        if (debug) {
+          console.log("appending xaxis to g");
+        }
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xaxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("dy", ".75em")
+            .attr("y", 6)
+            .style("text-anchor", "start")
+            .text("2-second intervals");
+
+        if (debug) {
+          console.log("appending yaxis to g");
+        }
+        svg.append("g")
+            .attr("class", "axis")
+            .call(yaxis);
+        //----------------------------LINES------------------------------//
+
+        if (debug) {
+          console.log("appending g to lines");
+        }
+        const lines = svg.selectAll("lines")
+          .data(slices)
+          .enter()
+          .append("g");
+
+        if (debug) {
+          console.log("appending path to lines");
+        }
+        lines.append("path")
+          .attr("class", ids)
+          .attr("d", function(d) { return line(d.values); });
+
+        if (debug) {
+          console.log("appending text to g");
+        }
+        lines.append("text")
+          .attr("class","serie_label")
+          .datum(function(d) {
+            return {
+              id: d.id,
+              value: d.values[d.values.length - 1]}; })
+          .attr("transform", function(d) {
+              if (debug) {
+                console.log("d.value.tval:", d.value.tval, " d.value.dval:", d.value.dval);
+                console.log("xScale(d.value.tval):", xScale(d.value.tval), " yScale(d.value.dval):", yScale(d.value.dval));
+              }
+              return "translate(" + (xScale(d.value.tval) + 10)  
+              + "," + (yScale(d.value.dval) + 5 ) + ")";})
+          .attr("x", 5)
+          .text(function(d) { return ("") + d.id; });
+
+      });
+
+    };
+    // if (csvdata.indexOf("glst,bpc") > -1) {
+    //   crtchartify(csvdata)
+    // }
+    // else {
+    //   chartify(csvdata)
+    // }
+
+    $('.page.dimmer:first')
+      .dimmer('toggle');
+
+    $(document).ready(function() {
+      $('.ui.dimmer').dimmer('show');
+
+      var testdiv = document.getElementById('tests');
+      var tests = testdiv.getAttribute('data-content').split(' ');
+      // console.log("Tests", tests);
+      for (i in tests) {
+        // console.log("Test", tests[i]);
+        chartify(tests[i]);
+      }
+
+      $('.ui.dimmer').dimmer('hide');
+      });
+
+    </script>
+  </body>
+</html>

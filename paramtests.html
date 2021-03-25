@@ -1,0 +1,22 @@
+---
+layout: landing
+title: Parameter tests
+description: Plots of mining parameter tests.
+category: graphs
+tags: primegap
+---
+  <div class="ui vertical segment">
+    <div class="ui very relaxed stackable page grid">
+      <div class="row">
+        <div class="column">
+          <div class="ui animated selection list">
+          {% for graph in site.paramtests %}
+            <a class="item" href="{{ graph.url }}">
+              <div class="ui header" style="padding: 0.6em"><i class="blue chart line icon"></i>{{ graph.title }}</div>
+            </a>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
