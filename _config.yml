@@ -15,7 +15,7 @@ url: "https://gapcoin-project.github.io"
 twitter_username: gapcoin
 github_username:  gapcoin-project
 
-default_image: /img/gapcoin_logo.png
+default_image: /img/gapcoin-logo.png
 
 collections:
   gapgraphs:
