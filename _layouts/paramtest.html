@@ -75,6 +75,7 @@ span.val {color: red}
 
       var g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
+      var fillcolours = {'pps': '#2E54DE', 'tps': '#3CF671', 'gps': '#ed3700'};
       // const yaxis = d3.axisLeft().scale(yScale); 
       // const xaxis = d3.axisBottom().scale(xScale);
 
@@ -161,6 +162,7 @@ span.val {color: red}
           var arr = slices[i];
           console.log("calculating mean for ", arr.id, " values: ", arr.values);
           results += "    " + arr.id;
+          var fillcolour = fillcolours[arr.id];
           narr = new Array;
           for (j in arr.values) {
             narr.push(arr.values[j].dval);
@@ -169,8 +171,9 @@ span.val {color: red}
           console.log("mean: ", mean);
           results += mean + ",   ";
 
+
           g.append('text')
-            .attr('x', 110 + (105 * i+1))
+            .attr('x', 310 + (105 * i+1))
             .attr('y', 0 - (margin.top + 10))
             .attr('text-anchor', 'start')  
             .style('font-size', '12pt') 
@@ -179,12 +182,12 @@ span.val {color: red}
             .text(arr.id + ":  ");
 
           g.append('text')
-            .attr('x', 145 + (108 * i+1))
+            .attr('x', 345 + (108 * i+1))
             .attr('y', 0 - (margin.top + 10))
             .attr('text-anchor', 'start')  
             .style('font-size', '12pt') 
             .style('font-weight', 'bold')
-            .style('fill', '#00f')
+            .style('fill', fillcolour)
             .text(mean + "  ");
         }
 
