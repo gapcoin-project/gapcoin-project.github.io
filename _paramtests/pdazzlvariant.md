@@ -6,5 +6,17 @@ author: Graham Higgins
 tests: pdazzlvariant-21-33554432-900000 pdazzlvariant-21-2097152-56474 pdazzlvariant-22-33554432-900000 pdazzlvariant-22-4194304-106974 pdazzlvariant-23-33554432-900000 pdazzlvariant-23-8388608-203094 pdazzlvariant-24-33554432-900000 pdazzlvariant-24-6777216-386702 pdazzlvariant-26-33554432-900000 pdazzlvariant-26-67108864-1410973 pdazzlvariant-27-33554432-900000 pdazzlvariant-27-134217728-2703387 
 ---
 
+<div class="ui vertical segment">
+  <div class="ui centered page grid">
+    <div class="row">
+      <div class="column">
+        <h2 class="ui teal header">Performance of default miner settings vs pdazzl’s suggested variants.</h2>
+        <p>Tests of the default sieve-size (33554432) and sieve-primes (900000) values versus (i.e. immediately followed by) pdazzl’s proposed parameter variants of sieve-size and sieve-primes over a specific range of shifts.</p>
+      </div>
+    </div> <!-- /row -->
+  </div>
+</div>
+
+
 {% include paramtest.html %}
 
