@@ -7,10 +7,9 @@ date: 2021-03-15
 tags: crt
 ---
 
-<div class="ui inverted vertical segment dark-wood">
+<!-- <div class="ui inverted vertical segment dark-wood"> -->
+<div class="ui vertical segment">
   <div class="ui very relaxed stackable page grid">
-
-    <h2 class="ui teal header">BitcoinFX on <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a></h2>
 
     <div class="row">
 
@@ -67,42 +66,30 @@ Parameter description:
                     it is the better the ctr file.
 </pre></blockquote>
 
-
-        <p>If you want to generate a file for, e.g. shift 384 with <tt>ctr-primes = 58</tt></p>
-
-        <code><pre style="font-size:90%">
-      ctr-bits = <math>shift - log2(p1*p2*..*pn)</math></pre></code>
-
-        <p>Or, expressed using <a href="https://en.wikipedia.org/wiki/Primorial" target="_blank">primorial notation</a>:</p>
-
-        <code><pre style="font-size:90%">
-      ctr-bits = <math>384 - log2(58#)</math>
-
-      ctr-bits = <math>384 - 368 = 16</math></pre></code>
-
         <h3 class="ui teal header">Example settings which were used to calculate the current crt files:</h3>
+        <h5 class="ui teal header">(Posted by BitcoinFX to <a href="https://bitcointalk.org/index.php?topic=822498.msg49404402#msg49404402" target="_blank">bitcointalk</a> on 2019-01-24)</h5>
 
         <p>Miner call and invariant setting:</p>
 
         <code><pre style="font-size:90%">gapminer -t 4 --calc-ctr --ctr-evolution --ctr-strength 150000 --ctr-ivs 1000 --ctr-range 0 --ctr-merit 22</pre></code>
 
         <code><pre style="font-size:90%">
-    --ctr-fixed 8  --ctr-bits 10 --ctr-primes 14  --ctr-file crt-22m-0064s.txt
-    --ctr-fixed 8  --ctr-bits 13 --ctr-primes 19  --ctr-file crt-22m-0096s.txt
+    --ctr-fixed  8 --ctr-bits 10 --ctr-primes 14  --ctr-file crt-22m-0064s.txt
+    --ctr-fixed  8 --ctr-bits 13 --ctr-primes 19  --ctr-file crt-22m-0096s.txt
     --ctr-fixed 10 --ctr-bits 13 --ctr-primes 24  --ctr-file crt-22m-0128s.txt
     --ctr-fixed 10 --ctr-bits 12 --ctr-primes 29  --ctr-file crt-22m-0160s.txt
-    --ctr-fixed 11 --ctr-bits 9  --ctr-primes 34  --ctr-file crt-22m-0192s.txt
+    --ctr-fixed 11 --ctr-bits  9 --ctr-primes 34  --ctr-file crt-22m-0192s.txt
     --ctr-fixed 11 --ctr-bits 12 --ctr-primes 38  --ctr-file crt-22m-0224s.txt
     --ctr-fixed 11 --ctr-bits 14 --ctr-primes 42  --ctr-file crt-22m-0256s.txt
     --ctr-fixed 11 --ctr-bits 15 --ctr-primes 46  --ctr-file crt-22m-0288s.txt
     --ctr-fixed 12 --ctr-bits 16 --ctr-primes 50  --ctr-file crt-22m-0320s.txt
-    --ctr-fixed 12 --ctr-bits 9  --ctr-primes 55  --ctr-file crt-22m-0352s.txt
+    --ctr-fixed 12 --ctr-bits  9 --ctr-primes 55  --ctr-file crt-22m-0352s.txt
     --ctr-fixed 12 --ctr-bits 16 --ctr-primes 58  --ctr-file crt-22m-0384s.txt
     --ctr-fixed 12 --ctr-bits 16 --ctr-primes 62  --ctr-file crt-22m-0416s.txt
     --ctr-fixed 12 --ctr-bits 15 --ctr-primes 66  --ctr-file crt-22m-0448s.txt
     --ctr-fixed 12 --ctr-bits 13 --ctr-primes 70  --ctr-file crt-22m-0480s.txt
     --ctr-fixed 13 --ctr-bits 11 --ctr-primes 74  --ctr-file crt-22m-0512s.txt
-    --ctr-fixed 13 --ctr-bits 9  --ctr-primes 78  --ctr-file crt-22m-0544s.txt
+    --ctr-fixed 13 --ctr-bits  9 --ctr-primes 78  --ctr-file crt-22m-0544s.txt
     --ctr-fixed 13 --ctr-bits 15 --ctr-primes 81  --ctr-file crt-22m-0576s.txt
     --ctr-fixed 13 --ctr-bits 12 --ctr-primes 85  --ctr-file crt-22m-0608s.txt
     --ctr-fixed 13 --ctr-bits 17 --ctr-primes 88  --ctr-file crt-22m-0640s.txt
@@ -113,7 +100,7 @@ Parameter description:
     --ctr-fixed 14 --ctr-bits 15 --ctr-primes 106 --ctr-file crt-22m-0800s.txt
     --ctr-fixed 14 --ctr-bits 10 --ctr-primes 110 --ctr-file crt-22m-0832s.txt
     --ctr-fixed 14 --ctr-bits 14 --ctr-primes 113 --ctr-file crt-22m-0864s.txt
-    --ctr-fixed 14 --ctr-bits 9  --ctr-primes 117 --ctr-file crt-22m-0896s.txt
+    --ctr-fixed 14 --ctr-bits  9 --ctr-primes 117 --ctr-file crt-22m-0896s.txt
     --ctr-fixed 15 --ctr-bits 13 --ctr-primes 120 --ctr-file crt-22m-0928s.txt
     --ctr-fixed 15 --ctr-bits 17 --ctr-primes 122 --ctr-file my-ctr-file.txt
     --ctr-fixed 15 --ctr-bits 11 --ctr-primes 127 --ctr-file crt-22m-0992s.txt
@@ -121,6 +108,167 @@ Parameter description:
 
       <p><em>Note:</em> Although <tt>--ctr-primes 122</tt> is included in the above listing, there is no corresponding crt text file in the original <a href="https://github.com/gapcoin/GapMiner/tree/master/crt" target="_blank">GapMiner source code repository</a></p>
 
+        <h4 class="ui teal header">Calculating crt-bits:</h4>
+
+        <p>In a j0nn9 <a href="https://bitcointalk.org/index.php?topic=822498.msg11816902#msg11816902" target="_blank">post to bitcointalk</a>...</p>
+
+        <blockquote>
+          <p>If you want to generate a file for, e.g. shift 384 with <tt>ctr-primes = 58</tt></p>
+
+          <code><pre style="font-size:90%">
+        ctr-bits = <math>shift - log2(p1*p2*..*pn)</math></pre></code>
+
+          <p>Or, expressed using <a href="https://en.wikipedia.org/wiki/Primorial" target="_blank">primorial notation</a>:</p>
+
+          <code><pre style="font-size:90%">
+        ctr-bits = <math>384 - log2(58#)</math>
+
+        ctr-bits = <math>384 - 368 = 16</math></pre></code>
+      </blockquote>
+
+      <p><i>Achieving the above using Python 3</i>
+        <code><pre>>>> from sympy import primorial
+>>> from math import log2
+>>> log2(primorial(58))
+367.0750275397664</pre></code class="python"></p>
+
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+
+      <h3 class="ui teal header">2021 Wizz settings and crt files:</h3>
+
+      <p>
+        <ol>
+          <li>Set <tt>--fermat-threads</tt> = <tt>--threads</tt> minus one.</li>
+          <li>Set <tt>--sieve-primes</tt> for a controlled gaplist. Ideally to stay between 100-9000. No more than 1-2 Million (between two 'new target').</li>
+          <li>Miners should use a random/different shift when starting CRT miner, choose a non-overmined shift. You can mine in <tt>--shift 510</tt>, using the crt file <tt>crt-22m-512s.txt</tt>.</li>
+        </ol>
+      </p>
+      <p>Below are listed the example settings which were used to calculate the current ctr files. For tuning, you <i>can</i> change the values for <tt>--ctr-strength</tt>, <tt>--ctr-merit</tt>, <tt>--ctr-ivs</tt>, <tt>--ctr-range</tt>, <tt>-t</tt> and <tt>--ctr-file</tt>but don’t change <tt>--ctr-fixed</tt> or <tt>--ctr-bits</tt>.</p>
+
+      <p>Miner call and invariant setting:</p>
+
+      <code><pre style="font-size:90%">gapminer -t 15 --calc-ctr  --ctr-evolution --ctr-strength 150000 --ctr-merit 22 --ctr-ivs 1000 --ctr-range 0</pre></code>
+
+      <code><pre style="font-size:90%">
+    --ctr-fixed  8 --ctr-bits 10 --ctr-primes  14 --ctr-file ctr-file-m22-s0064.txt
+    --ctr-fixed  8 --ctr-bits 11 --ctr-primes  15 --ctr-file ctr-file-m22-s0070.txt
+    --ctr-fixed  8 --ctr-bits 12 --ctr-primes  16 --ctr-file ctr-file-m22-s0077.txt
+    --ctr-fixed  8 --ctr-bits 12 --ctr-primes  17 --ctr-file ctr-file-m22-s0083.txt
+    --ctr-fixed  8 --ctr-bits 13 --ctr-primes  18 --ctr-file ctr-file-m22-s0090.txt
+    --ctr-fixed  8 --ctr-bits 14 --ctr-primes  19 --ctr-file ctr-file-m22-s0096.txt
+    --ctr-fixed  8 --ctr-bits 13 --ctr-primes  20 --ctr-file ctr-file-m22-s0102.txt
+    --ctr-fixed  8 --ctr-bits 14 --ctr-primes  21 --ctr-file ctr-file-m22-s0109.txt
+    --ctr-fixed  8 --ctr-bits 14 --ctr-primes  22 --ctr-file ctr-file-m22-s0115.txt
+    --ctr-fixed  8 --ctr-bits 14 --ctr-primes  23 --ctr-file ctr-file-m22-s0122.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes  24 --ctr-file ctr-file-m22-s0128.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes  25 --ctr-file ctr-file-m22-s0134.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes  26 --ctr-file ctr-file-m22-s0141.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes  27 --ctr-file ctr-file-m22-s0147.txt
+    --ctr-fixed 10 --ctr-bits 13 --ctr-primes  28 --ctr-file ctr-file-m22-s0154.txt
+    --ctr-fixed 10 --ctr-bits 12 --ctr-primes  29 --ctr-file ctr-file-m22-s0160.txt
+    --ctr-fixed 10 --ctr-bits 11 --ctr-primes  30 --ctr-file ctr-file-m22-s0166.txt
+    --ctr-fixed 10 --ctr-bits 11 --ctr-primes  31 --ctr-file ctr-file-m22-s0173.txt
+    --ctr-fixed 10 --ctr-bits 10 --ctr-primes  32 --ctr-file ctr-file-m22-s0179.txt
+    --ctr-fixed 10 --ctr-bits 10 --ctr-primes  33 --ctr-file ctr-file-m22-s0186.txt
+    --ctr-fixed 11 --ctr-bits  9 --ctr-primes  34 --ctr-file ctr-file-m22-s0192.txt
+    --ctr-fixed 11 --ctr-bits 10 --ctr-primes  35 --ctr-file ctr-file-m22-s0200.txt
+    --ctr-fixed 11 --ctr-bits 11 --ctr-primes  36 --ctr-file ctr-file-m22-s0208.txt
+    --ctr-fixed 11 --ctr-bits 11 --ctr-primes  37 --ctr-file ctr-file-m22-s0216.txt
+    --ctr-fixed 11 --ctr-bits 12 --ctr-primes  38 --ctr-file ctr-file-m22-s0224.txt
+    --ctr-fixed 11 --ctr-bits 13 --ctr-primes  39 --ctr-file ctr-file-m22-s0232.txt
+    --ctr-fixed 11 --ctr-bits 13 --ctr-primes  40 --ctr-file ctr-file-m22-s0240.txt
+    --ctr-fixed 11 --ctr-bits 14 --ctr-primes  41 --ctr-file ctr-file-m22-s0248.txt
+    --ctr-fixed 11 --ctr-bits 14 --ctr-primes  42 --ctr-file ctr-file-m22-s0256.txt
+    --ctr-fixed 11 --ctr-bits 15 --ctr-primes  43 --ctr-file ctr-file-m22-s0264.txt
+    --ctr-fixed 11 --ctr-bits 15 --ctr-primes  44 --ctr-file ctr-file-m22-s0272.txt
+    --ctr-fixed 11 --ctr-bits 16 --ctr-primes  45 --ctr-file ctr-file-m22-s0280.txt
+    --ctr-fixed 11 --ctr-bits 15 --ctr-primes  46 --ctr-file ctr-file-m22-s0288.txt
+    --ctr-fixed 11 --ctr-bits 16 --ctr-primes  47 --ctr-file ctr-file-m22-s0296.txt
+    --ctr-fixed 11 --ctr-bits 16 --ctr-primes  48 --ctr-file ctr-file-m22-s0304.txt
+    --ctr-fixed 11 --ctr-bits 17 --ctr-primes  49 --ctr-file ctr-file-m22-s0312.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  50 --ctr-file ctr-file-m22-s0320.txt
+    --ctr-fixed 12 --ctr-bits 15 --ctr-primes  51 --ctr-file ctr-file-m22-s0326.txt
+    --ctr-fixed 12 --ctr-bits 14 --ctr-primes  52 --ctr-file ctr-file-m22-s0333.txt
+    --ctr-fixed 12 --ctr-bits 12 --ctr-primes  53 --ctr-file ctr-file-m22-s0339.txt
+    --ctr-fixed 12 --ctr-bits 11 --ctr-primes  54 --ctr-file ctr-file-m22-s0346.txt
+    --ctr-fixed 12 --ctr-bits  9 --ctr-primes  55 --ctr-file ctr-file-m22-s0352.txt
+    --ctr-fixed 12 --ctr-bits 11 --ctr-primes  56 --ctr-file ctr-file-m22-s0362.txt
+    --ctr-fixed 12 --ctr-bits 14 --ctr-primes  57 --ctr-file ctr-file-m22-s0373.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  58 --ctr-file ctr-file-m22-s0384.txt
+    --ctr-fixed 12 --ctr-bits 17 --ctr-primes  59 --ctr-file ctr-file-m22-s0392.txt
+    --ctr-fixed 12 --ctr-bits 17 --ctr-primes  60 --ctr-file ctr-file-m22-s0400.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  61 --ctr-file ctr-file-m22-s0408.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  62 --ctr-file ctr-file-m22-s0416.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  63 --ctr-file ctr-file-m22-s0424.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  64 --ctr-file ctr-file-m22-s0432.txt
+    --ctr-fixed 12 --ctr-bits 16 --ctr-primes  65 --ctr-file ctr-file-m22-s0440.txt
+    --ctr-fixed 12 --ctr-bits 15 --ctr-primes  66 --ctr-file ctr-file-m22-s0448.txt
+    --ctr-fixed 12 --ctr-bits 15 --ctr-primes  67 --ctr-file ctr-file-m22-s0456.txt
+    --ctr-fixed 12 --ctr-bits 14 --ctr-primes  68 --ctr-file ctr-file-m22-s0464.txt
+    --ctr-fixed 12 --ctr-bits 14 --ctr-primes  69 --ctr-file ctr-file-m22-s0472.txt
+    --ctr-fixed 12 --ctr-bits 14 --ctr-primes  70 --ctr-file ctr-file-m22-s0480.txt
+    --ctr-fixed 12 --ctr-bits 13 --ctr-primes  71 --ctr-file ctr-file-m22-s0488.txt
+    --ctr-fixed 12 --ctr-bits 13 --ctr-primes  72 --ctr-file ctr-file-m22-s0496.txt
+    --ctr-fixed 12 --ctr-bits 12 --ctr-primes  73 --ctr-file ctr-file-m22-s0504.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes  74 --ctr-file ctr-file-m22-s0512.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes  75 --ctr-file ctr-file-m22-s0520.txt
+    --ctr-fixed 13 --ctr-bits 10 --ctr-primes  76 --ctr-file ctr-file-m22-s0528.txt
+    --ctr-fixed 13 --ctr-bits 10 --ctr-primes  77 --ctr-file ctr-file-m22-s0536.txt
+    --ctr-fixed 13 --ctr-bits  9 --ctr-primes  78 --ctr-file ctr-file-m22-s0544.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes  79 --ctr-file ctr-file-m22-s0555.txt
+    --ctr-fixed 13 --ctr-bits 13 --ctr-primes  80 --ctr-file ctr-file-m22-s0565.txt
+    --ctr-fixed 13 --ctr-bits 15 --ctr-primes  81 --ctr-file ctr-file-m22-s0576.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes  82 --ctr-file ctr-file-m22-s0584.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes  83 --ctr-file ctr-file-m22-s0592.txt
+    --ctr-fixed 13 --ctr-bits 13 --ctr-primes  84 --ctr-file ctr-file-m22-s0600.txt
+    --ctr-fixed 13 --ctr-bits 12 --ctr-primes  85 --ctr-file ctr-file-m22-s0608.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes  86 --ctr-file ctr-file-m22-s0619.txt
+    --ctr-fixed 13 --ctr-bits 16 --ctr-primes  87 --ctr-file ctr-file-m22-s0629.txt
+    --ctr-fixed 13 --ctr-bits 17 --ctr-primes  88 --ctr-file ctr-file-m22-s0640.txt
+    --ctr-fixed 13 --ctr-bits 17 --ctr-primes  89 --ctr-file ctr-file-m22-s0648.txt
+    --ctr-fixed 13 --ctr-bits 16 --ctr-primes  90 --ctr-file ctr-file-m22-s0656.txt
+    --ctr-fixed 13 --ctr-bits 15 --ctr-primes  91 --ctr-file ctr-file-m22-s0664.txt
+    --ctr-fixed 13 --ctr-bits 14 --ctr-primes  92 --ctr-file ctr-file-m22-s0672.txt
+    --ctr-fixed 13 --ctr-bits 13 --ctr-primes  93 --ctr-file ctr-file-m22-s0680.txt
+    --ctr-fixed 13 --ctr-bits 12 --ctr-primes  94 --ctr-file ctr-file-m22-s0688.txt
+    --ctr-fixed 13 --ctr-bits 11 --ctr-primes  95 --ctr-file ctr-file-m22-s0696.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes  96 --ctr-file ctr-file-m22-s0704.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes  97 --ctr-file ctr-file-m22-s0715.txt
+    --ctr-fixed 14 --ctr-bits 13 --ctr-primes  98 --ctr-file ctr-file-m22-s0725.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes  99 --ctr-file ctr-file-m22-s0736.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 100 --ctr-file ctr-file-m22-s0744.txt
+    --ctr-fixed 14 --ctr-bits 13 --ctr-primes 101 --ctr-file ctr-file-m22-s0752.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes 102 --ctr-file ctr-file-m22-s0760.txt
+    --ctr-fixed 14 --ctr-bits 11 --ctr-primes 103 --ctr-file ctr-file-m22-s0768.txt
+    --ctr-fixed 14 --ctr-bits 13 --ctr-primes 104 --ctr-file ctr-file-m22-s0779.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 105 --ctr-file ctr-file-m22-s0789.txt
+    --ctr-fixed 14 --ctr-bits 15 --ctr-primes 106 --ctr-file ctr-file-m22-s0800.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 107 --ctr-file ctr-file-m22-s0808.txt
+    --ctr-fixed 14 --ctr-bits 13 --ctr-primes 108 --ctr-file ctr-file-m22-s0816.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes 109 --ctr-file ctr-file-m22-s0824.txt
+    --ctr-fixed 14 --ctr-bits 11 --ctr-primes 110 --ctr-file ctr-file-m22-s0832.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes 111 --ctr-file ctr-file-m22-s0843.txt
+    --ctr-fixed 14 --ctr-bits 13 --ctr-primes 112 --ctr-file ctr-file-m22-s0853.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 113 --ctr-file ctr-file-m22-s0864.txt
+    --ctr-fixed 14 --ctr-bits 14 --ctr-primes 114 --ctr-file ctr-file-m22-s0872.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes 115 --ctr-file ctr-file-m22-s0880.txt
+    --ctr-fixed 14 --ctr-bits 11 --ctr-primes 116 --ctr-file ctr-file-m22-s0888.txt
+    --ctr-fixed 14 --ctr-bits 10 --ctr-primes 117 --ctr-file ctr-file-m22-s0896.txt
+    --ctr-fixed 14 --ctr-bits 11 --ctr-primes 118 --ctr-file ctr-file-m22-s0907.txt
+    --ctr-fixed 14 --ctr-bits 12 --ctr-primes 119 --ctr-file ctr-file-m22-s0917.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 120 --ctr-file ctr-file-m22-s0928.txt
+    --ctr-fixed 15 --ctr-bits 14 --ctr-primes 121 --ctr-file ctr-file-m22-s0938.txt
+    --ctr-fixed 15 --ctr-bits 16 --ctr-primes 122 --ctr-file ctr-file-m22-s0949.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 123 --ctr-file ctr-file-m22-s0956.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 124 --ctr-file ctr-file-m22-s0965.txt
+    --ctr-fixed 15 --ctr-bits 12 --ctr-primes 125 --ctr-file ctr-file-m22-s0974.txt
+    --ctr-fixed 15 --ctr-bits 12 --ctr-primes 126 --ctr-file ctr-file-m22-s0983.txt
+    --ctr-fixed 15 --ctr-bits 11 --ctr-primes 127 --ctr-file ctr-file-m22-s0992.txt
+    --ctr-fixed 15 --ctr-bits 13 --ctr-primes 128 --ctr-file ctr-file-m22-s1003.txt
+    --ctr-fixed 15 --ctr-bits 14 --ctr-primes 129 --ctr-file ctr-file-m22-s1013.txt
+    --ctr-fixed 15 --ctr-bits 15 --ctr-primes 130 --ctr-file ctr-file-m22-s1024.txt</pre></code>
+
+      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
 
       <h3 class="ui teal header">Specific Chinese Remainder Theorem crt files contributed by Gapcoin users</h3>
 

@@ -27,6 +27,9 @@ collections:
   hashgraphs:
     output: true
     permalink: /:collection/:path/
+  paramtests:
+    output: true
+    permalink: /:collection/:path/
   mining:
     output: true
     permalink: /:collection/:path/
