@@ -13,10 +13,10 @@
 /* LINE CHART */
 .axis path, .axis line { fill: none; stroke: #888; shape-rendering: crispEdges; }
 path.line-0 { fill: none; stroke: #2E54DE; }
-path.line-1 { fill: none; stroke: #3CF671; stroke-dasharray: 1; }
-path.line-2 { fill: none; stroke: #ed3700; stroke-dasharray: 2; }
-path.line-3 { fill: none; stroke: #3CF671; stroke-dasharray: 3; }
-path.line-4 { fill: none; stroke: #ed3700; stroke-dasharray: 4; }
+path.line-1 { fill: none; stroke: #3CF671; stroke-dasharray: 2; }
+path.line-2 { fill: none; stroke: #ed3700; stroke-dasharray: 4; }
+path.line-3 { fill: none; stroke: #818181; stroke-dasharray: 6; }
+path.line-4 { fill: none; stroke: #7C36BA; stroke-dasharray: 8; }
 .serie_label { fill: #888888; /* font-family: Georgia; */ font-size: 80%; }
 .axis text { font-family: sans-serif; font-size: 6px; color: #888; }
 span.val {color: red}
@@ -48,12 +48,29 @@ span.val {color: red}
     // const margin = 5;
     const padding = 10;
 
-    var margin = {top: 30, right: 15, bottom: 60, left: 80},
+    var margin = {top: 30, right: 45, bottom: 60, left: 80},
         width = 960 - margin.left - margin.right,
         height = 250 - margin.top - margin.bottom;
 
     const adj = 30;
     const debug = false;
+
+    // function isFloat(n) {
+    //   return n === +n && n !== (n|0);
+    // }
+
+    // function isInt(value) {
+    //     var er = /^-?[0-9]+$/;
+    //     return er.test(value);
+    // }
+    // function isFloat(n){
+    //     return n != "" && !isNaN(n) && Math.round(n) != n;
+    // }
+
+    function isFloat(number) {
+        if(!/^["|']{0,1}[-]{0,1}\d{0,}(\.{0,1}\d+)["|']{0,1}$/.test(number)) return false;
+        return number - parseInt(number) ? true : false;
+    }
 
     function chartify(test) {
 
@@ -65,7 +82,7 @@ span.val {color: red}
       const svg = d3.select("div#"+test).append("svg")
           .attr("preserveAspectRatio", "xMinYMin meet")
           .attr("viewBox", "-"
-                + adj + " -"
+                + (adj +15) + " -"
                 + adj + " "
                 + (width + adj *3) + " "
                 + (height + adj*3))
@@ -75,7 +92,7 @@ span.val {color: red}
 
       var g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      var fillcolours = {'pps': '#2E54DE', 'tps': '#3CF671', 'gps': '#ed3700'};
+      var fillcolours = {'pps': '#2E54DE', 'tps': '#3CF671', 'gps': '#ed3700', 'glst': '#818181', 'bpc': '#7C36BA'};
       // const yaxis = d3.axisLeft().scale(yScale); 
       // const xaxis = d3.axisBottom().scale(xScale);
 
@@ -99,25 +116,32 @@ span.val {color: red}
           };
         });
 
-      if (debug) {
-        console.log("Column headers", data.columns);
-        console.log("Column headers without date", data.columns.slice(1));
-        // returns the sliced dataset
-        console.log("Slices",slices);  
-        // returns the first slice
-        console.log("First slice",slices[0]);
-        // returns the array in the first slice
-        console.log("A array",slices[0].values);   
-        // returns the date of the first row in the first slice
-        console.log("Date element",slices[0].values[0].tval);  
-        // returns the array's length
-        console.log("Array length",(slices[0].values).length);
-      } 
+        var iscrt = false;
+        if (slices.length > 3) {
+          iscrt = true;
+        }
+
+        if (debug) {
+          console.log("Column headers", data.columns);
+          console.log("Column headers without date", data.columns.slice(1));
+          // returns the sliced dataset
+          console.log("Slices",slices);  
+          // returns the first slice
+          console.log("First slice",slices[0]);
+          // returns the array in the first slice
+          console.log("A array",slices[0].values);   
+          // returns the date of the first row in the first slice
+          console.log("Date element",slices[0].values[0].tval);  
+          // returns the array's length
+          console.log("Array length",(slices[0].values).length);
+        } 
 
         //----------------------------SCALES-----------------------------//
 
         const xScale = d3.scaleLinear().range([0,width]);
         const yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+        var zScale, zaxis;
 
         // xScale.domain(d3.extent(data, function(d){ return d.tval }));
 
@@ -139,15 +163,29 @@ span.val {color: red}
             .scale(yScale);
 
         const xaxis = d3.axisBottom()
-            .ticks(5)
+            .ticks(50)
             // .tickFormat(d3.timeFormat('%b %d'))
             .scale(xScale);
+
+        //-----------------------------Z AXIS------------------------------//
+
+        if (iscrt) {
+          zScale = d3.scaleLinear().range([height, 0]);
+
+          zScale.domain([(0), (10)]);
+
+          zaxis = d3.axisRight()
+              .ticks(5)
+              .scale(zScale);
+        }
 
         //----------------------------LINES------------------------------//
 
         const line = d3.line()
           .x(function(d) { return xScale(d.tval); })
-          .y(function(d) { return yScale(d.dval); });
+          .y(function(d) {
+             if (isFloat(d.dval)) {return zScale(d.dval)} else {return yScale(d.dval)}
+           });
 
         let id = 0;
         const ids = function () {
@@ -160,20 +198,30 @@ span.val {color: red}
         var mean;
         for (i in slices) {
           var arr = slices[i];
-          console.log("calculating mean for ", arr.id, " values: ", arr.values);
+          if (debug) {
+            console.log("calculating mean for ", arr.id, " values: ", arr.values);
+          }
           results += "    " + arr.id;
           var fillcolour = fillcolours[arr.id];
           narr = new Array;
           for (j in arr.values) {
             narr.push(arr.values[j].dval);
           }
-          mean = Math.round(d3.mean(narr));
-          console.log("mean: ", mean);
+          if (arr.id == 'bpc') {
+            mean = Math.round((d3.mean(narr) + Number.EPSILON) * 100) / 100;
+          }
+          else {
+            mean = Math.round(d3.mean(narr));
+          }
+          if (debug) {
+            console.log("mean: ", mean);
+          }
+
           results += mean + ",   ";
 
 
           g.append('text')
-            .attr('x', 310 + (105 * i+1))
+            .attr('x', 280 + (105 * i+1))
             .attr('y', 0 - (margin.top + 10))
             .attr('text-anchor', 'start')  
             .style('font-size', '12pt') 
@@ -182,7 +230,7 @@ span.val {color: red}
             .text(arr.id + ":  ");
 
           g.append('text')
-            .attr('x', 345 + (108 * i+1))
+            .attr('x', 315 + (108 * i+1))
             .attr('y', 0 - (margin.top + 10))
             .attr('text-anchor', 'start')  
             .style('font-size', '12pt') 
@@ -221,9 +269,23 @@ span.val {color: red}
         if (debug) {
           console.log("appending yaxis to g");
         }
+
         svg.append("g")
             .attr("class", "axis")
             .call(yaxis);
+
+        if (debug) {
+          console.log("appending zaxis to g");
+        }
+
+        if (iscrt) {
+          svg.append("g")             
+              .attr("class", "y axis")    
+              .attr("transform", "translate(" + width + " ,0)")   
+              // .style("fill", "red")       
+              .call(zaxis);
+        }
+
         //----------------------------LINES------------------------------//
 
         if (debug) {
@@ -244,21 +306,22 @@ span.val {color: red}
         if (debug) {
           console.log("appending text to g");
         }
-        lines.append("text")
-          .attr("class","serie_label")
-          .datum(function(d) {
-            return {
-              id: d.id,
-              value: d.values[d.values.length - 1]}; })
-          .attr("transform", function(d) {
-              if (debug) {
-                console.log("d.value.tval:", d.value.tval, " d.value.dval:", d.value.dval);
-                console.log("xScale(d.value.tval):", xScale(d.value.tval), " yScale(d.value.dval):", yScale(d.value.dval));
-              }
-              return "translate(" + (xScale(d.value.tval) + 10)  
-              + "," + (yScale(d.value.dval) + 5 ) + ")";})
-          .attr("x", 5)
-          .text(function(d) { return ("") + d.id; });
+
+        // lines.append("text")
+        //   .attr("class","serie_label")
+        //   .datum(function(d) {
+        //     return {
+        //       id: d.id,
+        //       value: d.values[d.values.length - 1]}; })
+        //   .attr("transform", function(d) {
+        //       if (debug) {
+        //         console.log("d.value.tval:", d.value.tval, " d.value.dval:", d.value.dval);
+        //         console.log("xScale(d.value.tval):", xScale(d.value.tval), " yScale(d.value.dval):", yScale(d.value.dval));
+        //       }
+        //       return "translate(" + (xScale(d.value.tval) + 10)  
+        //       + "," + (yScale(d.value.dval) + 5 ) + ")";})
+        //   .attr("x", 5)
+        //   .text(function(d) { return ("") + d.id; });
 
       });
 
