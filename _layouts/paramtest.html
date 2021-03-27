@@ -50,7 +50,7 @@ span.val {color: red}
 
     var margin = {top: 30, right: 45, bottom: 60, left: 80},
         width = 960 - margin.left - margin.right,
-        height = 250 - margin.top - margin.bottom;
+        height = 300 - margin.top - margin.bottom;
 
     const adj = 30;
     const debug = false;
@@ -82,7 +82,7 @@ span.val {color: red}
       const svg = d3.select("div#"+test).append("svg")
           .attr("preserveAspectRatio", "xMinYMin meet")
           .attr("viewBox", "-"
-                + (adj +15) + " -"
+                + (adj + 25) + " -"
                 + adj + " "
                 + (width + adj *3) + " "
                 + (height + adj*3))
@@ -138,8 +138,12 @@ span.val {color: red}
 
         //----------------------------SCALES-----------------------------//
 
-        const xScale = d3.scaleLinear().range([0,width]);
-        const yScale = d3.scaleLinear().rangeRound([height, 0]);
+        const xScale = d3.scaleLinear()
+          .range([0,width]);
+        // const yScale = d3.scaleLinear().rangeRound([height, 0]);
+        const yScale = d3.scalePow()
+          .exponent(0.3)
+          .rangeRound([height, 0]);
 
         var zScale, zaxis;
 
@@ -151,7 +155,13 @@ span.val {color: red}
           ;})
         ]);
 
-        yScale.domain([(0), d3.max(slices, function(c) {
+        // yScale.domain([(0), d3.max(slices, function(c) {
+        //   return d3.max(c.values, function(d) {
+        //     return d.dval; })
+        //   ;})
+        // ]);
+
+        yScale.domain([(1), d3.max(slices, function(c) {
           return d3.max(c.values, function(d) {
             return d.dval; })
           ;})
