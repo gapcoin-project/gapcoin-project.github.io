@@ -31,12 +31,18 @@ collections:
     output: true
     permalink: /:collection/:path/
   mining:
-    output: true
-    permalink: /:collection/:path/
     order:
-        - shifts-and-primedigits.md
-        - chinese-remainder-mining.html
-        - mining-pools.md
+      - introduction.md
+      - gapminer-tech-basics.md
+      - chinese-remainder-mining.html
+      - creating-crt-files.html
+      - mining-on-a-gpu.md
+      - mining-pools.md
+      - shifts-and-primedigits.md
+      - shift-to-primedigits-mapping.md
+    permalink: /:collection/:path/
+    output: true
+
 
 # Pre-processing
 

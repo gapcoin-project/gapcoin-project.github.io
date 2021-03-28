@@ -9,30 +9,7 @@ description: Resources related to mining Gapcoin
 
     <div class="row">
       <div class="column">
-        <div class="ui animated selection list">
-        <!-- Use to have here as well as in the gapgraph section -->
-        <a class="item" href="/gapgraphs/shiftfrequency/">
-          <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>Shift settings, length of primes searched and blocks mined</div>
-        </a>
-
-        {% for item in site.mining %}
-          <a class="item" href="{{ item.url }}">
-            <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>{{ item.title }}</div>
-          </a>
-        {% endfor %}
-
-        <a class="item" href="/paramtests/">
-          <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>Charts of performance on systematically varying setting for shift, sieve size, sieve primes, crt file.</div>
-        </a>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="column">
-        <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
-        <h3 class="ui teal header">Mining without the Chinese Remainder Theorem</h3>
+        <h3 class="ui teal header">Elementary Gapcoin mining with default miner parameter settings</h3>
 
         <h4>Pool mining with getwork</h4>
         <pre style="font-size:75%">gapminer -o http://your-pool.club -p 4200 -u user.worker -x password -t 4</pre>
@@ -42,11 +19,44 @@ description: Resources related to mining Gapcoin
 
         <h4>Solo mining</h4>
         <pre style="font-size:75%">gapminer -o 127.0.0.1 -p 31397 -u &lt;rpc user> -x &lt;rpc password> -t 4</pre>
-        <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+        <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
       </div>
     </div>
 
+    <div class="row">
+      <div class="column">
+        <div class="ui raised very padded container segment">
+          <div style="font-style:italic; font-size:90%">
+            <h3 class="ui teal header">GapMiner documentation</h3>
+            <div class="ui animated selection list">
+              <div class="ui item"><a class="item" href="/mining/introduction/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file alternate outline icon"></i>Introduction</div></a>
+                <p style="margin-left:4em">Concise introduction to Gapminer and explanation of the <code>--shift</code>, <code>--sieve-primes</code> and <code>--sieve-size</code> settings common to both GapMiner and the in-wallet miner</p></div>
+              <div class="ui item"><a class="item" href="/mining/gapminer-tech-basics/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cogs icon"></i>Gapminer technical basics</div></a>
+                <p style="margin-left:4em">Reference document listing all the Gapminer parameters and giving a basic high-level description of the mathematical strategy adopted by the miner to finding prime gaps</p></div>
+              <div class="ui item"><a class="item" href="/mining/chinese-remainder-mining/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue plane icon"></i>Mining at higher shifts with Chinese Remainder Theoren</div></a>
+                <p style="margin-left:4em">Basic HOW-TO for mining using the Chinese Remainder Theorem. Full description and examples of the settings for using GapMiner with CRT.</p></div>
+              <div class="ui item"><a class="item" href="/mining/creating-crt-files/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file flask icon"></i>Creating crt files</div></a>
+                <p style="margin-left:4em">Advanced HOW-TO with explanation and examples for creating custom “crt” files for optimising CRT mining.</p></div>
+              <div class="ui item"><a class="item" href="/mining/mining-on-a-gpu/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue rocket icon"></i>Running Gapminer on a GPU</div></a>
+                <p style="margin-left:4em">Help document of distilled developer posts on running GapMiner on a GPU - parameter settings and basic advice on performance.</p></div>
+              <div class="ui item"><a class="item" href="/mining/mining-pools/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue globe icon"></i>Mining pools</div></a>
+                <p style="margin-left:4em">Help document listing the current GapMiner mining pools, signup instructions and parameter settings.</p></div>
+              <div class="ui item"><a class="item" href="/mining/shifts-and-primedigits/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue graduation cap icon"></i>Shift and prime digits</div></a>
+                <p style="margin-left:4em">Technical document explaining the bits and bytes relationship between shift and the number of digits in the primes to be searched</p></div>
+              <div class="ui item"><a class="item" href="/mining/shift-to-primedigits-mapping/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue map signs icon"></i>Mapping of shift to prime digit length</div></a>
+                <p style="margin-left:4em">Reference document with an exhaustive list of shifts and the corresponding number of digits in the primes to be searched</p></div>
+              <div class="ui item"><a class="item" href="/gapgraphs/shiftfrequency/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cubes icon"></i>Shift settings, length of primes searched and blocks mined</div></a>
+                <p style="margin-left:4em">Reference document, table showing frequency of shift use and blocks mined with histograms.</p></div>
+              <div class="ui item"><a class="item" href="/paramtests/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue images icon"></i>Charts of performance on systematically varied settings.</div></a>
+                <p style="margin-left:4em">Reference document, plots of relative performance results across a number of mining parameter test settings</p></div>
+            </div>
+          </div>
+        </div>
+        <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
+        <p></p>
+      </div>
     </div>
+
   </div>
 
   <div class="ui inverted vertical segment dark-wood">
