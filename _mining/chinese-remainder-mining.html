@@ -9,55 +9,113 @@ tags: crt
 
 <div class="ui inverted vertical segment dark-wood">
   <div class="ui very relaxed stackable page grid">
-
-    <h2 class="ui teal header">Using GapMiner with Chinese Remainder Theorem crt files</h2>
-
     <div class="row">
       <div class="sixteen wide column">
+        <h2 class="ui teal header">Mining with shift &gt;= 64 using the Chinese Remainder Theorem</h2>
 
-      <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
+        <p>The speed of mining <em><strong>with higher shifts</strong></em> (64 and above) can be improved by using the Chinese Reminder Theorem (CRT). The higher the shift (up to 1024), the better the improvement from using the CRT - but with higher shifts the mining speed also decreases. However, if you are aiming for shifts 64 and above anyway, then using the CRT will make a positive difference.</p> 
 
-      <h4 class="ui teal header">Some practical advice from  <a href="https://bitcointalk.org/index.php?action=profile;u=470347" target="_blank">pdazzl</a></h4>
+        <div class="ui tertiary raised padded container green segment">
+          <div style="font-style:italic; font-size:90%">
+            <h5 class="ui teal header">Fast track copy’n’pasta</h5>
+            <p>Get-you-started crt mining params: shift 64, 4 threads (1@gap scanning, 3@fermat sieving), sieve-primes of 13000.</p>
+            <pre class="language-bash hljs">gapminer localhost -p 31397 -u &lt;user&gt; -x &lt;password&gt; -t 4 -d 3 -f 64 -i 13000 -r crt-22m-64s.txt</pre>
+          </div>
+        </div>
 
-      <p>For anyone interested in hunting for larger overall length gaps, here are some settings that have worked for me (your mileage may vary).  As time goes on I’m starting to think in some ways larger shifts can be tuned for larger performance (notice I set the fermat thread to total thread ratio very high on these).</p>
+        <h3 class="ui teal header">Details</h3>
+        <p>When using GapMiner with the Chinese Remainder Theorem for mining, in addition to the standard GapMiner parameters <tt>--threads</tt>, <tt>--sieve-primes</tt> and <tt>--sieve-size</tt>, there are two additional mining parameters that must be set appropriately: <tt>--crt</tt> and <tt>--fermat-threads</tt>.</p>
 
-      <pre>./gapminer-cpu -o 127.0.0.1 -p 31397 -u ***** -x ***** ...</pre>
+        <code><pre class="language-bash hljs">
+      -r  --crt               use the given Chinese Remainder Theorem file
+      -d  --fermat-threads    number of fermat threads when using the crt</pre></code>
 
-      <h5>Shift 702 on an i7 (8 cores)</h5>
-      <pre>-t 7 --shift 702 --crt crt/crt-22m-704s.txt --fermat-threads 5 --sieve-primes 450000</pre>
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Although <tt>--sieve-size</tt> remains settable, it is <strong>not used</strong> when mining with the Chinese Remainder Theorem.</p>
+          </div>
+        </div>
 
-      <h5>Shift 920 on a 4 xeon server (16 cores)</h5>
-      <pre>-t 18 --shift 920 --crt crt/crt-22m-928s.txt --fermat-threads 15 --sieve-primes 300000</pre>
-        </p>
+        <h3 class="ui teal header"><code>-r --crt</code> <!--CRT files --></h3>
 
-      <br />
+        <p>use the given Chinese Remainder Theorem file</p>
+        <p>Using GapMiner with the Chinese Remainder Theorem requires the choice of a CRT file, containing search values optimized for a specific shift, starting at 64 (i.e. searching primes of 97 digits in length).</p>
 
-      <p>Doing some more performance testing, here’s another one that appears to yield good results if someone wants to try it out.</p>
+        <p>As originally distributed, crt files for the following shifts were <a href="https://github.com/gapcoin/GapMiner/tree/master/crt" target="_blank">made available in the GapMiner repository</a>: 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800, 832, 864, 896, 928, 992, 1024.</p>
 
-      <pre>-t 8 --shift 508 --crt crt/crt-22m-512s.txt --fermat-threads 7 --sieve-primes 10000</pre>
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>The shift setting doesn‘t <strong>have</strong> to match the crt shift, you can mine with <tt>--shift 510</tt> using the crt file <code>crt-22m-512s.txt</code>.</p>
+          </div>
+        </div>
 
-      <p>It’s a very low number of primes to sieve with but results in generating a LOT of candidate gaps in the gaplist.  The gaplist grows by 50000 every 10 seconds.  But the block percentage goes up very quickly.  The reason I think it does is because of j0nn9’s algo picking the best candidate gaps from a bigger applicant pool in the heap and thus yielding block solving gaps more quickly.</p>
+        <h3 class="ui teal header"><code>-d --fermat-threads</code> <!--Fermat threads --></h3>
 
-      <p>You’ll want to monitor your memory usage for a couple rounds at first, the high watermark for the above arguments on my machine is about 2.6Gb of RAM so you’ll want to make sure you’re not too close to maxing out your memory.</p>
+        <p>number of fermat threads when using the crt</p>
+        <p>Mining with the CRT is split into sieve and primality testing, using separate threads for each:</p>
 
-      <h4 class="ui horizontal divider teal header"></h4>
+        <pre class="language-bash hljs">--threads 4 --fermat-threads 1</pre>
 
-      <p><em>Also, see pazzl’s contributed tuned crt files (at the bottom of the <a href="/mining/creating-crt-files/" target="_blank">Creating Chinese Remainder Theorem (crt) files</a> page.)</em></p>
+        <p>The above example is parsed by the Gapcoin miner as: use 3 threads for sieving and 1 thread for gap scanning.</p>
 
-      <h4 class="ui horizontal divider teal header"></h4>
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Using GapMiner with CRT requires at least <strong>two</strong> threads.</p>
+          </div>
+        </div>
 
-      <h3 class="ui teal header">Pool mining on suprnova with CRT and values as above</h3>
-      <p>Posted to Discord by Wizz:
-        <img width="1024" src="/img/page/wizz-crt-pool-mining.png" />
-      </p>
+        <p>The scan threads always pick the most promising gap from the gaplist (the gaplist is implemented as an heap), therefore <strong>the gaplist value should always be at least over 100</strong>. Altering the gaplist size can be achieved by altering <tt>--sieve-primes</tt>, <tt>--threads</tt> or <tt>--fermat-threads</tt>.</p>
 
-      <p>With default setting of <code>--sieve-primes</code> value for 4cores/8threads CPU. Standard solo mining invocation:</p>
-        <code><pre style="font-size:75%">
-gapminer -o http://127.0.0.1 -p 31397 -u user -x pwd</pre></code>
+        <div class="ui tertiary raised padded container yellow segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Having a gaplist with too high a value (e.g. over 9000) can slow down mining.</p>
+          </div>
+        </div>
+
+        <h4>Recommendations derived from practice and testing</h4>
+        <ul>
+        <li>set <tt>--fermat-threads = --threads</tt> minus 3 for shifts <em>below</em> 128.</li>
+        <li>set <tt>--fermat-threads = --threads</tt> minus <em>2</em> for shifts <em>above</em> 128.</li>
+        <li>set <tt>--sieve-primes</tt> for optimal block% (probably close or below).</li>
+        </ul>
+
+        <p>If you want more <tt>--fermat-threads</tt> then the value of <tt>--sieve-primes</tt> needs to be reduced and vice versa.</p>
+
+        <p>Fine-tune the sieve-primes value by only adjusting 1000 at a time then running for a minute to observe. The ideal behavior is for the gaplist size generally (most of the time) to stay above 100. It'll creep up to a 2000-3000 then drop back down to 100 and will continue in this see-saw fashion.</p>
+
+        <h3 class="ui teal header">Output</h3>
+        <p>There are 3 new verbose outputs:</p>
+        <pre class="nohighlight">
+    gaps/s: The amount of gaps scanned per second
+    gaplist: The number of sieved gaps ready for scanning
+    block: The percent of the calculation amount of an average block</pre>
+
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>The primes/sec and block values are <strong>estimated</strong> using the theoretical speed improvements from CRT so may not be accurate.</p>
+          </div>
+        </div>
+
+        <p>Mining with the CRT is optimized for solo mining. Pool miniing with CRT is possible but will probably result in fewer shares (the primes/sec and block values are probably inaccurate) but the chance of finding a block is almost the same as when mining solo.</p>
+
+        <h3 class="ui teal header">Creating custom “crt” files</h3>
+
+        <p>The CRT algorithm used by GapMiner is divided into 2 parts, the first part is a simple greedy algorithm which tries to find offsets for each involved prime so that the desired number range has at least prime candidates as possible.
+
+        <p>The second part is an evolutionary algorithm which tries to improve the results from the greedy algorithm. The greedy algorithm will be executed several times with slightly different parameters to produce crt files which differ in quality, which than can be used by the evolutionary algorithm.
+
+        <p>The output is a text file which can be used by GapMiner as an input for crt sieving.</p>
+
+        <div class="ui tertiary raised padded container green segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>The topic of creating crt files has a page of its own: <a href="/mining/creating-crt-files/" target="_blank">Creating Chinese Remainder Theorem (crt) files</a>, the above is merely a summary description.</p>
+          </div>
+        </div>
 
       </div>
     </div>
 
+    <h4 class="ui horizontal divider teal header"><i class="cogs icon"></i></h4>
 
     <div class="row">
       <div class="sixteen wide column">
