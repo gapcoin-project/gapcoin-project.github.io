@@ -50,10 +50,15 @@ span.val {color: red}
 
     var margin = {top: 30, right: 45, bottom: 60, left: 80},
         width = 960 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        height = 380 - margin.top - margin.bottom;
 
     const adj = 30;
     const debug = false;
+
+    var glstmax = 0;
+    var glstmin = 0;
+
+    var blockpercentmax = 20;
 
     // function isFloat(n) {
     //   return n === +n && n !== (n|0);
@@ -98,11 +103,22 @@ span.val {color: red}
 
       //-----------------------------DATA------------------------------//
 
+      var means = test + "\n";
+
       var source = "/static-data/paramtests/"+test+".csv";
-      // console.log("Source", source);
       const dataset = d3.csv(source);
+
+
       dataset.then(function(data) {
-        const slices = data.columns.slice(1).map(function(id) {
+
+        var iscrt = false;
+        var slicepoint = 1;
+        // console.log("data.columns.length", data.columns.length);
+        if (data.columns.length > 4) {
+          iscrt = true;
+          slicepoint = 3;
+        }
+        const slices = data.columns.slice(slicepoint).map(function(id) {
           return {
             id: id,
             values: data.map(function(d) {
@@ -116,22 +132,18 @@ span.val {color: red}
           };
         });
 
-        var iscrt = false;
-        if (slices.length > 3) {
-          iscrt = true;
-        }
 
         if (debug) {
           console.log("Column headers", data.columns);
           console.log("Column headers without date", data.columns.slice(1));
           // returns the sliced dataset
-          console.log("Slices",slices);  
+          console.log("Slices",slices);
           // returns the first slice
           console.log("First slice",slices[0]);
           // returns the array in the first slice
-          console.log("A array",slices[0].values);   
+          console.log("A array",slices[0].values);
           // returns the date of the first row in the first slice
-          console.log("Date element",slices[0].values[0].tval);  
+          console.log("Date element",slices[0].values[0].tval);
           // returns the array's length
           console.log("Array length",(slices[0].values).length);
         } 
@@ -140,10 +152,24 @@ span.val {color: red}
 
         const xScale = d3.scaleLinear()
           .range([0,width]);
-        // const yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+
         const yScale = d3.scalePow()
-          .exponent(0.3)
-          .rangeRound([height, 0]);
+            .exponent(0.3)
+            .rangeRound([height, 0]);
+
+        // var yScale;
+        // // const yScale = d3.scaleLinear().rangeRound([height, 0]);
+        // if (iscrt) {
+        //   yScale = d3.scaleLog()
+        //     .rangeRound([height, 0]);
+        //   // yScale = d3.scaleLinear().rangeRound([height, 0]);
+        // }
+        // else {
+        //   yScale = d3.scalePow()
+        //     .exponent(0.3)
+        //     .rangeRound([height, 0]);
+        // } 
 
         var zScale, zaxis;
 
@@ -182,7 +208,7 @@ span.val {color: red}
         if (iscrt) {
           zScale = d3.scaleLinear().range([height, 0]);
 
-          zScale.domain([(0), (10)]);
+          zScale.domain([(0), (blockpercentmax)]);
 
           zaxis = d3.axisRight()
               .ticks(5)
@@ -197,7 +223,7 @@ span.val {color: red}
              if (isFloat(d.dval)) {return zScale(d.dval)} else {return yScale(d.dval)}
            });
 
-        let id = 0;
+        let id = slicepoint - 1;
         const ids = function () {
             return "line-"+id++;
         }
@@ -213,9 +239,16 @@ span.val {color: red}
           }
           results += "    " + arr.id;
           var fillcolour = fillcolours[arr.id];
+
+          console.log("arr.id: ", arr.id, " colour", fillcolour);
+
           narr = new Array;
-          for (j in arr.values) {
-            narr.push(arr.values[j].dval);
+          // for (j in arr.values) {
+          //   narr.push(arr.values[j].dval);
+          // }
+          warr = arr.values.slice(Math.round(arr.values.length / 5));
+          for (j in warr) {
+            narr.push(warr[j].dval);
           }
           if (arr.id == 'bpc') {
             mean = Math.round((d3.mean(narr) + Number.EPSILON) * 100) / 100;
@@ -227,26 +260,37 @@ span.val {color: red}
             console.log("mean: ", mean);
           }
 
+          if (arr.id == 'glst') {
+            glstmax = d3.max(narr);
+            glstmin = d3.min(narr);
+            console.log("glstmax:" , glstmax, " glstmin: ", glstmin);
+          }
+
+          means += arr.id + " mean: " + mean + "\n";
+
+
           results += mean + ",   ";
 
 
-          g.append('text')
-            .attr('x', 250 + (105 * i+1))
-            .attr('y', 0 - (margin.top + 10))
-            .attr('text-anchor', 'start')  
-            .style('font-size', '12pt') 
-            .style('font-style', 'italic')
-            .style('fill', '#888')
-            .text(arr.id + ":  ");
+          if (arr.id != 'glst' && arr.id != 'bpc') {
+            g.append('text')
+              .attr('x', 350 + (105 * i+1))
+              .attr('y', 0 - (margin.top + 10))
+              .attr('text-anchor', 'start')
+              .style('font-size', '12pt') 
+              .style('font-style', 'italic')
+              .style('fill', '#888')
+              .text(arr.id + ":  ");
 
-          g.append('text')
-            .attr('x', 285 + (108 * i+1))
-            .attr('y', 0 - (margin.top + 10))
-            .attr('text-anchor', 'start')  
-            .style('font-size', '12pt') 
-            .style('font-weight', 'bold')
-            .style('fill', fillcolour)
-            .text(mean + "  ");
+            g.append('text')
+              .attr('x', 385 + (108 * i+1))
+              .attr('y', 0 - (margin.top + 10))
+              .attr('text-anchor', 'start')  
+              .style('font-size', '12pt') 
+              .style('font-weight', 'bold')
+              .style('fill', fillcolour)
+              .text(mean + "  ");
+          }
         }
 
         g.append('text')
@@ -257,6 +301,26 @@ span.val {color: red}
           .style('font-weight', 'bold')
           .style('fill', '#888')
           .text(test);
+
+        if (iscrt) {
+          g.append('text')
+            .attr('x', width - 200)
+            .attr('y', 0 - (margin.top + 10))
+            .attr('text-anchor', 'start')  
+            .style('font-size', '9pt') 
+            .style('font-weight', 'bold')
+            .style('fill', '#888')
+            .text("glstmax: " + glstmax.toString());
+
+          g.append('text')
+            .attr('x', width - 300)
+            .attr('y', 0 - (margin.top + 10))
+            .attr('text-anchor', 'start')  
+            .style('font-size', '9pt') 
+            .style('font-weight', 'bold')
+            .style('fill', '#888')
+            .text("glstmin: " + glstmin.toString());
+        }
 
         if (debug) {
           console.log("slices: ", slices);
@@ -289,10 +353,10 @@ span.val {color: red}
         }
 
         if (iscrt) {
-          svg.append("g")             
-              .attr("class", "y axis")    
+          svg.append("g")
+              .attr("class", "y axis")
               .attr("transform", "translate(" + width + " ,0)")   
-              // .style("fill", "red")       
+              // .style("fill", "red")
               .call(zaxis);
         }
 
@@ -333,6 +397,7 @@ span.val {color: red}
         //   .attr("x", 5)
         //   .text(function(d) { return ("") + d.id; });
 
+      console.log(means);
       });
 
     };
@@ -348,7 +413,6 @@ span.val {color: red}
 
     $(document).ready(function() {
       $('.ui.dimmer').dimmer('show');
-
       var testdiv = document.getElementById('tests');
       var tests = testdiv.getAttribute('data-content').split(' ');
       // console.log("Tests", tests);
