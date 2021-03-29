@@ -66,42 +66,17 @@ This setting has relatively little impact on miner performance. It is safe to le
 
 For basic mining, this setting also has relatively little impact on miner performance but it has more impact than sieve size, so you might want to try some ranging settings around your chosen shift to see if changing the value has any observable impact on miner performance. The default value is 900000.
 
-### Validation
+### Examples of systematically varying the settings
 
-Early in Gapcoin’s history, back on 2015-03-07, [pdazzl posted some speculative variants to the bitcointalk thread](https://bitcointalk.org/index.php?topic=822498.msg10687403#msg10687403):
+Early in Gapcoin’s history, back on 2015-03-07, [a Q&A interchange between pdazzl and j0nn9 on the bitcointalk thread](https://bitcointalk.org/index.php?topic=822498.msg10687403#msg10687403) included the following speculative variants:
 
-> I'll venture a hypothesis from various things I've read on this whole thread.  The miner sets up the sieve, in your case 2^25 (the shift being 25) and the resultant value as the required sieve size - 33554432.  Now the question is how many primes to use.
-> 
-> All the primes chosen are (from my understanding) each multiplied by 3, then the miner starts with the highest value prime * 3 and works backwards scanning for the desired gap length and not bothering with sections that obviously won't net a coin. So the largest prime value(times 3) would ideally stop just short of the end of the sieve.
-> 
-> So here is where a bit of math leg work comes in if you want to be precise.  Absolute value of 33554432/3 is 11184810.  The first prime less than that is 11184799.  11184799 * 3 is 33554397 which fits nicely near the top of the sieve. A check of bigprimes.net shows it as the 737948th prime and thus the number of primes for shift 25.
-> 
-> Can someone verify if this logic is correct?  I think the default primes is 500000,  Maybe it could be more efficient?  Also we could build a table of primes for different shift values, perhaps blocks would be found faster if everyone wasn't trying to scan 2^25 at the same time on each round.
-> 
-> I calculated some surrounding shifts and will diversify my workers over them to test them out:
-> 
->     --sieve-size 2097152   --shift 21 --sieve-primes 56474
->     --sieve-size 4194304   --shift 22 --sieve-primes 106974
->     --sieve-size 8388608   --shift 23 --sieve-primes 203094
->     --sieve-size 16777216  --shift 24 --sieve-primes 386702
->     --sieve-size 67108864  --shift 26 --sieve-primes 1410973
->     --sieve-size 134217728 --shift 27 --sieve-primes 2703387
+    --sieve-size 2097152   --shift 21 --sieve-primes 56474
+    --sieve-size 4194304   --shift 22 --sieve-primes 106974
+    --sieve-size 8388608   --shift 23 --sieve-primes 203094
+    --sieve-size 16777216  --shift 24 --sieve-primes 386702
+    --sieve-size 67108864  --shift 26 --sieve-primes 1410973
+    --sieve-size 134217728 --shift 27 --sieve-primes 2703387
 
-j0nn9, the developer [responded](https://bitcointalk.org/index.php?topic=822498.msg10765912#msg10765912):
-
-> Since revision 4, the default values are the same as from dcct's mod:
-
->     --shift 25 --sieve-primes 900000 --sieve-size 33554432 
-
-> In the beginning, we sieve with the first n primes. For the first 2063689 primes, every prime eliminates at least one candidate in the sieve.
-> For the primes behind that point, the possibility for eliminating a prime candidate in the sieve decreases.
-> 
-> After sieving, the remaining prime candidates are scanned for prime gaps. When a prime is found while scanning the gap, the whole gap is skipped and the miner scans the next possible gap in the sieve.
-
-> A more detailed description can be found here: https://github.com/gapcoin/Gapcoin-PoWCore
-
-pdazzl’s variants have been checked, you can [check the charted results](/paramtests/pdazzlvariant/) for yourself.
+These suggested variants have been checked and the resulting performance is available to view [as charted results](/paramtests/pdazzlvariant/).
 
 ---
-
-**TODO add pointer to performance charts, crt mining and GPU mining**

@@ -7,6 +7,7 @@ tests: sieve-15-13000 sieve-15-50000 sieve-15-100000 sieve-15-900000 sieve-24-13
 ---
 
 <div class="ui raised very padded container segment">
+  <a href="qanda"></a>
   <div style="font-style:italic; font-size:90%">
     <p><a href="https://bitcointalk.org/index.php?topic=822498.msg10687403#msg10687403" target="_blank">pdazzl</a></p>
     <p>I’ll venture a hypothesis from various things I’ve read on this whole thread.  The miner sets up the sieve, in the default case <math>2^25</math> (the shift being <tt>25</tt>) and the resultant value as the required sieve size - <math>33554432</math>.  Now the question is how many primes to use.</p>
