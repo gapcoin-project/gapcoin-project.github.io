@@ -3,7 +3,7 @@ layout: paramtest
 title: Performance “noise level” variance, non-crt (n=1396) and crt (n=3011)
 description: Variance report non-crt <b>-f 25</b> (1396 reports) and <b>-f 64 crt-22m-64s</b> (3011 reports)
 author: Graham Higgins
-testdir: variancerport-0
+testdir: variancereport-0
 tests: variancereport-0-01 variancereport-0-01crt 
 ---
 
