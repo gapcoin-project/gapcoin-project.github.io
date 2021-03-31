@@ -4,7 +4,7 @@ title: Performance test of varying the number of fermat threads over the range 4
 description: crt fermat threads test -i 13000 -f 512 -t 8 -d 4 5 6 7
 author: Graham Higgins
 testdir: fermatthreads
-tests: d4-i13000-crt0512 d4-i350000-crt0512 d5-i13000-crt0512 d5-i225000-crt0512 d6-i120000-crt0512 d6-i13000-crt0512 d7-i13000-crt0512 d7-i50000-crt0512
+tests: d4-i13000-crt0512 d4-i350000-crt0512 d5-i13000-crt0512 d5-i225000-crt0512 d6-i13000-crt0512 d6-i120000-crt0512 d7-i13000-crt0512 d7-i50000-crt0512
 ---
 
 <div class="ui raised padded container segment">
