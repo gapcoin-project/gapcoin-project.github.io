@@ -9,16 +9,41 @@ description: Resources related to mining Gapcoin
 
     <div class="row">
       <div class="column">
-        <h3 class="ui teal header">Elementary Gapcoin mining with default miner parameter settings</h3>
+        <div class="ui accordion">
+          <div class="title">
+              <i class="dropdown icon"></i><item class="ui teal header">The algorithm</item></div>
+          <div class="content">
+            <h5 class="ui teal header">From the Gapcoin-PoWCore <a href="https://github.com/gapcoin-project/Gapcoin-PoWCore#the-algorithm" target="_blank">README</a></h3>
+            <div class="ui raised padded container segment" style="font-size:85%">
+                <p>The average length of a prime gap with the starting prime <math>p</math>, is <math>log(p)</math>, which means that the average prime gap size increases with larger primes. Instead of the pure length, Gapcoin uses the <em>merit</em> of a prime gap, which is the ratio of the gap’s size to the average gap size. Let <math>p</math> be the prime starting a prime gap, then <math>m = gapsize/log(p)</math> will be the <em>merit</em> of this prime gap.</p>
+
+            </div>
+            <div class="ui raised padded container segment" style="font-size:85%">
+                <p>Also a pseudo random number is calculated from <math>p</math> to provide finer difficulty adjustment. Let <math>rand(p)</math> be a pseudo-random function with <math>0 &#x3c; rand(p) &#x3c; 1</math>. Then, for a prime gap starting at prime <math>p</math> with size <math>s</math>, the difficulty will be <math>s/log(p) + 2/log(p) &lowast; rand(p)</math>, where <math>2/log(p)</math> is the average distance between a gap of size <math>s</math> and <math>s + 2</math> (the next greater gap) in the proximity of <math>p</math>.</p>
+
+            </div>
+            <div class="ui raised padded container segment" style="font-size:85%">
+                <p>When it actually comes to mining, there are two additional fields added to the block header, named “shift” and “adder”. We will calculate the prime <math>p</math> as <code>sha256(block header) &lowast; 2^shift + adder</code>. As an additional criterion, the adder must be smaller than <code>2^shift</code> to avoid the PoW being reused.</p>
+            </div>
+          </div>
+        </div>
+        <p><em>See <a href="/mining/gapminer-tech-basics/" target="_blank">“Gapminer parameter list and description of approach”</a> for further details of the mining approach.</em></p>
+        <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <h3 class="ui teal header">Basic Gapcoin mining with default miner parameter settings</h3>
 
         <h4>Pool mining with getwork</h4>
-        <pre style="font-size:75%">gapminer -o http://your-pool.club -p 4200 -u user.worker -x password -t 4</pre>
+        <pre style="font-size:75%">gapminer -o http://your-pool.club -p 4200 -u user.worker -x password -t [number_of_threads]</pre>
 
         <h4>Pool mining with stratum (recommended)</h4>
-        <pre style="font-size:75%">gapminer -o your-pool.club -p 3385 -u user.worker -x password -t 4 --stratum</pre>
+        <pre style="font-size:75%">gapminer -o your-pool.club -p 3385 -u user.worker -x password --stratum -t [number_of_threads]</pre>
 
         <h4>Solo mining</h4>
-        <pre style="font-size:75%">gapminer -o 127.0.0.1 -p 31397 -u &lt;rpc user> -x &lt;rpc password> -t 4</pre>
+        <pre style="font-size:75%">gapminer -o 127.0.0.1 -p 31397 -u &lt;rpcuser> -x &lt;rpcpassword> -t [number_of_threads]</pre>
         <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
       </div>
     </div>

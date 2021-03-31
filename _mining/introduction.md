@@ -70,12 +70,14 @@ For basic mining, this setting also has relatively little impact on miner perfor
 
 Early in Gapcoin’s history, back on 2015-03-07, [a Q&A interchange between pdazzl and j0nn9 on the bitcointalk thread](https://bitcointalk.org/index.php?topic=822498.msg10687403#msg10687403) included the following speculative variants:
 
-    --sieve-size 2097152   --shift 21 --sieve-primes 56474
-    --sieve-size 4194304   --shift 22 --sieve-primes 106974
-    --sieve-size 8388608   --shift 23 --sieve-primes 203094
-    --sieve-size 16777216  --shift 24 --sieve-primes 386702
-    --sieve-size 67108864  --shift 26 --sieve-primes 1410973
-    --sieve-size 134217728 --shift 27 --sieve-primes 2703387
+```nohighlight
+--sieve-size 2097152   --shift 21 --sieve-primes 56474
+--sieve-size 4194304   --shift 22 --sieve-primes 106974
+--sieve-size 8388608   --shift 23 --sieve-primes 203094
+--sieve-size 16777216  --shift 24 --sieve-primes 386702
+--sieve-size 67108864  --shift 26 --sieve-primes 1410973
+--sieve-size 134217728 --shift 27 --sieve-primes 2703387
+```
 
 These suggested variants have been checked and the resulting performance is available to view [as charted results](/paramtests/pdazzlvariant/).
 

@@ -84,15 +84,14 @@ tags: crt
         <p>Fine-tune the sieve-primes value by only adjusting 1000 at a time then running for a minute to observe. The ideal behavior is for the gaplist size generally (most of the time) to stay above 100. It'll creep up to a 2000-3000 then drop back down to 100 and will continue in this see-saw fashion.</p>
 
         <h3 class="ui teal header">Output</h3>
-        <p>There are 3 new verbose outputs:</p>
+        <p>There are 2 new verbose outputs:</p>
         <pre class="nohighlight">
-    gaps/s: The amount of gaps scanned per second
     gaplist: The number of sieved gaps ready for scanning
     block: The percent of the calculation amount of an average block</pre>
 
         <div class="ui tertiary raised padded container red segment">
           <div style="font-style:italic; font-size:90%">
-            <p>The primes/sec and block values are <strong>estimated</strong> using the theoretical speed improvements from CRT so may not be accurate.</p>
+            <p>When mining with the CRT, the primes/sec and block values are <strong>estimated</strong> using the theoretical speed improvements from CRT so may not be accurate.</p>
           </div>
         </div>
 
