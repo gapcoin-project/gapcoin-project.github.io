@@ -75,7 +75,7 @@ tags: gapminer
 
 ---
 
-## The approach
+## [The approach](https://github.com/gapcoin-project/Gapcoin-PoWCore#gapcoin-powcore---gapcoins-proof-of-work-functionality)
 
 #### Prime gap
 
@@ -100,7 +100,7 @@ We will calculate the prime <math>p</math> as `sha256(block header) ∗ 2^shift 
 
 As an additional criterion, the adder has to be smaller than <math>2^shift</math> to avoid a situation in which the PoW could be reused.
 
-#### Sieveing steps
+#### Sieving steps
 
 Calculate the first <math>n</math> primes. In the actual sieve we skip all even numbers because we want to only sieve the odd multiplies of each prime.
 
@@ -128,9 +128,9 @@ We redo the above process till we reach the end of the sieve.
 
 #### Settings
 
-`start_index` can be `hash ∗ 2^shift + [0, 2^shift]`
+~~`start_index` can be `hash ∗ 2^shift + [0, 2^shift]`~~ *(`start_index` no longer appears in the source code)*
 
-The maximum sieve size depends on `start_index` and is limited by `(hash + 2^shift) - start_index`.
+The maximum sieve size ~~depends on `start_index` and is limited by `(hash + 2^shift) - start_index`~~ is [defined in the source code](https://github.com/gapcoin-project/GapMiner/blob/535b3f19a08bfd06c1d06d8864310deae96313b3/src/main.cpp#L331) as the maximum capacity of a `long long int` (9223372036854775807), the default is specified to be 33554432.
 
 The shift can theoretically be in the range `[14, 2^16]` but nodes can choose to only accept shifts up to a given amount (e.g. 1024 for the main nodes)
 
