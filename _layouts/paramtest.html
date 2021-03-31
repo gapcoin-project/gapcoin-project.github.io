@@ -43,14 +43,11 @@ span.val {color: red}
     {% include js.html %}
     <script>
 
-    // const width = 900;
-    // const height = 250;
-    // const margin = 5;
     const padding = 10;
 
     var margin = {top: 30, right: 45, bottom: 60, left: 80},
         width = 960 - margin.left - margin.right,
-        height = 380 - margin.top - margin.bottom;
+        height = 300 - margin.top - margin.bottom;
 
     const adj = 30;
     const debug = false;
@@ -58,19 +55,8 @@ span.val {color: red}
     var glstmax = 0;
     var glstmin = 0;
 
+    var testdir = "{{ page.testdir}}";
     var blockpercentmax = 20;
-
-    // function isFloat(n) {
-    //   return n === +n && n !== (n|0);
-    // }
-
-    // function isInt(value) {
-    //     var er = /^-?[0-9]+$/;
-    //     return er.test(value);
-    // }
-    // function isFloat(n){
-    //     return n != "" && !isNaN(n) && Math.round(n) != n;
-    // }
 
     function isFloat(number) {
         if(!/^["|']{0,1}[-]{0,1}\d{0,}(\.{0,1}\d+)["|']{0,1}$/.test(number)) return false;
@@ -98,14 +84,12 @@ span.val {color: red}
       var g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       var fillcolours = {'pps': '#2E54DE', 'tps': '#3CF671', 'gps': '#ed3700', 'glst': '#818181', 'bpc': '#7C36BA'};
-      // const yaxis = d3.axisLeft().scale(yScale); 
-      // const xaxis = d3.axisBottom().scale(xScale);
 
       //-----------------------------DATA------------------------------//
 
       var means = test + "\n";
 
-      var source = "/static-data/paramtests/"+test+".csv";
+      var source = "/static-data/paramtests/" + testdir + "/" + test+".csv";
       const dataset = d3.csv(source);
 
 
@@ -113,7 +97,6 @@ span.val {color: red}
 
         var iscrt = false;
         var slicepoint = 1;
-        // console.log("data.columns.length", data.columns.length);
         if (data.columns.length > 4) {
           iscrt = true;
           slicepoint = 3;
@@ -158,34 +141,13 @@ span.val {color: red}
             .exponent(0.3)
             .rangeRound([height, 0]);
 
-        // var yScale;
-        // // const yScale = d3.scaleLinear().rangeRound([height, 0]);
-        // if (iscrt) {
-        //   yScale = d3.scaleLog()
-        //     .rangeRound([height, 0]);
-        //   // yScale = d3.scaleLinear().rangeRound([height, 0]);
-        // }
-        // else {
-        //   yScale = d3.scalePow()
-        //     .exponent(0.3)
-        //     .rangeRound([height, 0]);
-        // } 
-
         var zScale, zaxis;
-
-        // xScale.domain(d3.extent(data, function(d){ return d.tval }));
 
         xScale.domain([(0), d3.max(slices, function(c) {
           return d3.max(c.values, function(d) {
             return d.tval + 0.5; })
           ;})
         ]);
-
-        // yScale.domain([(0), d3.max(slices, function(c) {
-        //   return d3.max(c.values, function(d) {
-        //     return d.dval; })
-        //   ;})
-        // ]);
 
         yScale.domain([(1), d3.max(slices, function(c) {
           return d3.max(c.values, function(d) {
@@ -195,12 +157,10 @@ span.val {color: red}
 
         //-----------------------------AXES------------------------------//
         const yaxis = d3.axisLeft()
-            //.ticks((slices[0].values).length)
             .scale(yScale);
 
         const xaxis = d3.axisBottom()
             .ticks(50)
-            // .tickFormat(d3.timeFormat('%b %d'))
             .scale(xScale);
 
         //-----------------------------Z AXIS------------------------------//
@@ -240,12 +200,11 @@ span.val {color: red}
           results += "    " + arr.id;
           var fillcolour = fillcolours[arr.id];
 
-          console.log("arr.id: ", arr.id, " colour", fillcolour);
+          if (debug) {
+            console.log("arr.id: ", arr.id, " colour", fillcolour);
+          }
 
           narr = new Array;
-          // for (j in arr.values) {
-          //   narr.push(arr.values[j].dval);
-          // }
           warr = arr.values.slice(Math.round(arr.values.length / 5));
           for (j in warr) {
             narr.push(warr[j].dval);
@@ -263,7 +222,9 @@ span.val {color: red}
           if (arr.id == 'glst') {
             glstmax = d3.max(narr);
             glstmin = d3.min(narr);
-            console.log("glstmax:" , glstmax, " glstmin: ", glstmin);
+            if (debug) {
+              console.log("glstmax:" , glstmax, " glstmin: ", glstmin);
+            }
           }
 
           means += arr.id + " mean: " + mean + "\n";
@@ -381,43 +342,23 @@ span.val {color: red}
           console.log("appending text to g");
         }
 
-        // lines.append("text")
-        //   .attr("class","serie_label")
-        //   .datum(function(d) {
-        //     return {
-        //       id: d.id,
-        //       value: d.values[d.values.length - 1]}; })
-        //   .attr("transform", function(d) {
-        //       if (debug) {
-        //         console.log("d.value.tval:", d.value.tval, " d.value.dval:", d.value.dval);
-        //         console.log("xScale(d.value.tval):", xScale(d.value.tval), " yScale(d.value.dval):", yScale(d.value.dval));
-        //       }
-        //       return "translate(" + (xScale(d.value.tval) + 10)  
-        //       + "," + (yScale(d.value.dval) + 5 ) + ")";})
-        //   .attr("x", 5)
-        //   .text(function(d) { return ("") + d.id; });
-
-      console.log(means);
+      if (debug) {
+        console.log(means);
+      }
       });
 
     };
-    // if (csvdata.indexOf("glst,bpc") > -1) {
-    //   crtchartify(csvdata)
-    // }
-    // else {
-    //   chartify(csvdata)
-    // }
 
     $('.page.dimmer:first')
       .dimmer('toggle');
 
     $(document).ready(function() {
+
       $('.ui.dimmer').dimmer('show');
+
       var testdiv = document.getElementById('tests');
       var tests = testdiv.getAttribute('data-content').split(' ');
-      // console.log("Tests", tests);
       for (i in tests) {
-        // console.log("Test", tests[i]);
         chartify(tests[i]);
       }
 
