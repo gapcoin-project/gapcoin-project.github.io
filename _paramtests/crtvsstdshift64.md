@@ -4,7 +4,7 @@ title: Performance test of non-crt vs crt on shift64
 description: crtvsstdshift64 -f 64 -t 4 std vs crt
 author: Graham Higgins
 testdir: crtvsstdshift64
-tests: std-f64 crt-f64
+tests: std-f64 crt-f64 std-f96 crt-f96
 ---
 
 <div class="ui raised padded container segment">
