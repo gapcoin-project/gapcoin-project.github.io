@@ -43,6 +43,6 @@ Correlation between columns
 <div class="ui raised padded container segment">
   <p>Replication: 
   <pre style="font-size:75%"><code class="bash">timeout 7000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2
-timeout 15000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2 -d 1 -f 64 -i 16300 -r crt/crt-22m-0064s.txt</code></pre>
+timeout 15000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2 -d 1 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt</code></pre>
 </p>
 </div>

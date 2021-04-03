@@ -31,7 +31,7 @@ max    886978.000000  8.920162e+06  8350.000000  407817.000000    1.120000      
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size: 80%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i 5500 -r crt/crt-22m-0064s.txt
-gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i 5750 -r crt/crt-28m-0064s-wizz.txt</code></pre>
+  <pre style="font-size: 80%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt
+gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i [as-discovered] -r crt/crt-28m-0064s-wizz.txt</code></pre>
 </p>
 </div>

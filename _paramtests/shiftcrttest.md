@@ -1,31 +1,43 @@
 ---
 layout: paramtest
 title: Comparison of mining with shift/crt match / mismatch
-description: shift mismatch <code>-t 4 -d 3 -f 448</code> for&#58; <code>-i 65000 -r crt-22m-0456s</code> and <code>-i 68000 -r crt-22m-0448s.txt</code>
+description: CRT mining with a shift setting different from that of the crt file vs mining with a shift setting that matches that of the crt file
 author: Graham Higgins
 testdir: shiftcrtest
-tests: crt448-i65000-crt0448 crt448-i65000-crt0456
+tests: crt448-i97000-crt0448 crt448-i92000-crt0456
 ---
 
-
 <div class="ui raised padded container segment">
- <p>It is possible to configure GapMiner to use a shift setting different from that of the crt file. The following results are reported from two tests (run in parallel on a single machine to factor out the impact of change in difficulty over time that otherwise causes sequentially-run tests to produce different results).</p>
-    <p style="padding-left: 3em">i) a “match” <b><code>-t 4 -d 3 -f <span style="color:green">448</span> for -i 65000 -r crt-22m-0<span style="color:green">448</span>s</code></b></p>
-    <p style="padding-left: 3em">ii) a “mismatch” <b><code>-t 4 -d 3 -f <span style="color:orange">448</span> for -i 65000 -r crt-22m-0<span style="color:orange">456</span>s</code></b></p>
-  <a href="pandasvariancetest"></a>
-  <div style="font-family: monospace; font-size:65%">
-    <hr>
-    <p>Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html" target="_blank">“describe”</a> summary of variance</p>
-    <pre><code class="nohighlight">                pps           tps         gps          glst         bpc                         pps           tps         gps          glst         bpc
-crt448-i65000-crt0448                                                           crt448-i65000-crt0456
-mean   3.132931e+06  2.209903e+06  408.582915  18920.286432    2.312985         mean   3.200170e+06  2.207076e+06  400.653266  17375.572864    2.345412
-std    1.452072e+05  1.272493e+06   34.553164  12516.721861    1.358579         std    9.996107e+04  1.295141e+06    7.780796  11438.374173    1.383898
-min    2.922151e+06  7.024800e+04  393.000000    536.000000    0.023000         min    2.261843e+06  1.462100e+04  378.000000    714.000000    0.007000
-25%    3.063133e+06  1.060377e+06  401.000000   8251.500000    1.108000         25%    3.154603e+06  1.043149e+06  393.500000   7699.000000    1.129500
-50%    3.141425e+06  2.281791e+06  404.000000  17582.000000    2.350000         50%    3.239446e+06  2.279580e+06  403.000000  16142.000000    2.364000
-75%    3.184248e+06  3.299498e+06  408.000000  27831.500000    3.467000         75%    3.258402e+06  3.304436e+06  406.000000  25301.000000    3.507500
-max    4.545159e+06  4.410068e+06  812.000000  50869.000000    4.686000         max    3.311071e+06  4.441743e+06  411.000000  47519.000000    4.787000</code></pre>
+  <p>It is possible to configure GapMiner to use a shift setting different from that of the crt file. The following results are reported from two tests (run in parallel on a single machine to factor out the impact of change in difficulty over time that otherwise causes sequentially-run tests to produce different results).</p>
+  <p style="padding-left: 3em">i) a “match” <b><code>-t 4 -d 3 -f <span style="color:green">448</span> for -i 65000 -r crt-22m-0<span style="color:green">448</span>s</code></b></p>
+  <p style="padding-left: 3em">ii) a “mismatch” <b><code>-t 4 -d 3 -f <span style="color:orange">448</span> for -i 65000 -r crt-22m-0<span style="color:orange">456</span>s</code></b></p>
+  <p style="font-size: 80%"><em>Column labels map directly to miner output: <code>pps</code> is average primes per second, <code>tps</code> is average tests per second, <code>gps</code> is average gaps per second, <code>glst</code> is the size of the gaplist and <code>l/s</code> is the time in seconds to scan the gaplist at the reported rate of gaps per second.</em></p>
+  <div style="font-family: monospace; font-size:90%">
+    <div class="ui two column doubling stackable grid container">
+      <div class="column">
+          <p class="ui tiny header" style="margin:0;padding:0">crt448-i97000-crt0448</p>
+          <table>
+              <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th><th align="right" width="16%">glst</th><th align="right" width="16%">bpc</th><th align="right" width="16%">l/s</th></tr>
+              <tr><td align="left">mean</td><td align="right">2338404</td><td align="right">2089219</td><td align="right">400</td><td align="right">2223</td><td align="right">1.12</td><td align="right">5.55</td></tr>
+              <tr><td align="left">max</td><td align="right">2640848</td><td align="right">4147737</td><td align="right">427</td><td align="right">6538</td><td align="right">2.21</td><td align="right">15.31</td></tr>
+              <tr><td align="left">min</td><td align="right">2117836</td><td align="right">16463</td><td align="right">386</td><td align="right">24</td><td align="right">0.01</td><td align="right">0.06</td></tr>
+              <tr><td align="left">std</td><td align="right">50812</td><td align="right">1197611</td><td align="right">3</td><td align="right">1480</td><td align="right">0.64</td><td align="right">448.12</td></tr>
+          </table>
+      </div>
+      <div class="column">
+          <p class="ui tiny header" style="margin:0;padding:0">crt448-i92000-crt0456</p>
+          <table>
+              <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th><th align="right" width="16%">glst</th><th align="right" width="16%">bpc</th><th align="right" width="16%">l/s</th></tr>
+              <tr><td align="left">mean</td><td align="right">2410050</td><td align="right">2084904</td><td align="right">399</td><td align="right">2558</td><td align="right">1.15</td><td align="right">6.41</td></tr>
+              <tr><td align="left">max</td><td align="right">3892658</td><td align="right">4161044</td><td align="right">423</td><td align="right">7212</td><td align="right">2.30</td><td align="right">17.05</td></tr>
+              <tr><td align="left">min</td><td align="right">2363818</td><td align="right">16986</td><td align="right">396</td><td align="right">5</td><td align="right">0.01</td><td align="right">0.01</td></tr>
+              <tr><td align="left">std</td><td align="right">113999</td><td align="right">1202649</td><td align="right">4</td><td align="right">1867</td><td align="right">0.67</td><td align="right">481.53</td></tr>
+          </table>
+      </div>
+    </div>
   </div>
+  <hr>
+  <p style="font-size: 80%; text-align:center"><em>The charts included below are for completeness. The figures given are the means and they differ from the means in the above table because, in order to support the different requirements of charting, the first 1/5th of the data is ignored in order to aid visual comparison. The chartline uses the full dataset.</em></p>
 </div>
 
 
@@ -33,7 +45,7 @@ max    4.545159e+06  4.410068e+06  812.000000  50869.000000    4.686000         
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size: 80%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 448 -i 65000 -r crt/crt-22m-0448s.txt
-gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 448 -i 65000 -r crt/crt-22m-0456s.txt</code></pre>
+  <pre style="font-size: 80%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 448 -i [as-discovered] -r crt/crt-22m-0448s.txt
+gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 448 -i [as-discovered] -r crt/crt-22m-0456s.txt</code></pre>
 </p>
 </div>
