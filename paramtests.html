@@ -9,6 +9,12 @@ tags: primegap
     <div class="ui very relaxed stackable page grid">
       <div class="row">
         <div class="column">
+
+          <div class="ui raised padded container segment">
+            <p>About the tests ...</p>
+            <p>It proved necessary for the comparison tests to be run <em>simultaneously</em> in order to control for the continually-changing difficulty that otherwise affects the results to a degree that thwarts comparison when tests are run serially.</p>
+          </div>
+
           <div class="ui animated selection list">
           {% for graph in site.paramtests %}
             <a class="item" href="{{ graph.url }}">

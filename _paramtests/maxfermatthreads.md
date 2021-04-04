@@ -1,6 +1,6 @@
 ---
 layout: paramtest
-title: Focussed test of CRT f=512 with t=6&#58; and d=3 vs. d=5
+title: Focussed comparison test of CRT f=512 with t=6&#58; and d=3 vs. d=5
 description: CRT fermat threads test&#58; -f 512 -t 6 -d 3 (-i 320000) vs -d 5 (-i 72000)
 author: Graham Higgins
 testdir: maxfermatthreads
