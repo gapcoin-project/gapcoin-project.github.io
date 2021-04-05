@@ -9,21 +9,35 @@ tests: dist-22m-crt0064 wizz-28m-crt0064
 
 
 <div class="ui raised padded container segment">
- <p>Testing wizz’ optimised 28m shift 64 crt (<code>-i 5750</code>) vs standard 22m (<code>-i 5500</code>)</p>
-  <a href="pandasvariancetest"></a>
-  <div style="font-family: monospace; font-size:65%">
+  <p>Testing wizz’ optimised 28m shift 64 crt (<code>-i 5750</code>) vs standard 22m (<code>-i 5500</code>)</p>
+  <div style="font-family: monospace; font-size:90%">
     <hr>
-    <p>Pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html" target="_blank">“describe”</a> summary of variance</p>
-    <pre><code class="nohighlight">                 pps           tps          gps           glst         bpc                      pps           tps           gps           glst         bpc
-dist-22m-crt0064                                                                wizz-28m-crt0064
-mean   763168.934673  4.410157e+06  5328.482412  153463.798995    0.564965      mean   4.774940e+07  4.403190e+06   5622.447236  130792.110553   26.872121
-std     32608.790582  2.585037e+06   252.576278  106432.996058    0.318103      std    1.173841e+07  2.563592e+06   1520.263971   89163.657421   15.830843
-min    503299.000000  6.171200e+04  5123.000000    6044.000000    0.002000      min    4.288011e+07  1.866390e+05   5278.000000    3940.000000    0.202000
-25%    751210.000000  2.057210e+06  5227.000000   64903.000000    0.303000      25%    4.586751e+07  2.067770e+06   5357.000000   55848.500000   12.669500
-50%    765174.000000  4.573663e+06  5331.000000  137936.000000    0.571000      50%    4.657821e+07  4.558328e+06   5390.000000  116547.000000   27.204000
-75%    779886.000000  6.592802e+06  5372.000000  224491.500000    0.830000      75%    4.694375e+07  6.568596e+06   5453.500000  189861.500000   40.402500
-max    886978.000000  8.920162e+06  8350.000000  407817.000000    1.120000      max    1.928255e+08  8.882274e+06  24518.000000  350037.000000   54.754000</code></pre>
+    <p style="font-size: 80%"><em>Column labels map directly to miner output: <code>pps</code> is average primes per second, <code>tps</code> is average tests per second, <code>gps</code> is average gaps per second, <code>glst</code> is the size of the gaplist and <code>l/s</code> is the time in seconds to scan the gaplist at the reported rate of gaps per second.</em></p>
+    <div class="ui two column doubling stackable grid container">
+        <div class="column">
+            <p class="ui tiny header" style="margin:0;padding:0">dist-22m-crt0064</p>
+            <table width="100%">
+                <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th><th align="right" width="16%">glst</th><th align="right" width="16%">bpc</th><th align="right" width="16%">l/s</th></tr>
+                <tr><td align="left">mean</td><td align="right">763169</td><td align="right">4410157</td><td align="right">5328</td><td align="right">153464</td><td align="right">0.56</td><td align="right">28.80</td></tr>
+                <tr><td align="left">max</td><td align="right">886978</td><td align="right">8920162</td><td align="right">8350</td><td align="right">407817</td><td align="right">1.12</td><td align="right">48.84</td></tr>
+                <tr><td align="left">min</td><td align="right">503299</td><td align="right">61712</td><td align="right">5123</td><td align="right">6044</td><td align="right">0.00</td><td align="right">1.18</td></tr>
+                <tr><td align="left">std</td><td align="right">32609</td><td align="right">2585037</td><td align="right">253</td><td align="right">106433</td><td align="right">0.32</td><td align="right">421.39</td></tr>
+            </table>
+        </div>
+        <div class="column">
+            <p class="ui tiny header" style="margin:0;padding:0">wizz-28m-crt0064</p>
+            <table width="100%">
+                <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th><th align="right" width="16%">glst</th><th align="right" width="16%">bpc</th><th align="right" width="16%">l/s</th></tr>
+                <tr><td align="left">mean</td><td align="right">47749399</td><td align="right">4403190</td><td align="right">5622</td><td align="right">130792</td><td align="right">26.87</td><td align="right">23.26</td></tr>
+                <tr><td align="left">max</td><td align="right">192825504</td><td align="right">8882274</td><td align="right">24518</td><td align="right">350037</td><td align="right">54.75</td><td align="right">14.28</td></tr>
+                <tr><td align="left">min</td><td align="right">42880113</td><td align="right">186639</td><td align="right">5278</td><td align="right">3940</td><td align="right">0.20</td><td align="right">0.75</td></tr>
+                <tr><td align="left">std</td><td align="right">11738410</td><td align="right">2563592</td><td align="right">1520</td><td align="right">89164</td><td align="right">15.83</td><td align="right">58.65</td></tr>
+            </table>
+        </div>
+    </div>
   </div>
+  <hr>
+  <p style="font-size: 80%; text-align:center"><em>The charts included below are for completeness. The figures given are the means and they differ from the means in the above table because, in order to support the different requirements of charting, the first 1/5th of the data is ignored in order to aid visual comparison. The chartline uses the full dataset.</em></p>
 </div>
 
 
@@ -31,7 +45,7 @@ max    886978.000000  8.920162e+06  8350.000000  407817.000000    1.120000      
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size: 80%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt
+  <pre style="font-size: 75%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt
 gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 64 -i [as-discovered] -r crt/crt-28m-0064s-wizz.txt</code></pre>
 </p>
 </div>
