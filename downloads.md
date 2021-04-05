@@ -27,11 +27,13 @@ tags: feature downloads
 
 -  pdazzl’s [crt-22m-1024s](/static-data/crt/pdazzl/crt-22m-1024s.txt)
 
+<h3 class="ui teal header">Contributed increased merit (28) Chinese Remainder Theorem (aka “crt”) files, new range</h3>
+Current status of [Wizz’s increased target merit crt contributions](https://github.com/wizz13150/GapcoinStuff/tree/main/crtwizz/crtwizz-m28)
 
-<h3 class="ui teal header">Contributed standard Chinese Remainder Theorem (aka “crt”) files, extended range</h3>
+<h3 class="ui teal header">Contributed standard Chinese Remainder Theorem (aka “crt”) files, extended range for merit 22</h3>
 For details of construction parameter settings see [Creating Chinese Remainder Theorem (ctr) files](/mining/creating-ctr-files/)
 
-Current status of [Wizz’s improved crt contributions](https://github.com/wizz13150/GapcoinStuff/tree/main/crtwizz/crtwizz)
+Current status of [Wizz’s improved crt contributions](https://github.com/wizz13150/GapcoinStuff/tree/main/crtwizz/crtwizz-m22)
 
 - wizz’ [crt-22m-0064s.txt](/static-data/crt/wizz/crt-22m-0064s.txt)
 - wizz’ [crt-22m-0077s.txt](/static-data/crt/wizz/crt-22m-0077s.txt)

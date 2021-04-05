@@ -4,7 +4,7 @@ title: Comparison of non-CRT vs CRT at various shift settings
 description: CRT vs non-CRT at shifts 64, 96, 128, 179, 256, 512 and 768
 author: Graham Higgins
 testdir: crtvsstdshift64
-tests: std-f64-s33554397-i90000 crt-f64-i6490 std-f96-s33554397-i90000 crt-f96-i12000 std-f128-s33554397-i90000 crt-f128-i14550 std-f179-s33554397-i90000 crt-f179-i16381 std-f256-s33554397-i90000 crt-f256-i27250 std-f512-s33554397-i90000 crt-f512-i130000 std-f768-s4800000-i640000 crt-f768-i280000
+tests: std-f64-s33554397-i90000 crt-f64-i6490 std-f96-s33554397-i90000 crt-f96-i12000 std-f128-s33554397-i90000 crt-f128-i14560 std-f179-s33554397-i90000 crt-f179-i16381 std-f256-s33554397-i90000 crt-f256-i27250 std-f512-s33554397-i90000 crt-f512-i130000 std-f768-s4800000-i640000 crt-f768-i280000
 ---
 
 <div class="ui raised padded container segment">
@@ -12,11 +12,11 @@ tests: std-f64-s33554397-i90000 crt-f64-i6490 std-f96-s33554397-i90000 crt-f96-i
   <p>Tests are non-CRT vs. CRT mining over a selected range of <code>--shift</code> settings: <span style="color:orange">64</span>, <span style="color:orange">96</span>, <span style="color:orange">128</span>, <span style="color:orange">179</span>, <span style="color:orange">256</span>, <span style="color:orange">512</span> and <span style="color:orange">768</span>.</p>
   <p>Except for shift 768, non-CRT tests used default settings for <code>--sieve-size</code> and <code>--sieve-primes</code>. For the CRT tests, in order to keep the size of the gaplist within the recommended bounds, the value of <code>--sieve-primes</code> is adjusted according to the selected value of <code>--shift</code>.</p>
   <p>Tests were run simultaneously to control for changes in difficulty that otherwise affect the results to a degree that thwarts comparison when tests are run serially.</p>
+  <p class="ui small header">Test notes</p>
   <p><em>Choosing an appropriate value for <code>--sieve-size</code> proved to be something of a “black art”. At shift 179, it proved impossible to discover a value for <code>--sieve-size</code> which produced a gaplist that neither reached zero nor exceeded 9000. Selecting a value of 1638<b>2</b> resulted in a frequently-empty gaplist but selecting the minimum decrement of one less (1638<b>1</b>) resulted in a gaplist size that approached 50000 at times.</em></p>
   <p><em>A shift of 768 proved to be the highest shift setting possible to use with non-CRT mining. At any higher setting the miner-reported statistics become nonsensical - which can be taken as a useful proxy for “only use CRT at this shift setting”).</em></p>
   <hr/>
   <p style="font-size: 80%"><em>Column labels map directly to miner output: <code>pps</code> is average primes per second, <code>tps</code> is average tests per second, <code>gps</code> is average gaps per second, <code>glst</code> is the size of the gaplist and <code>l/s</code> is the time in seconds to scan the gaplist at the reported rate of gaps per second.</em></p>
-  <div style="font-family: monospace; font-size:90%">
     <div class="ui two column doubling stackable grid container">
         <div class="column">
             <p class="ui tiny header" style="margin:0;padding:0">std-f64-s33554397-i90000</p>
@@ -66,20 +66,20 @@ tests: std-f64-s33554397-i90000 crt-f64-i6490 std-f96-s33554397-i90000 crt-f96-i
             <p class="ui tiny header" style="margin:0;padding:0">std-f128-s33554397-i90000</p>
             <table width="100%">
                 <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th></tr>
-                <tr><td align="left">mean</td><td align="right">125108</td><td align="right">53430</td><td align="right">5878</td></tr>
-                <tr><td align="left">max</td><td align="right">138720</td><td align="right">59596</td><td align="right">6519</td></tr>
-                <tr><td align="left">min</td><td align="right">123788</td><td align="right">52851</td><td align="right">5816</td></tr>
-                <tr><td align="left">std</td><td align="right">2055</td><td align="right">916</td><td align="right">96</td></tr>
+                <tr><td align="left">mean</td><td align="right">124207</td><td align="right">53300</td><td align="right">5868</td></tr>
+                <tr><td align="left">max</td><td align="right">132919</td><td align="right">56941</td><td align="right">6281</td></tr>
+                <tr><td align="left">min</td><td align="right">122889</td><td align="right">52693</td><td align="right">5805</td></tr>
+                <tr><td align="left">std</td><td align="right">1679</td><td align="right">743</td><td align="right">80</td></tr>
             </table>
         </div>
         <div class="column">
-            <p class="ui tiny header" style="margin:0;padding:0">crt-f128-i14550</p>
+            <p class="ui tiny header" style="margin:0;padding:0">crt-f128-i14560</p>
             <table width="100%">
                 <tr><th align="left">measure</th><th align="right" width="16%">pps</th><th align="right" width="16%">tps</th><th align="right" width="16%">gps</th><th align="right" width="16%">glst</th><th align="right" width="16%">bpc</th><th align="right" width="16%">l/s</th></tr>
-                <tr><td align="left">mean</td><td align="right">662783</td><td align="right">6857580</td><td align="right">3202</td><td align="right">3338</td><td align="right">0.36</td><td align="right">1.04</td></tr>
-                <tr><td align="left">max</td><td align="right">922795</td><td align="right">13527877</td><td align="right">3839</td><td align="right">12381</td><td align="right">0.71</td><td align="right">3.23</td></tr>
-                <tr><td align="left">min</td><td align="right">620894</td><td align="right">90517</td><td align="right">3161</td><td align="right">8</td><td align="right">0.00</td><td align="right">0.00</td></tr>
-                <tr><td align="left">std</td><td align="right">29901</td><td align="right">3884665</td><td align="right">71</td><td align="right">2569</td><td align="right">0.20</td><td align="right">36.09</td></tr>
+                <tr><td align="left">mean</td><td align="right">783223</td><td align="right">6816976</td><td align="right">3212</td><td align="right">3116</td><td align="right">0.43</td><td align="right">0.97</td></tr>
+                <tr><td align="left">max</td><td align="right">878103</td><td align="right">13460735</td><td align="right">3827</td><td align="right">10167</td><td align="right">0.83</td><td align="right">2.66</td></tr>
+                <tr><td align="left">min</td><td align="right">508530</td><td align="right">84473</td><td align="right">3160</td><td align="right">11</td><td align="right">0.00</td><td align="right">0.00</td></tr>
+                <tr><td align="left">std</td><td align="right">38592</td><td align="right">3887882</td><td align="right">100</td><td align="right">2491</td><td align="right">0.25</td><td align="right">24.83</td></tr>
             </table>
         </div>
     </div>
@@ -171,14 +171,15 @@ tests: std-f64-s33554397-i90000 crt-f64-i6490 std-f96-s33554397-i90000 crt-f96-i
             </table>
         </div>
     </div>
-  </div>
+  <hr>
+  <p style="font-size: 80%; text-align:center"><em>The charts included below are for completeness. The figures given are the means and they differ from the means in the above table because, in order to support the different requirements of charting, the first 1/5th of the data is ignored in order to aid visual comparison. The chartline uses the full dataset.</em></p>
 </div>
 
 {% include paramtest.html %}
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size: 70%"><code class="bash">timeout 1000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -j 5 -e -f 64 -t 4
-timeout 1000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -j 5 -e -f 64 -i [as-discovered] -t 4 -d 3 -r crt/dist/crt-22m-0064s.txt</code></pre>
+  <pre style="font-size: 70%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -j 5 -e -f 64 -t 4
+gapminer -o localhost -p 31397 -u $USER -x $USERPASS -j 5 -e -f 64 -i [as-discovered] -t 4 -d 3 -r crt/dist/crt-22m-0064s.txt</code></pre>
 </p>
 </div>

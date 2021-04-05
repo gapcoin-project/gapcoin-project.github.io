@@ -1,6 +1,6 @@
 ---
 layout: paramtest
-title: Basic comparison test of CRT f=512 with t=4 and d varying through 1 to 3
+title: Basic comparison test of CRT f=512 with t=4 and d as 1,2 &amp; 3
 description: CRT fermat threads test&#58; -f 512 -t 4 -d 1 (-i 720000), 2 (-i 120000), 3 (-i 115000)
 author: Graham Higgins
 testdir: fermatthreads
@@ -13,7 +13,9 @@ tests: t4-d1-i720000-22m-crt0512 t4-d2-i120000-22m-crt0512 t4-d3-i115000-22m-crt
   <p>Setting the parameters <code style="color:orange">  --threads 4 --fermat-threads 1  </code> means: use 3 sieve threads and 1 gap scan thread.</p>
   <p>The scan threads always pick the most promising gap from the gaplist, therefore the gaplist value should always be at least over 100, but a too high gaplist value can slow down mining, (for example over 9000). You can alter <code>--sieve-primes</code>, <code>--threads</code> or <code>--fermat-threads</code> to achieve this.</p>
   </blockquote>
-  <p>Tests are of increasing values of <code>--fermatthreads</code> from 1 to 3 where total threads is 4. In order to keep the size of the gaplist within the recommended bounds, the value of <code>--sieve-primes</code> is adjusted according to the selected value of <code>--fermat-threads</code>. The included chart for <code>-t 4 -d1 -i 13000 -r 22m-crt0512</code> is something of a worst-case example and illustrates the cost of selecting an inappropriate value for <code>--sieve-primes</code> (in this instance, 13000) which results in an excessive gap list that takes a lot of time to scan, reducing performance significantly.</p>
+  <p>Tests are of increasing values of <code>--fermatthreads</code> from 1 to 3 where total threads is 4. In order to keep the size of the gaplist within the recommended bounds, the value of <code>--sieve-primes</code> is adjusted according to the selected value of <code>--fermat-threads</code>.</p>
+  <p style="font-size:80%; margin-left: 0.6em">(Advice posted to the bitcointalk thread recommends that the optimum value for <code>-d</code> is “the number of threads minus one”. See the “<a href="/paramtests/maxfermatthreads/" target="_blanK">Focussed comparison test of CRT f=512</a>” for confirmation of this recommendation.)</p>
+  <hr/>
   <p style="font-size: 80%"><em>Column labels map directly to miner output: <code>pps</code> is average primes per second, <code>tps</code> is average tests per second, <code>gps</code> is average gaps per second, <code>glst</code> is the size of the gaplist and <code>l/s</code> is the time in seconds to scan the gaplist at the reported rate of gaps per second.</em></p>
   <div style="font-family: monospace; font-size:90%">
     <div class="ui two column doubling stackable grid container">
@@ -65,11 +67,16 @@ tests: t4-d1-i720000-22m-crt0512 t4-d2-i120000-22m-crt0512 t4-d3-i115000-22m-crt
   <p style="font-size: 80%; text-align:center"><em>The charts included below are for completeness. The figures given are the means and they differ from the means in the above table because, in order to support the different requirements of charting, the first 1/5th of the data is ignored in order to aid visual comparison. The chartline uses the full dataset.</em></p>
 </div>
 
+  <div class="ui raised padded container segment">
+    <p style="font-size:80%; margin-left: 0.6em">(The last-included chart: <code>-t 4 -d1 -i 13000 -r 22m-crt0512</code>, is something of a worst-case example and illustrates the penalty of selecting a highly <em>sub-optimal</em> value for <code>--sieve-primes</code>, 13000 in this instance, resulting in a large gap list taking a relatively long time to scan, reducing performance significantly.)</p>
+  </div>
+
 {% include paramtest.html %}
+
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size:85%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 1 -f 512 -i 720000 -r crt/crt-22m-0512s.txt
+  <pre style="font-size:78%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 1 -f 512 -i [as-discovered] -r crt/crt-22m-0512s.txt
 gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 2 -f 512 -i [as-discovered] -r crt/crt-22m-0512s.txt
 gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 4 -d 3 -f 512 -i [as-discovered] -r crt/crt-22m-0512s.txt</code></pre>
 </p>

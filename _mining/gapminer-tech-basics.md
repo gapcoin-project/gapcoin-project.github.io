@@ -1,6 +1,6 @@
 ---
 layout: post
-author: Graham Higgins
+author: Jonny Frey, edited by Graham Higgins
 title: Technical documentation, Gapminer parameter list and description of approach
 description: Gapminer parameters and a description of the way it works
 date: 2021-03-18

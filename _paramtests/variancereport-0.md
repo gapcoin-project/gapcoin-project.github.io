@@ -4,7 +4,7 @@ title: Performance “noise level” variance, non-crt (n=1396) and crt (n=3011)
 description: Variance report non-crt <b>-f 25</b> (1396 reports) and <b>-f 64 crt-22m-64s</b> (3011 reports)
 author: Graham Higgins
 testdir: variancereport-0
-tests: variancereport-0-01 variancereport-0-01crt 
+tests: variancereport-0-01 variancereport-0-01crt
 ---
 
 <div class="ui raised padded container segment">
@@ -42,7 +42,7 @@ Correlation between columns
 
 <div class="ui raised padded container segment">
   <p>Replication: 
-  <pre style="font-size:75%"><code class="bash">timeout 7000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2
-timeout 15000s gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2 -d 1 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt</code></pre>
+  <pre style="font-size:75%"><code class="bash">gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2
+gapminer -o localhost -p 31397 -u $USER -x $USERPASS -e -j 5 -t 2 -d 1 -f 64 -i [as-discovered] -r crt/crt-22m-0064s.txt</code></pre>
 </p>
 </div>
