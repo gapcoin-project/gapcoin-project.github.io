@@ -9,15 +9,40 @@ tags: primegap
 <div class="ui vertical segment">
   <div class="ui very relaxed stackable page grid">
 
+    <div class="row">
+      <div class="sixteen wide column">
+
+        <div class="ui teal header" style="padding: 0.6em"><i class="teal certificate icon"></i>Gapcoin entries in the Prime Gap List</div>
+
+        <p>Gapcoin-discovered gaps accepted by the Prime Gap List, a table of all first occurrence and maximal prime gaps <a href="https://faculty.lynchburg.edu/~nicely/gaps/gaplist.html">previously maintained</a> by the late Dr. Tom Nicely, now <a href="https://github.com/primegap-list-project/prime-gap-list/commits/server/">curated and maintained</a> by the <a href="https://www.mersenneforum.org/forumdisplay.php?f=131" target="_blank">Mersenne forum’s Prime Gap Search Group</a></p>
+
+        <div class="ui raised padded container segment">
+          <h3 class="ui small header">Most recent submission:</h3>
+
+          {% for primegapentry in site.primegaplist limit:1 %}
+          <p>{{ primegapentry.date }}: <a href="{{ primegapentry.url }}">{{ primegapentry.title }}</a></p>
+          {% endfor %}
+
+          <h4 class="ui small header">Historical list of <a href="/primegaplist/" target="_blank">previous submissions</a> to the Prime Gap List</h4>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+
 
 
     <div class="row">
       <div class="sixteen wide column">
 
-        <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>Prime gaps and the Gapcoin network</div>
-          <p>Charts and tables presenting statistical information about the first known occurrence prime gaps discovered by the Gapcoin network.</p>
+          <div class="ui header" style="padding: 0.6em"><i class="teal certificate icon"></i>Charts and tables</div>
+            <p>Charts and tables presenting statistical information about the first known occurrence prime gaps discovered by the Gapcoin network.</p>
 
-        <div class="ui inverted divider"></div>
+          <div class="ui inverted divider"></div>
+
       </div>
     </div>
 

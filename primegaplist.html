@@ -1,0 +1,27 @@
+---
+layout: landing
+title: Prime Gap List submissions
+description: Gapcoin-discovered record first known occurrence gaps of best merit
+category: graphs
+tags: primegap
+---
+  <div class="ui vertical segment">
+    <div class="ui very relaxed stackable page grid">
+      <div class="row">
+        <div class="column">
+
+          <div class="ui raised padded container segment">
+            <p>Gapcoin-discovered gaps accepted by the Prime Gap List, a table of all first occurrence and maximal prime gaps <a href="https://faculty.lynchburg.edu/~nicely/gaps/gaplist.html">previously maintained</a> by the late Dr. Tom Nicely, now <a href="https://github.com/primegap-list-project/prime-gap-list/commits/server/">curated and maintained</a> by the <a href="https://www.mersenneforum.org/forumdisplay.php?f=131" target="_blank">Mersenne forum’s Prime Gap Search Group</a></p>
+          </div>
+
+          <div class="ui animated selection list">
+          {% for entry in site.primegaplist  reversed %}
+            <a class="item" href="{{ entry.url }}">
+              <div class="ui header" style="padding: 0.6em"><i class="blue certificate icon"></i>{{ entry.title }}</div>
+            </a>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
