@@ -30,6 +30,9 @@ collections:
   paramtests:
     output: true
     permalink: /:collection/:path/
+  primegaplist:
+    output: true
+    permalink: /:collection/:path/
   mining:
     order:
       - introduction.md

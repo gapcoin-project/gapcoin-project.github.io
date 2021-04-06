@@ -31,7 +31,7 @@ tags: feature downloads
 Current status of [Wizz’s increased target merit crt contributions](https://github.com/wizz13150/GapcoinStuff/tree/main/crtwizz/crtwizz-m28)
 
 <h3 class="ui teal header">Contributed standard Chinese Remainder Theorem (aka “crt”) files, extended range for merit 22</h3>
-For details of construction parameter settings see [Creating Chinese Remainder Theorem (ctr) files](/mining/creating-ctr-files/)
+For details of construction parameter settings see [Creating Chinese Remainder Theorem (crt) files](/mining/creating-crt-files/)
 
 Current status of [Wizz’s improved crt contributions](https://github.com/wizz13150/GapcoinStuff/tree/main/crtwizz/crtwizz-m22)
 
