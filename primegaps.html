@@ -19,7 +19,9 @@ tags: primegap
         <div class="ui raised padded container segment">
           <h3 class="ui small header">Most recent submission:</h3>
 
-          {% for primegapentry in site.primegaplist limit:1 %}
+          {% assign my_array = site.primegaplist | reverse %}
+
+          {% for primegapentry in my_array limit:1 %}
           <p>{{ primegapentry.date }}: <a href="{{ primegapentry.url }}">{{ primegapentry.title }}</a></p>
           {% endfor %}
 
