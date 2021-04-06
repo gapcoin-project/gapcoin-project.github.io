@@ -4,7 +4,7 @@ title: Tags
 description: Recent posts listed by tags.
 ---
 
-<div class="ui inverted teal vertical segment">
+<div class="ui inverted vertical segment">
   <div class="ui very relaxed stackable page grid">
     <div class="row">
       <div class="column">
@@ -18,7 +18,7 @@ description: Recent posts listed by tags.
   {% if tag.first != 'projectdoc' %}
 
   {% capture inverted %}{{ forloop.index | modulo:2 }}{% endcapture %}
-  <div class="ui {% if inverted == '0' %}inverted teal {% endif %}vertical segment">
+  <div class="ui {% if inverted == '0' %}inverted {% endif %}vertical segment">
     <div class="ui very relaxed stackable page grid">
       <div class="row">
         <div class="column">
