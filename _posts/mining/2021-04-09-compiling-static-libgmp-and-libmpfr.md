@@ -5,7 +5,7 @@ title: Creating and using locally-compiled static libgmp and libmpfr libraries f
 description: Technical HOW-TO compile and use optimised-to-CPU GMP and MPFR libraries
 date: 2021-04-09
 category: mining
-tags: technical
+tags: feature technical
 ---
 
 ## Compiling CPU-specific libgmp and libmpfr on Mint/Ubuntu 20 
