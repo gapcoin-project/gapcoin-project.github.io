@@ -9,6 +9,26 @@ description: Resources related to mining Gapcoin
 
     <div class="row">
       <div class="column">
+        <div class="ui raised very padded  container segment">
+          <div style="font-style:italic; font-size:90%">
+            <h3 class="ui teal header">GapMiner posts</h3>
+            <div class="ui animated selection list">
+              {% for page in site.posts %}
+                {% if page.category == "mining" %}
+                  <div class="ui item"><a class="item" href="{{ page.url }}"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file outline icon"></i>{{ page.title }}</div></a>
+                  <div class="right floated"><small>{{ page.date | date: "%b %-d, %Y" }}</small></div>
+                    <p style="margin-left:4em">{{ page.description }}</p>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
         <div class="ui accordion">
           <div class="title">
               <i class="dropdown icon"></i><item class="ui teal header">The algorithm</item></div>
@@ -50,40 +70,59 @@ description: Resources related to mining Gapcoin
 
     <div class="row">
       <div class="column">
+        <h3 class="ui teal header">Pool mining</h3>
+        <div class="ui item"><a class="item" href="/mining/mining-pools/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue globe icon"></i>Mining pools</div></a>
+          <p style="margin-left:4em">Help document listing the current GapMiner mining pools, signup instructions and parameter settings.</p>
+        </div>
+        <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <h3 class="ui teal header">GapMiner documentation</h3>
         <div class="ui raised very padded container segment">
           <div style="font-style:italic; font-size:90%">
-            <h3 class="ui teal header">GapMiner documentation</h3>
             <div class="ui animated selection list">
+              <div class="ui tiny teal header">CPU GapMiner and GPU GapMiner Basics</div>
               <div class="ui item"><a class="item" href="/mining/introduction/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file alternate outline icon"></i>Introduction</div></a>
                 <p style="margin-left:4em">Concise introduction to Gapminer and explanation of the <code>--shift</code>, <code>--sieve-primes</code> and <code>--sieve-size</code> settings common to both GapMiner and the in-wallet miner</p></div>
-              <div class="ui item"><a class="item" href="/mining/gapminer-tech-basics/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cogs icon"></i>Gapminer technical basics</div></a>
+              <div class="ui item"><a class="item" href="/mining/gapminer-tech-basics/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cogs icon"></i>CPU GapMiner technical basics</div></a>
                 <p style="margin-left:4em">Reference document listing all the Gapminer parameters and giving a basic high-level description of the mathematical strategy adopted by the miner to finding prime gaps</p></div>
+              <div class="ui item"><a class="item" href="/mining/gpugapminer-tech-basics/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cogs icon"></i>GPU GapMiner technical basics (WiP)</div></a>
+                <p style="margin-left:4em">Reference document listing all the GPU Gapminer parameters and giving a basic high-level description of the mathematical strategy adopted by the miner to finding prime gaps</p></div>
+              <div class="ui item"><a class="item" href="/mining/mining-on-a-gpu/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue rocket icon"></i>Running GapMiner on a GPU (WiP)</div></a>
+                <p style="margin-left:4em">Help document of distilled developer posts on running GapMiner on a GPU - parameter settings and basic advice on performance.</p></div>
+              <div class="ui tiny teal header">GapMiner performance test reports</div>
+              <div class="ui item"><a class="item" href="/paramtests/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue images icon"></i>Charts of performance on systematically varied settings.</div></a>
+                <p style="margin-left:4em">Reference document, plots of relative performance results across a number of mining parameter test settings</p></div>
+              <div class="ui tiny teal header">CPU GapMiner and Chinese Remainder Theorem mining</div>
               <div class="ui item"><a class="item" href="/mining/chinese-remainder-mining/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue plane icon"></i>Mining at higher shifts with Chinese Remainder Theoren</div></a>
                 <p style="margin-left:4em">Basic HOW-TO for mining using the Chinese Remainder Theorem. Full description and examples of the settings for using GapMiner with CRT.</p></div>
               <div class="ui item"><a class="item" href="/mining/creating-crt-files/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file flask icon"></i>Creating crt files</div></a>
                 <p style="margin-left:4em">Advanced HOW-TO with explanation and examples for creating custom “crt” files for optimising CRT mining.</p></div>
-              <div class="ui item"><a class="item" href="/mining/mining-on-a-gpu/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue rocket icon"></i>Running Gapminer on a GPU</div></a>
-                <p style="margin-left:4em">Help document of distilled developer posts on running GapMiner on a GPU - parameter settings and basic advice on performance.</p></div>
-              <div class="ui item"><a class="item" href="/mining/mining-pools/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue globe icon"></i>Mining pools</div></a>
-                <p style="margin-left:4em">Help document listing the current GapMiner mining pools, signup instructions and parameter settings.</p></div>
+              <div class="ui item"><a class="item" href="/mining/settings-for-standard-22m-crt-files/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file flask icon"></i>GapMiner settings for creating the standard set of crt files</div></a>
+                <p style="margin-left:4em">Settings used by j0nn9 for create the standard set of crt files.</p></div>
+              <div class="ui item"><a class="item" href="/mining/settings-for-extended-22m-crt-files/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file flask icon"></i>GapMiner settings for creating Wizz’ extended range of crt files</div></a>
+                <p style="margin-left:4em">Settings used by Wizz to create the extended set of 22m crt files.</p></div>
+              <div class="ui item"><a class="item" href="/mining/crt-files-by-pdazzl/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue file flask icon"></i>Specific Chinese Remainder Theorem crt files contributed by pdazzl</div></a>
+                <p style="margin-left:4em">Selected crt files published by pdazzl on bitcointalk</p></div>
+              <div class="ui tiny teal header">Technical reference document</div>
               <div class="ui item"><a class="item" href="/mining/shifts-and-primedigits/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue graduation cap icon"></i>Shift and prime digits</div></a>
                 <p style="margin-left:4em">Technical document explaining the bits and bytes relationship between shift and the number of digits in the primes to be searched</p></div>
               <div class="ui item"><a class="item" href="/mining/shift-to-primedigits-mapping/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue map signs icon"></i>Mapping of shift to prime digit length</div></a>
                 <p style="margin-left:4em">Reference document with an exhaustive list of shifts and the corresponding number of digits in the primes to be searched</p></div>
               <div class="ui item"><a class="item" href="/gapgraphs/shiftfrequency/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue cubes icon"></i>Shift settings, length of primes searched and blocks mined</div></a>
                 <p style="margin-left:4em">Reference document, table showing frequency of shift use and blocks mined with histograms.</p></div>
-              <div class="ui item"><a class="item" href="/paramtests/"><div class="ui small header" style="padding: 0.6em"><i class="tiny blue images icon"></i>Charts of performance on systematically varied settings.</div></a>
-                <p style="margin-left:4em">Reference document, plots of relative performance results across a number of mining parameter test settings</p></div>
             </div>
           </div>
         </div>
-        <h4 class="ui horizontal divider teal header"><i class="teal cogs icon"></i></h4>
-        <p></p>
       </div>
     </div>
 
   </div>
 
+  <!--
   <div class="ui inverted vertical segment dark-wood">
     <div class="ui very relaxed stackable page grid">
 
@@ -110,4 +149,6 @@ description: Resources related to mining Gapcoin
       </div>
     </div>
   </div>
+  -->
+
 </div>

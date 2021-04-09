@@ -1,11 +1,11 @@
 ---
 layout: post
 author: Seth Troisi
-title: New frontend to Prime Gap Search List web site
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: PGS news - new frontend to Prime Gap Search List web site
+description: I made a new website to verify records and automatically upload them to github.
 date: 2020-03-05
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport psg
 ---
 
 New Frontend

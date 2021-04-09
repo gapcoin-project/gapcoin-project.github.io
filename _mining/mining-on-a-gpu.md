@@ -4,7 +4,7 @@ author: Graham Higgins
 title: Mining on a GPU
 description: Basics of using GapMiner on a GPU
 date: 2021-03-22
-category: mining
+category: reference
 tags:
 ---
 
@@ -95,10 +95,3 @@ Currently it produces invalid results most of the time but I still think that it
 
 ---
 
-### GPU miner and the Chinese Reminder Theorem approach
-
-I tried a lot to improve the CPU miner by [using the Chinese Reminder Theorem](/mining/chinese-remainder-mining/) but it seems that Gapcoin’s restriction on the prime numbers makes it impossible to use the full potential of this method so the current method is still faster.
-
-From my point of view, the miner is probably at the upper limits of its performance but maybe someone else might have some smart ideas.
-
----

@@ -1,11 +1,11 @@
 ---
 layout: post
 author: Seth Troisi
-title: Prime Gap Search List update 2021-03-21
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: PGS News status report of 2021-03-21
+description: News from the Mersenne Forum’s Prime Gap Search group
 date: 2021-03-21
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport psg
 ---
 
 Update

@@ -1,11 +1,11 @@
 ---
 layout: post
 author: YomKi
-title: First occurrence and merit report 2017-01-05
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: gapcoin.org primegaps-length page
+description: The web page is working again, thanks to whoever got it going again
 date: 2017-01-05
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport
 ---
 
 ##### 2017-01-05, 05:13:43 

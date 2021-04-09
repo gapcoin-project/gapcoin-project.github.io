@@ -4,7 +4,7 @@ author: BitcoinFX
 title: Mining pools
 description: 
 date: 2021-03-14
-category: mining
+category: reference
 tags: miningpool
 ---
 

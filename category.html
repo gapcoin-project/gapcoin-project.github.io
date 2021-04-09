@@ -37,6 +37,8 @@ description: Recent posts listed by category.
               <div class="thumb-img">
                 <img class="ui rounded image" src="{{ post.image }}" alt="{{ post.title }}">
               </div>
+              {% elsif post.description %}
+              <small> {{post.description}} </small>
               {% else %}
               <small> {{post.excerpt}} </small>
               {% endif %}

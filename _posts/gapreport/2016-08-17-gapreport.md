@@ -2,10 +2,10 @@
 layout: post
 author: YomKi
 title: First occurrence and merit report 2016-08-17
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+description: The Gapcoin results from 27-Dec-2015 to 14-Aug-2016 are published.
 date: 2016-08-17
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport
 ---
 
 ##### 2016-08-17, 14:56:35

@@ -4,8 +4,8 @@ author: Seth Trosis, copied over by Graham Higgins
 title:  PGS news for 3rd. April 2021 
 description: Latest news from the Mersenne Forum’s Prime Gap Search Group
 date: 2021-04-03
-category: news
-tags: feature news
+category: primegaplist
+tags: feature news gapreport psg
 ---
 
 *(coped from the Mersenne Forum’s Prime Gap Search group as pertinent to Gapcoin)*

@@ -2,9 +2,9 @@
 layout: post
 author: Graham Higgins
 title: Prime Gap Search List update 2021-03-23
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+description: 2021-03-23, 16:10 Prime gap list updated with Gapcoin-discovered first occurrence record gaps and merit improvements
 date: 2021-03-23
-category: gapcoin
+category: primegaplist
 tags: feature gapreport
 ---
 

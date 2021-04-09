@@ -4,7 +4,7 @@ author: Graham Higgins
 title: Shift to primedigits list
 description: An exhaustive list of shifts and the corresponding number of digits in the primes to be searched
 date: 2021-03-27
-category: mining
+category: reference
 tags:
 ---
 
