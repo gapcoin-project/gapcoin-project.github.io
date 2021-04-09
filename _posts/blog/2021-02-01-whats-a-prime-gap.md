@@ -3,7 +3,7 @@ layout: post
 title: Prime gaps and the Gapcoin rationale
 description: Explanation of prime gaps, merit and how Gapcoin uses both.
 date: 2021-02-01
-category: gapcoin
+category: maths
 tags: explainer
 ---
 

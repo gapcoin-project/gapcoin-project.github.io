@@ -1,16 +1,16 @@
 ---
 layout: post
 author: Seth Troisi
-title: Prime Gap Search List update 2021-02-16
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: PGS news Random Musings 2021-02-16
+description: News from the Mersenne Forum’s Prime Gap Search group
 date: 2021-02-16
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport psg
 ---
 
 Random Musings
 
-*(coped from the Mersenne Forum’s Prime Gap Search group as pertinent to Gapcoin)*
+*(copied from the Mersenne Forum’s Prime Gap Search group as pertinent to Gapcoin)*
 
 ##### 2021-02-16, 10:50 [Post to Mersenne Forum PSG: “Random Musings”](https://www.mersenneforum.org/showpost.php?p=571747&postcount=227)
 

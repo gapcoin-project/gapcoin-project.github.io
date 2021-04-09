@@ -1,16 +1,14 @@
 ---
 layout: post
 author: YomKi
-title: First occurrence and merit report 2016-06-04
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: Q. Is there a way to see the overall activity?
+description: Is there a way to see the overall activity on the prime gap list
 date: 2016-06-04
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport
 ---
 
 ##### 2016-06-04, 18:17:57 
-
-Is there a way to see the overall activity?
 
 About 2 weeks ago the rate of record results on the Gapcoin page went up dramatically, and has stayed that way. The overall number of Gapcoin records had been falling by about 100/month since January (that is, the number of gaps found were not enough to keep up with the amount of records broken by others), but since then it has been able to keep up and even gain a little.
 

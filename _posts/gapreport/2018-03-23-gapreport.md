@@ -1,11 +1,11 @@
 ---
 layout: post
 author: j0nn9
-title: First occurrence and merit report 2018-03-23
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: The Gapcoin network discovers a new prime gap of maximum known merit
+description: Gapcoin broke the World Record for the largest known prime gap of maximum merit
 date: 2018-03-23
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport
 ---
 
 ##### 2018-03-23, 21:52:55 New prime gap of maximum known merit

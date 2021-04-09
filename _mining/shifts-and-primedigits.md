@@ -4,13 +4,9 @@ author: Graham Higgins
 title: "How shift setting determines the number of digits in the primes to be searched"
 description: From the bitcointalk ANN, back in 2014 ...
 date: 2021-03-16
-category: mining
+category: reference
 tags:
 ---
-
-
-
-
 
 **Q. Why does specifying a shift of 25 result in the miner using an 85-digit prime?**
 

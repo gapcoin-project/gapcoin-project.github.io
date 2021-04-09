@@ -3,9 +3,9 @@ layout: post
 author: Greekcoin
 title: Gapcoin Break-the-record Day
 description: Promotional idea
-category: news
-tags: feature news
 date: 2017-06-15
+category: gapcoin
+tags:
 ---
 
 (Edited) from the annals of the bitcointalk thread ...

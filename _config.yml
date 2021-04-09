@@ -34,17 +34,17 @@ collections:
     output: true
     permalink: /:collection/:path/
   mining:
-    order:
-      - introduction.md
-      - gapminer-tech-basics.md
-      - chinese-remainder-mining.html
-      - creating-crt-files.html
-      - mining-on-a-gpu.md
-      - mining-pools.md
-      - shifts-and-primedigits.md
-      - shift-to-primedigits-mapping.md
-    permalink: /:collection/:path/
+    # order:
+    #   - introduction.md
+    #   - gapminer-tech-basics.md
+    #   - chinese-remainder-mining.html
+    #   - creating-crt-files.html
+    #   - mining-on-a-gpu.md
+    #   - mining-pools.md
+    #   - shifts-and-primedigits.md
+    #   - shift-to-primedigits-mapping.md
     output: true
+    permalink: /:collection/:path/
 
 
 # Pre-processing

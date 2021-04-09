@@ -3,8 +3,8 @@ layout: post
 author: Graham Higgins
 title: Video animation of the history of the Prime gap list
 date: 2020-12-05
-category: videos
-tags: feature content
+category: primegaplist
+tags: feature videos 
 image: /img/blog/prime-gap-list-progress.png
 ---
 

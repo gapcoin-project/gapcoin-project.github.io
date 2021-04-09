@@ -3,8 +3,8 @@ layout: post
 author: Graham Higgins
 title: Large Gaps between Primes - Dr James Maynard
 date: 2017-07-19
-category: videos
-tags: feature content
+category: maths
+tags: feature videos
 image: /img/blog/dr-james-maynard.png
 ---
 

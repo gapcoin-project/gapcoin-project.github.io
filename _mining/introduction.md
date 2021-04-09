@@ -2,11 +2,13 @@
 layout: post
 author: Graham Higgins
 title: An introduction to Gapcoin mining
-description: Concise introdcution to miner settings
+description: Concise introduction to Gapminer and explanation of the <code>--shift</code>, <code>--sieve-primes</code> and <code>--sieve-size</code> settings common to both GapMiner and the in-wallet miner
 date: 2021-03-18
-category: mining
+category: referene
 tags:
 ---
+
+Concise introduction to Gapminer and explanation of the `--shift`, `--sieve-primes` and `--sieve-size` settings common to both GapMiner and the in-wallet miner
 
 ## Introduction to GapMiner
 

@@ -1,11 +1,11 @@
 ---
 layout: post
 author: YomKi
-title: First occurrence and merit report 2016-11-21
-description: Status of Gapcoin-discovered first occurrence record gaps and merit improvements submitted to the Prime gap list
+title: Concerns about the status of Gapcoin-discovered first occurrence record gaps
+description: The web page is still dead, but the dump files are being updated.
 date: 2016-11-21
-category: gapcoin
-tags: gapreport
+category: primegaplist
+tags: news gapreport
 ---
 
 ##### 2016-11-21, 20:15:30

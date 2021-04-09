@@ -1,11 +1,11 @@
 ---
 layout: post
 author: Graham Higgins
-title: Prime Gap Search State of Play at end of 2020
+title: PSG news - state of play at end of 2020
 description: Graph by Seth Troisi showing coverage and different contributions
 date: 2020-12-13
-category: news
-tags: feature news
+category: primegaplist
+tags: feature news gapreport psg
 image: /img/blog/state-of-play-2020-12.png
 ---
 
