@@ -16,3 +16,10 @@ Entertainingly-edited, 25-minute Stand-up-Maths video by Matt Parker delighting 
 
 
 {% include embed-youtube.html video="SMsTXQYgbiQ" %}
+
+
+And he subsequently posted this deleted 5mins scene ...
+
+
+{% include embed-youtube.html video="omBJTZUefEQ" %}
+
