@@ -363,3 +363,96 @@ Debugging:
 
 For debugging there are two options added to the Makefile, one for debugging while mining, these are some tests, which shouldn't have a great impact on the pps and one for debugging only. Activating the second option will run several time intensive tests while mining, which has a huge impact on the pps.
 
+#### 2014-05-09 eXtremal [Open Source XPM Pool + GPU Miner (aka. madPrimeMiner)](https://bitcointalk.org/index.php?topic=602292.msg6648209#msg6648209)
+
+Mining algorithm consists of two parts - sieve and Fermat test. madPrimeMiner have very fast sieve and slow non-optimized Fermat test, xpmclminer have too poor sieve but fast Fermat test. I will merge two miners code for create fastest XPM miner.”
+
+“Built with system libwt version 3.3.1, or 3.3.2 is minimal required?”
+
+    [GPU 0] T=-1C A=-1% E=0 primes=0.103835 fermat=482404/sec cpd=6.07/day
+    (ST/INV/DUP): 1x 8ch(0/0/0) 1x 9ch(0/0/0)
+
+With replaced Fermat:
+
+    (ST/INV/DUP): 1x 8ch(0/0/0)
+    [GPU 0] T=-1C A=-1% E=0 primes=0.104250 fermat=496779/sec cpd=6.51/day
+
+My code uses 384-bit operands, need to create 352-bit version and tune sieve parameters.
+
+
+> This is on a 290X correct?
+
+Yes. I changed weave depth and got this results:
+
+    [GPU 0] T=-1C A=-1% E=0 primes=0.102074 fermat=589708/sec cpd=6.26/day
+    (ST/INV/DUP): 9x 8ch(0/0/0) 1x 10ch(0/0/0)
+
+Fermat tests number increased, CPD - no.. need more time to find right configuration. I will release something after 7CPD reaching on R9 290X.
+
+Claymore already take code of sieve algorithm and release new version with 7.0CPD on Radeon R9 290X. This miner with patch from xpmclminer shows only 6.6CPD now.
+
+---
+
+Peeps, if you want to make use of existing madmax's client with the improved fermat.cl, you can do the following:
+
+1) mkdir ../gpu (while in the madmax dir where xpmclient is located)
+2) copy the new fermat.cl, together with the sha256.cl and sieve.cl into the gpu dir (sha256 and sieve .cl inside xpmclient gpu src)
+3) if you are using Catalyst 13.12, you need Catalyst 14's libamdocl64.so. replace or load it using LD_LIBRARY_PATH
+
+---
+
+Btw, once .cl is compiled into .bin, you do not need to stick with the above steps, including the need to install new Catalyst drivers
+
+I have kernel.bin for 280x and 7950, if anyone is interested.
+
+---
+
+I'm wrong about 400% (miner shows 500-600k Fermat tests per second, but miner do some other work, not only Fermat tests Smiley ), really 100-120%.
+
+---
+
+    [GPU 0] T=-1C A=-1% E=0 primes=0.098627 fermat=500023/sec cpd=3.76/day
+    (ST/INV/DUP): 156x 7ch(0/0/0) 17x 8ch(0/0/0) 1x 9ch(0/0/0)
+
+Conclusion: The sieve code is very fast but the modular exponentiation code needs some improvement. Should be able to achieve an estimated 5 CPD with a faster modular exponentiation implementation on an R9 280X (GTX 580 - 4.2 CPD)
+
+---
+
+My Fermat test implementation is not based on your work, it is faster a bit. But your miner is really good.
+
+My miner shows about 0.3 cpd currently for diff 11 on 290x. However, my calculations show that miner for dif11 will be faster only at 10.99.
+
+What's wrong with cpd calculation? It looks very nice and can be used for target 11 without changes with good approximation. But if you use target 10 for BT sieves you will get invalid cpd values like 0,47. For target 11 for BT you should use 6 layers C1 and 5 layers C2.
+
+-- I know about 6 layers from C1 & 5 from C2.. after full disabling BT shares, miner shows prime probability 0,145 and 4ch/d with target 11 Smiley (on 10ch version prime probability and ch/d decrease).
+
+
+---
+
+>> Anyone tested on old GPU like HD-5970?
+
+> try it out works on 6970/50
+
+While it may work, pre GCN cards are bad at primecoin mining, there's no way around it.
+
+---
+
+R7 240 is just as quick as a HD5870/6970. VLIW isn't optimize to do primecoin mining.
+
+---
+
+270X settings for DTC:
+
+    #define SIZE 4096           // Size of local sieve array (must be multiple of 1024)
+    #define LSIZE 256           // Local worksize for sieve (don't change this)
+    #define STRIPES 400         // Number of sieve segments (you may tune this)
+    #define WIDTH 20            // Sieve width (includes extensions, you may tune this)
+    #define PCOUNT 38400        // Number of sieve primes (must be multiple of 256, you should tune this, 40960 is for 280X)
+    #define SCOUNT PCOUNT       // Don't change it
+    #define TARGET 9            // Target for s_sieve
+
+
+>> If you change target to 9 you need to use the latest `*.cl` files from git, 6 days ago. Otherwise you have bugs...
+
+>> Also you may have to reduce STRIPES to maybe 150, otherwise the miner crashes because the sieve now returns 3 times more candidates.
+
