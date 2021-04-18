@@ -11,7 +11,8 @@ tags: gapcoin
         <div class="column">
           <div class="ui raised padded container segment">
             <div class="ui animated selection list">
-            {% for retrieval in site.orderbook %}
+           {% assign orderbooks = site.orderbook | reverse %}
+           {% for retrieval in orderbooks %}
               <a class="item" href="{{ retrieval.url }}">
                 <div class="ui header" style="padding: 0.6em">
                   <i class="blue chart line icon"></i>
@@ -25,3 +26,4 @@ tags: gapcoin
       </div>
     </div>
   </div>
+ 
