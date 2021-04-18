@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "Starter Post - Media Embeds"      
-category: projectdoc
-tags: projectdoc
+category: projectdocs
+tags: content
 image: /img/embed/youtube-splash.png
 ---
 

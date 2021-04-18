@@ -2,8 +2,8 @@
 layout: post
 author: Manav Sehgal
 title:  "Starter Post"              # Title used in HTML Meta, Post Header, Recent Posts list
-category: projectdoc
-tags: projectdoc                   # Tags to relate multiple topics to a post
+category: projectdocs
+tags: content                   # Tags to relate multiple topics to a post
 ---
 
 This is a starter post which you can duplicate to create your own. It demonstrates Markdown syntax, Liquid tags, and GitHub whitelisted HTML.
@@ -41,7 +41,7 @@ New line or ENTER twice to start on next line.
 
 ### Liquid Tags and Jekyll Variables
 
-You can use Liquid Tags to reference other posts. Here is one on [how to design a blog in Jekyll]({% post_url /opentheme/2014-11-25-how-to-design-a-blog-in-jekyll %}).
+You can use Liquid Tags to reference other posts. Here is one on [how to design a blog in Jekyll]({% post_url /projectdocs/2014-11-25-how-to-design-a-blog-in-jekyll %}).
 
 Site variables can be used as well. Here is the tagline for OpenTheme as descibed in a site variable - **{{ site.tagline }}**.
 Page variables are also available. Title for this post is **{{ page.title }}** and it uses **{{ page.layout }}** template.
