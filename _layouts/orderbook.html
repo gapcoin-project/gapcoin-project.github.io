@@ -1,0 +1,177 @@
+  {% include head.html %}
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://d3js.org/d3-color.v1.js"></script>
+  <script src="https://d3js.org/d3-interpolate.v1.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.js"></script>
+<style>
+.axis path,
+.axis line { fill: none; stroke: #888; shape-rendering: crispEdges; }
+.axis text { font-family: sans-serif; font-size: 11px; color:#888}
+.loading {font-family: sans-serif; font-size: 15px;}
+.invisible {display: none;}
+</style>
+</head>
+  <body class="global landing">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="data" class="invisible" data-content="{{page.data}}" data-btcprice="{{page.btcprice}}"></div>
+
+    {% if site.pagebar %}
+    {% include page-bar.html %}
+    <div class="pusher">
+    {% endif %}
+      {% include landing-header.html %}
+      {{ content }}
+      {% include footer.html %}
+    {% if site.pagebar %}
+    </div>
+    {% endif %}
+
+    {% include js.html %}
+    <script>
+
+    function chartify(arr, btcprice) {
+      var row;
+      var xdata = new Array;
+      var ydata = new Array;
+      var dollars = new Array;
+      var gapcoins = new Array;
+      var dollarspend = 0;
+      var totalgap = 0;
+      for (row of arr.entries()) {
+        var amount = row[1][1];
+        var price = row[1][0];
+        if (price < 0.00000200) {
+          dollarspend += amount * (price * btcprice);
+          totalgap += amount;
+          dollars.push(dollarspend);
+          gapcoins.push(totalgap);
+        }
+        if (amount > 200 && price < 0.00000200) {
+          xdata.push(price * 100000000);
+          ydata.push(amount);
+        }
+      }
+
+      // Orderbook
+      var margin0 = {top: 20, right: 15, bottom: 60, left: 80}, width0 = 1200 - margin0.left - margin0.right, height0 = 500 - margin0.top - margin0.bottom;
+      var x0 = d3.scaleBand().domain(xdata).range([0, width0]);
+      var y0 = d3.scaleLinear().domain([0, d3.max(ydata)]).range([height0, 0 ]);
+      var chart0 = d3.select('#content')
+        .append('svg:svg')
+        .attr('width', width0 + margin0.right + margin0.left)
+        .attr('height', height0 + margin0.top + margin0.bottom)
+        .attr('class', 'chart')
+      var main0 = chart0.append('g')
+        .attr('transform', 'translate(' + margin0.left + ',' + margin0.top + ')')
+        .attr('width', width0)
+        .attr('height', height0)
+        .attr('class', 'main')   
+      var xAxis0 = d3.axisBottom().scale(x0).ticks(10).tickFormat(d3.format(",.0f"));;
+      main0.append('g')
+        .attr('transform', 'translate(0,' + height0 + ')')
+        .attr('class', 'main axis date')
+        .call(xAxis0);
+      var yAxis0 = d3.axisLeft().scale(y0);
+      main0.append('g')
+        .attr('transform', 'translate(0,0)')
+        .attr('class', 'main axis date')
+        .call(yAxis0);
+      var g0 = main0.append("svg:g"); 
+      g0.selectAll("scatter-dots")
+        .data(ydata)
+        .enter().append("svg:circle")
+            .attr("cy", function (d) { return y0(d); } )
+            .attr("cx", function (d,i) { return x0(xdata[i]); } )
+            .attr("r", 2)
+            .style("fill", "red");
+      main0.append("text")
+        .attr("fill", "#888")
+        .attr("text-anchor", "end")
+        .attr("x", width0)
+        .attr("y", height0 + margin0.top + 20)
+        .text("Price (satoshis)");
+      main0.append("text")
+        .attr("fill", "#888")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin0.left+25)
+        .attr("x", -margin0.top)
+        .text("Amount");
+
+      // Whalesong
+      var margin1 = {top: 20, right: 15, bottom: 60, left: 80}, width1 = 1200 - margin1.left - margin1.right, height1 = 500 - margin1.top - margin1.bottom;
+      var x1 = d3.scaleLinear().domain([0, d3.max(dollars)]).range([0, width1]);
+      var y1 = d3.scaleLinear().domain([0, d3.max(gapcoins)]).range([height1, 0 ]);
+
+      var chart1 = d3.select('#content1')
+        .append('svg:svg')
+        .attr('width', width1 + margin1.right + margin1.left)
+        .attr('height', height1 + margin1.top + margin1.bottom)
+        .attr('class', 'chart')
+      var main1 = chart1.append('g')
+        .attr('transform', 'translate(' + margin1.left + ',' + margin1.top + ')')
+        .attr('width', width1)
+        .attr('height', height1)
+        .attr('class', 'main1')   
+      var xAxis1 = d3.axisBottom().scale(x1).ticks(10).tickFormat(d3.format(",.0f"));;
+      main1.append('g')
+        .attr('transform', 'translate(0,' + height1 + ')')
+        .attr('class', 'main1 axis date')
+        .call(xAxis1);
+      var yAxis1 = d3.axisLeft().scale(y1);
+      main1.append('g')
+        .attr('transform', 'translate(0,0)')
+        .attr('class', 'main1 axis date')
+        .call(yAxis1);
+      var g1 = main1.append("svg:g"); 
+      g1.selectAll("scatter-dots")
+        .data(gapcoins)
+        .enter().append("svg:circle")
+            .attr("cy", function (d) { return y1(d); } )
+            .attr("cx", function (d,i) { return x1(dollars[i]); } )
+            .attr("r", 2)
+            .style("fill", "green");
+      main1.append("text")
+        .attr("fill", "#888")
+        .attr("text-anchor", "end")
+        .attr("x", width1)
+        .attr("y", height1 + margin1.top + 20)
+        .text("Spend ($)");
+      main1.append("text")
+        .attr("fill", "#888")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin1.left+25)
+        .attr("x", -margin1.top)
+        .text("Stash (GAP)");
+    };
+
+
+    function parseentry(val, index) {
+      if (index == 1)
+        return parseInt(val, 10);
+      else
+        return parseFloat(val)
+    };
+
+    $('.page.dimmer:first')
+      .dimmer('toggle');
+
+    $(document).ready(function() {
+
+      $('.ui.dimmer').dimmer('show');
+
+      var datadiv = document.getElementById('data');
+      var data = datadiv.getAttribute('data-content');
+      var btcprice = parseInt(datadiv.getAttribute('data-btcprice'), 10);
+      var arr = $.csv.toArrays(data).map(function(entry) {return entry.map(parseentry)});
+      chartify(arr, btcprice);
+
+      $('.ui.dimmer').dimmer('hide');
+
+      });
+    </script>
+  </body>
+</html>
