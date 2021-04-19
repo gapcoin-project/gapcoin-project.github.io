@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: gapcoin.org primegaps-length page
 description: The web page is working again, thanks to whoever got it going again
 date: 2017-01-05

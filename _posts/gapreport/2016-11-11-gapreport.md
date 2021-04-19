@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: Nothing has changed for almost a month.
 description: Nothing has changed for almost a month on gapcoin.org/primegaps-length.php
 date: 2016-11-11

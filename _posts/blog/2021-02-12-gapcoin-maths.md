@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Graham Higgins
-title: Gapcoin maths, from YomKi‘s posts to bitcointalk
+title: Gapcoin maths, from Yom Ki‘s posts to bitcointalk
 description: A technical discussion of the maths behind Gapcoin
 date: 2021-03-23
 category: maths
@@ -9,7 +9,7 @@ tags: feature explainer
 ---
 
 
-*(Edited together from 2015/2016 posts to the Gapcoin bitcoin forum by [YomKi](https://bitcointalk.org/index.php?topic=822498.msg14421320#msg14421320))*
+*(Edited together from 2015/2016 posts to the Gapcoin bitcoin forum by [Yom Ki](https://bitcointalk.org/index.php?topic=822498.msg14421320#msg14421320))*
 
 The algorithm description on [github](https://github.com/Gapcoin/Gapcoin-PoWCore) is a partial sieve, Fermat test for each remainder, then scan for large gaps. Jonny’s CTR work in [GapMiner](https://github.com/Gapcoin/GapMiner) is doing a lot of startup work but looks like it eventually comes down to sieve the range, Fermat test candidates then scan for large gaps. 
 

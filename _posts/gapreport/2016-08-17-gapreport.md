@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: First occurrence and merit report 2016-08-17
 description: The Gapcoin results from 27-Dec-2015 to 14-Aug-2016 are published.
 date: 2016-08-17
