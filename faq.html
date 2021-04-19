@@ -74,6 +74,65 @@ excerpt: "A selection of questions asked and answered on the Mersenne forum"
           </div>
         </div>
 
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            Seems a bit slow to sync, is it just me?
+          </div>
+
+          <div class="content">
+            <p>No, it’s not just you. Gapcoin <em>is</em> relatively slow to sync because checking the Proof-of-Work of each block read in involves checking the gap and the primes therein.</p>
+            <div class="ui raised padded container segment">
+
+              <div class="ui tiny header">2014-11-02 dcct <a href="https://bitcointalk.org/index.php?topic=822498.msg9417291#msg9417291" target="_blank">msg9417291</a></div>
+              <blockquote><pre style="font-style:italic;font-size:0.8em">gatra on 2014-11-02, 22:32:59
+Hi!
+
+A couple of questions: doesn't proof of work verification necessary involve
+testing all numbers in the gap? Even using a sieve, wouldn't it become too slow?
+If merit is about <math>gap size/log(p)</math>, but max gap size is <math>O(log^2(p))</math>, then max merit is <math>O(log(p))</math>.
+So in order to get more merit, you'll eventually need larger primes,
+otherwise you'll have an upper bound for the merit!
+How do you handle this? I'm really interested in seeing how would this work.
+ 
+Best regards,
+Gatra
+</pre></blockquote>
+              <p>Verification is quite fast. Even a 7k gap is verified within seconds.</p>
+              <p>With <math>O(log(p))</math> the maximum merit is already above 256 with a larger shift difficulty can be raised further. I don't see any limit here.</p>
+              <blockquote><pre style="font-style:italic;font-size:0.8em">If expected average merit and max merit depend on the size of the primes, wouldn't I
+get an advantage by mining a pool using smaller primes? (restricting myself to smaller "shifts")
+Smaller primes mean faster computations, so more chances of getting a share, but at the expense of
+less changes of getting an actual block!</pre></blockquote>
+              <p>It’s a bit of a tradeoff here. Larger shifts allow for larger, more efficient sieves, while lower ones speed up the fermat tests. I figured out the optimum is somewhere between 20 (the default value) and 26. Its only a minor improvement anyway.</p>
+              <hr/>
+              <div class="ui tiny header">2014-11-02 jonn9 <a href="https://bitcointalk.org/index.php?topic=822498.msg9417463#msg9417463" target="_blank">msg9417463</a></div>
+              <blockquote><pre style="font-style:italic;font-size:0.8em">gatra on 2014-11-02, 22:32:59
+doesn't proof of work verification necessary involve testing all numbers in the gap?
+Even using a sieve, wouldn't it become too slow?</pre></blockquote>
+              <p>Hey Gatra,</p>
+              <p>Yes, proof of work verification involves testing all numbers in the gap. It is a simple GMP call:</p>
+              <pre><code class="C++">/* start has to be a prime */
+if (!mpz_probab_prime_p(mpz_start, 25)) {
+    mpz_clear(mpz_start);
+    return false;
+}
+mpz_init(mpz_end);
+mpz_nextprime(mpz_end, mpz_start);
+</code></pre>
+              <p>The time for one verification is currently about 0.008 seconds (on a Intel i5-2500K)</p>
+              <blockquote><pre style="font-style:italic;font-size:0.8em">gatra on 2014-11-02, 22:32:59
+If merit is about gap size/log(p), but max gap size is <math>O(log^2(p))</math>, then max merit
+is <math>O(log(p))</math>. So in order to get more merit, you'll eventually need larger primes,
+otherwise you'll have an upper bound for the merit! How do you handle this?</pre></blockquote>
+              <p>This is no problem, you can control the prime bit size with the shift field within the block header.</p>
+              <p>The largest prime can theoretically have a bit size of <math>256 + 2<sup>16</sup></math></p>
+              <p>Gapcoin also has a (compile time) opt-in restriction for the max allowed shift amount, the main nodes currently only allows shifts up to 512.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="ui styled fluid accordion">
           <div class="title">
             <i class="dropdown icon"></i>

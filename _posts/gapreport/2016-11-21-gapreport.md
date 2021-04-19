@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: Concerns about the status of Gapcoin-discovered first occurrence record gaps
 description: The web page is still dead, but the dump files are being updated.
 date: 2016-11-21

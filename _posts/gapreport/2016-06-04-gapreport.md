@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: Q. Is there a way to see the overall activity?
 description: Is there a way to see the overall activity on the prime gap list
 date: 2016-06-04

@@ -8,8 +8,14 @@ tags: feature downloads
 
 <h3 class="ui teal header">Gapcoin wallets</h3>
 
-- Here
-- and here
+
+- [v0.9.2rev wallet binaries](https://github.com/gapcoin-project/gapcoin/releases/tag/v0.9.2-rev2) (Linux and Windows)
+- [v0.16.3 wallet binaries](https://github.com/gapcoin-project/gapcoin-core/releases) (Windows and OSX)
+
+<h3 class="ui teal header">GapMiner</h3>
+
+- [rev5 CPU/CRT binaries](https://github.com/gapcoin-project/GapMiner/releases/tag/crt-rev5.1) (Windows and Linux)
+- [rev4 GPU binaries](https://github.com/gapcoin-project/GapMiner/releases/tag/gapminer-rev4) (Windows and Linux)
 
 <h3 class="ui teal header">Prime gap data</h3>
 

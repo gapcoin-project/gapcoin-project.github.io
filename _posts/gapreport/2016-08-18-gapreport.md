@@ -1,6 +1,6 @@
 ---
 layout: post
-author: YomKi
+author: Yom Ki
 title: First occurrence and merit report 2016-08-18
 description: 551 record gaps in the file sent
 date: 2016-08-18
