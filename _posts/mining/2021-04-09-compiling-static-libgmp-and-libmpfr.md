@@ -86,7 +86,7 @@ cd /tmp/
 git clone https://github.com/gapcoin-project/GapMiner.git
 ```
 
-Now, navigate to the GapMiner source folder and, because you’ll want to compare the performance of the standard miner against your optimied one, compile as usual:
+Now, navigate to the GapMiner source folder and, because you’ll want to compare the performance of the standard miner against your optimised one, compile as usual:
 
 ```bash
 cd /tmp/GapMiner
