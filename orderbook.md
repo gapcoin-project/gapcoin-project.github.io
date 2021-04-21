@@ -16,7 +16,7 @@ tags: gapcoin
               <a class="item" href="{{ retrieval.url }}">
                 <div class="ui header" style="padding: 0.6em">
                   <i class="blue chart line icon"></i>
-                    {{ retrieval.title }} for {{ retrieval.date | date_to_string}}
+                    {{ retrieval.title }} for {{ retrieval.date | date_to_string}} (&gt; {{ retrieval.above}} GAP &amp; &lt; {{retrieval.ask}} sat)
                 </div>
               </a>
             {% endfor %}
