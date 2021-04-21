@@ -15,7 +15,7 @@
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div id="data" class="invisible" data-content="{{page.data}}" data-btcprice="{{page.btcprice}}"></div>
+    <div id="data" class="invisible" data-content="{{page.data}}" data-btcprice="{{page.btcprice}}" data-ask="{{page.ask}}" data-above="{{page.above}}"></div>
 
     {% if site.pagebar %}
     {% include page-bar.html %}
@@ -31,7 +31,7 @@
     {% include js.html %}
     <script>
 
-    function chartify(arr, btcprice) {
+    function chartify(arr, btcprice, ask, above) {
       var row;
       var xdata = new Array;
       var ydata = new Array;
@@ -42,13 +42,13 @@
       for (row of arr.entries()) {
         var amount = row[1][1];
         var price = row[1][0];
-        if (price < 0.00000200) {
+        if (price < ask) {
           dollarspend += amount * (price * btcprice);
           totalgap += amount;
           dollars.push(dollarspend);
           gapcoins.push(totalgap);
         }
-        if (amount > 200 && price < 0.00000200) {
+        if (amount > above && price < ask) {
           xdata.push(price * 100000000);
           ydata.push(amount);
         }
@@ -56,7 +56,7 @@
 
       // Orderbook
       var margin0 = {top: 20, right: 15, bottom: 60, left: 80}, width0 = 1200 - margin0.left - margin0.right, height0 = 500 - margin0.top - margin0.bottom;
-      var x0 = d3.scaleBand().domain(xdata).range([0, width0]);
+      var x0 = d3.scaleBand().domain(xdata).range([5, width0]);
       var y0 = d3.scaleLinear().domain([0, d3.max(ydata)]).range([height0, 0 ]);
       var chart0 = d3.select('#content')
         .append('svg:svg')
@@ -166,8 +166,12 @@
       var datadiv = document.getElementById('data');
       var data = datadiv.getAttribute('data-content');
       var btcprice = parseInt(datadiv.getAttribute('data-btcprice'), 10);
+      var ask = parseInt(datadiv.getAttribute('data-ask'), 10) / 100000000;
+      var above = parseInt(datadiv.getAttribute('data-above'), 10);
+      console.log("ask: ", ask);
+      console.log("above: ", above);
       var arr = $.csv.toArrays(data).map(function(entry) {return entry.map(parseentry)});
-      chartify(arr, btcprice);
+      chartify(arr, btcprice, ask, above);
 
       $('.ui.dimmer').dimmer('hide');
 

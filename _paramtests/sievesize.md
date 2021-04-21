@@ -1,7 +1,7 @@
 ---
 layout: paramtest
-title: Comparison of changing --sieve-size (ineffective at shifts &lt; 768)
-description: <code>--sieve-size</code> is described as a “secondary” parameter with little influence on miner performance.
+title: Comparison of changing --sieve-size (ineffective at shifts &lt; 768 in non-CRT mining)
+description: <code>--sieve-size</code> is described as a tertiary parameter with little influence on miner performance.
 author: Graham Higgins
 testdir: sievesize
 tests: f64-s13554397-i90000 f64-s33554397-i90000 f64-s53554397-i90000 f128-s13554397-i900000 f128-s33554397-i900000 f128-s53554397-i900000 std-f768-s33554397-i90000 std-f768-s4800000-i640000
