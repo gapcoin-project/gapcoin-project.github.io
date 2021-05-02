@@ -56,11 +56,11 @@ Additional Options:
 
     -w  --work-items        gpu work items (default 2048)
 
-    -z  --queue-size        the gpu waiting queue size (memory intensive)
+    -z  --queue-size        the gpu waiting queue size (memory intensive, default 10)
 
     -a  --platform          opencl platform (amd or nvidia)
 
-    -n  --num-gpu-tests     the number of test per gap per gpu run
+    -n  --num-gpu-tests     the number of test per gap per gpu run (default 8)
 
     -h  --help              print this information
 

@@ -96,10 +96,14 @@ span.val {color: red}
       dataset.then(function(data) {
 
         var iscrt = false;
+        var isgpu = false;
         var slicepoint = 1;
         if (data.columns.length > 4) {
           iscrt = true;
           slicepoint = 3;
+        }
+        else if (data.columns.length < 4) {
+          isgpu = true;
         }
         const slices = data.columns.slice(slicepoint).map(function(id) {
           return {
@@ -136,10 +140,15 @@ span.val {color: red}
         const xScale = d3.scaleLinear()
           .range([0,width]);
 
+        var yScale;
 
-        const yScale = d3.scalePow()
-            .exponent(0.3)
-            .rangeRound([height, 0]);
+        if (isgpu)
+          yScale = d3.scaleLinear()
+              .rangeRound([height, 0]);
+        else
+          yScale = d3.scalePow()
+              .exponent(0.3)
+              .rangeRound([height, 0]);
 
         var zScale, zaxis;
 
@@ -149,11 +158,18 @@ span.val {color: red}
           ;})
         ]);
 
-        yScale.domain([(1), d3.max(slices, function(c) {
-          return d3.max(c.values, function(d) {
-            return d.dval; })
-          ;})
-        ]);
+        if (isgpu)
+          yScale.domain([(1750000), d3.max(slices, function(c) {
+              return d3.max(c.values, function(d) {
+                return d.dval; })
+              ;})
+            ]);
+        else
+          yScale.domain([(1), d3.max(slices, function(c) {
+            return d3.max(c.values, function(d) {
+              return d.dval; })
+            ;})
+          ]);
 
         //-----------------------------AXES------------------------------//
         const yaxis = d3.axisLeft()
