@@ -1,0 +1,104 @@
+---
+layout: landing
+author: Graham Higgins
+title: Chinese Remainder Theorem Mining
+category: mining
+date: 2021-03-15
+tags: crt
+---
+
+<div class="ui inverted vertical segment dark-wood">
+  <div class="ui very relaxed stackable page grid">
+    <div class="row">
+      <div class="sixteen wide column">
+        <h2 class="ui teal header">Mining with shift &gt;= 64 using the Chinese Remainder Theorem</h2>
+
+        <p>The speed of mining <em><strong>with higher shifts</strong></em> (64 and above) can be improved by using the Chinese Reminder Theorem (CRT). The higher the shift (up to 1024), the better the improvement from using the CRT - but with higher shifts the mining speed also decreases. However, if you are aiming for shifts 64 and above anyway, then using the CRT will make a positive difference.</p> 
+
+        <div class="ui tertiary raised padded container green segment">
+          <div style="font-style:italic; font-size:90%">
+            <h5 class="ui teal header">Fast track copy’n’pasta</h5>
+            <p>Get-you-started crt mining params: shift 64, 4 threads (1@gap scanning, 3@fermat sieving), sieve-primes of 13000.</p>
+            <pre class="language-bash hljs">gapminer localhost -p 31397 -u &lt;user&gt; -x &lt;password&gt; -t 4 -d 3 -f 64 -i 13000 -r crt-22m-64s.txt</pre>
+          </div>
+        </div>
+
+        <h3 class="ui teal header">Details</h3>
+        <p>When using GapMiner with the Chinese Remainder Theorem for mining, in addition to the standard GapMiner parameters <tt>--threads</tt>, <tt>--sieve-primes</tt> and <tt>--sieve-size</tt>, there are two additional mining parameters that must be set appropriately: <tt>--crt</tt> and <tt>--fermat-threads</tt>.</p>
+
+        <code><pre class="language-bash hljs">
+      -r  --crt               use the given Chinese Remainder Theorem file
+      -d  --fermat-threads    number of fermat threads when using the crt</pre></code>
+
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Although <tt>--sieve-size</tt> remains settable, it is <strong>not used</strong> when mining with the Chinese Remainder Theorem.</p>
+          </div>
+        </div>
+
+        <h3 class="ui teal header"><code>-r --crt</code> <!--CRT files --></h3>
+
+        <p>use the given Chinese Remainder Theorem file</p>
+        <p>Using GapMiner with the Chinese Remainder Theorem requires the choice of a CRT file, containing search values optimized for a specific shift, starting at 64 (i.e. searching primes of 97 digits in length).</p>
+
+        <p>As originally distributed, crt files for the following shifts were <a href="https://github.com/gapcoin/GapMiner/tree/master/crt" target="_blank">made available in the GapMiner repository</a>: 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800, 832, 864, 896, 928, 992, 1024.</p>
+
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>The shift setting doesn‘t <strong>have</strong> to match the crt shift, you can mine with <tt>--shift 510</tt> using the crt file <code>crt-22m-512s.txt</code>.</p>
+          </div>
+        </div>
+
+        <h3 class="ui teal header"><code>-d --fermat-threads</code> <!--Fermat threads --></h3>
+
+        <p>number of fermat threads when using the crt</p>
+        <p>Mining with the CRT is split into sieve and primality testing, using separate threads for each:</p>
+
+        <pre class="language-bash hljs">--threads 4 --fermat-threads 1</pre>
+
+        <p>The above example is parsed by the Gapcoin miner as: use 3 threads for sieving and 1 thread for gap scanning.</p>
+
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Using GapMiner with CRT requires at least <strong>two</strong> threads.</p>
+          </div>
+        </div>
+
+        <p>The scan threads always pick the most promising gap from the gaplist (the gaplist is implemented as an heap), therefore <strong>the gaplist value should always be at least over 100</strong>. Altering the gaplist size can be achieved by altering <tt>--sieve-primes</tt>, <tt>--threads</tt> or <tt>--fermat-threads</tt>.</p>
+
+        <div class="ui tertiary raised padded container yellow segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>Having a gaplist with too high a value (e.g. over 9000) can slow down mining.</p>
+          </div>
+        </div>
+
+        <h4>Recommendations derived from practice and testing</h4>
+        <ul>
+        <li>set <tt>--fermat-threads = --threads</tt> minus 3 for shifts <em>below</em> 128.</li>
+        <li>set <tt>--fermat-threads = --threads</tt> minus <em>2</em> for shifts <em>above</em> 128.</li>
+        <li>set <tt>--sieve-primes</tt> for optimal block% (probably close or below).</li>
+        </ul>
+
+        <p>If you want more <tt>--fermat-threads</tt> then the value of <tt>--sieve-primes</tt> needs to be reduced and vice versa.</p>
+
+        <p>Fine-tune the sieve-primes value by only adjusting 1000 at a time then running for a minute to observe. The ideal behavior is for the gaplist size generally (most of the time) to stay above 100. It'll creep up to a 2000-3000 then drop back down to 100 and will continue in this see-saw fashion.</p>
+
+        <h3 class="ui teal header">Output</h3>
+        <p>There are 2 new verbose outputs:</p>
+        <pre class="nohighlight">
+    gaplist: The number of sieved gaps ready for scanning
+    block: The percent of the calculation amount of an average block</pre>
+
+        <div class="ui tertiary raised padded container red segment">
+          <div style="font-style:italic; font-size:90%">
+            <p>When mining with the CRT, the primes/sec and block values are <strong>estimated</strong> using the theoretical speed improvements from CRT so may not be accurate.</p>
+          </div>
+        </div>
+
+        <p>Mining with the CRT is optimized for solo mining. Pool miniing with CRT is possible but will probably result in fewer shares (the primes/sec and block values are probably inaccurate) but the chance of finding a block is almost the same as when mining solo.</p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
