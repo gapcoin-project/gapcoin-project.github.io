@@ -9,7 +9,7 @@ tags: content                   # Tags to relate multiple topics to a post
 This is a starter post which you can duplicate to create your own. It demonstrates Markdown syntax, Liquid tags, and GitHub whitelisted HTML.
 
 **Note.** Read this post as Markdown source to see the easy to 
-write [syntax](https://raw.githubusercontent.com/open-start/opentheme/master/_posts/blog/2014-12-16-starter-post.md) 
+write [syntax](https://raw.githubusercontent.com/gapcoin-project/gapcoin-project.github.io/master/_posts/projectdocs/2014-12-16-starter-post.md) 
 for creating this HTML page.
 
 ### Markdown
