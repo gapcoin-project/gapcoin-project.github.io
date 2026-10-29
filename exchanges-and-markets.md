@@ -19,14 +19,14 @@ tags:
 ### GAP/BTC Markets
 
 - [C-PatEx](https://c-patex.com/markets/gapbtc)
-- [Freebitcoins](https://freebitcoins.com/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
+- [AltQuick](https://altquick.com/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
 - [FreiExchange](https://freiexchange.com/market/GAP/BTC)
 - [Unnamed Exchange](https://www.unnamed.exchange/Exchange/Basic?market=GAP_BTC)
 
-#### Freebitcoins
-- [XChange](https://freebitcoins.com/xchange/market/Bitcoin-Gapcoin/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
-- [Gapcoin Swap XChange](https://freebitcoins.com/swap/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
-- [Gapcoin Faucet](https://freebitcoins.com/faucet/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
+#### AltQuick
+- [GAP/BTC Market](https://altquick.com/market/gapcoin-bitcoin/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
+- [Gapcoin Swap](https://altquick.com/swap/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
+- [Gapcoin Faucet](https://altquick.com/faucet/?aKey=d4408df79dc7397f5e85358bb65da52c2c3da033)
 
 Vote for Gapcoin at [SouthXchange](https://main.southxchange.com/Home/Vote#new-coins)
 
@@ -78,7 +78,7 @@ Vote for Gapcoin at [SouthXchange](https://main.southxchange.com/Home/Vote#new-c
   </ul>
   <h5 class="ui small header">Current</h5>
   <ul>
-    <li><p><a href="https://bitcointalk.org/index.php?topic=822498.msg54972227#msg54972227" target="_blank"><span class="date">2020-08-11</span></a> Listed on <a href="https://freebitcoins.com/xchange/market/Bitcoin-Gapcoin" target="_blank">freebitcoins</a> exchange</p></li>
+    <li><p><a href="https://bitcointalk.org/index.php?topic=822498.msg54972227#msg54972227" target="_blank"><span class="date">2020-08-11</span></a> Listed on <a href="https://altquick.com/market/gapcoin-bitcoin/" target="_blank">freebitcoins</a> exchange (now AltQuick)</p></li>
     <li><p><a href="https://bitcointalk.org/index.php?topic=822498.msg55547885#msg55547885" target="_blank"><span class="date">2020-11-08</span></a> Listed on <a href="https://c-patex.com/markets/gapbtc" target="_blank">C-Patex exchange</a></p></li>
     <li><p><a href="https://bitcointalk.org/index.php?topic=822498.msg55658535#msg55658535" target="_blank"><span class="date">2020-11-22</span></a> Listed on <a href="https://www.unnamed.exchange/Exchange/Basic?market=GAP_BTC" target="_blank">unnamed exchange</a></p></li>
     <li><p><a href="https://freiexchange.com/market/GAP/BTC" target="_blank"><span class="date">2021-04-17</span></a> listed at 79 sat. ($0.049, BTC at $62250)</p></li>
